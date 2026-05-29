@@ -1,0 +1,31 @@
+{
+  "name": "tri-city-volleyball",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^12.40.0",
+    "lenis": "^1.3.23",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.15.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "playwright": "^1.60.0",
+    "tailwindcss": "^4.3.0",
+    "vite": "^8.0.14"
+  }
+}
