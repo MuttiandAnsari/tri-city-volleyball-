@@ -253,8 +253,7 @@ export default function Home() {
             transform: 'translate3d(0,0,0)',
           }}
         >
-          <source src="https://res.cloudinary.com/ddrbuehqj/video/upload/sp_auto/v1780100749/Final_tri_clips_bnajsx.m3u8" type="application/x-mpegURL" />
-          <source src="https://res.cloudinary.com/ddrbuehqj/video/upload/v1780100749/Final_tri_clips_bnajsx.mp4" type="video/mp4" />
+          <source src="https://sgdreaasfmgswafyooqu.supabase.co/storage/v1/object/public/Videos%20tri%20city/Final%20tri%20clips.mp4" type="video/mp4" />
         </video>
         {/* Scroll-deepening dark overlay */}
         <motion.div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgb(10,20,40)', opacity: heroOverlayOpacity }} />
