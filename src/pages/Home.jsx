@@ -230,16 +230,21 @@ export default function Home() {
         className="relative text-white"
         style={{ width: '100%', minHeight: '100vh' }}
       >
-        {/* Full-bleed YouTube embed — covers 100vw × 100vh */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', width: '177.78vh', height: '56.25vw', minWidth: '100%', minHeight: '100%', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}>
-          <iframe
-            src="https://www.youtube.com/embed/miMshqAvdpk?autoplay=1&mute=1&loop=1&playlist=miMshqAvdpk&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
-            title=""
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none', pointerEvents: 'none' }}
-          />
-        </div>
+        {/* Full-bleed video — 100vw × 100vh, no gaps */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="https://res.cloudinary.com/ddrbuehqj/video/upload/v1780100749/Final_tri_clips_bnajsx.mp4"
+          style={{
+            position: 'absolute', top: 0, left: 0,
+            width: '100vw', height: '100vh',
+            objectFit: 'cover', display: 'block',
+            willChange: 'transform',
+            transform: 'translate3d(0,0,0)',
+          }}
+        />
         {/* Scroll-deepening dark overlay */}
         <motion.div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgb(10,20,40)', opacity: heroOverlayOpacity }} />
 
