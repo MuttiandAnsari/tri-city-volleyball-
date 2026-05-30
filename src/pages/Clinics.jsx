@@ -164,7 +164,7 @@ export default function Clinics() {
       <PageHero
         label="Training Programs"
         title={<>Train Smarter.<br /><span className="text-gradient">Level Up Faster.</span></>}
-        subtitle="Structured sessions for every grade level, from K through 12th, in Union City and Fremont."
+        subtitle="Structured sessions for every grade level, from K through 12th, in Union City, Fremont & Dublin."
         watermark="TRAIN"
       />
 

@@ -33,7 +33,7 @@ const faqs = [
   { q: 'How do I know which level is right for my child?', a: 'Beginner (K–4) is for kids new to volleyball. Intermediate (5–7) is for players with at least one season of experience. Advanced (8–12) is for competitive players. Not sure? Text us at (341) 777-8673 and we\'ll help you decide.' },
   { q: 'Is this for boys and girls?', a: 'Yes! Our clinics are open to all athletes regardless of gender.' },
   { q: 'Are there tryouts?', a: 'No tryouts. Clinics are open enrollment. Just register and show up!' },
-  { q: 'Where exactly are the clinics held?', a: 'Clinics are held at Lake Elizabeth Park (Fremont) and Willow Park (Union City). Tournaments are held at Fallon\'s Park in Dublin, CA.' },
+  { q: 'Where exactly are the clinics held?', a: 'Clinics are held at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Park (Dublin, CA).' },
 ]
 
 const inputClass = "w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"

@@ -17,7 +17,11 @@
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(s.get\\('codec_name'\\), s.get\\('width'\\), s.get\\('height'\\), s.get\\('bit_rate'\\), s.get\\('r_frame_rate'\\)\\) for s in d['streams']]\")",
       "Bash(ffprobe -v error -show_streams \"/Users/vmutti1/tri-city-volleyball/Final tri clips.mp4\")",
       "Bash(ffprobe \"/Users/vmutti1/tri-city-volleyball/Final tri clips.mp4\")",
-      "Bash(brew install *)"
+      "Bash(brew install *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/local/bin/**)"
     ]
   }
 }

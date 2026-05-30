@@ -18,7 +18,7 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 
 const statItems = [
   { number: 'K–12', display: 'K–12', label: 'All Grade Levels', color: 'text-cyan-400', numeric: false },
-  { number: 2, display: '2', label: 'Bay Area Locations', color: 'text-blue-400', numeric: true },
+  { number: 3, display: '3', label: 'Bay Area Locations', color: 'text-blue-400', numeric: true },
   { number: 4, display: '4', label: 'Dedicated Coaches', color: 'text-indigo-400', numeric: true },
   { number: 100, display: '100%', label: 'Youth-Led Program', color: 'text-sky-400', numeric: true, suffix: '%' },
 ]
