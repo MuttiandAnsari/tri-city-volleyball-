@@ -237,6 +237,7 @@ export default function Home() {
         ref={heroRef}
         className="relative text-white"
         style={{ width: '100%', minHeight: '100vh' }}
+        onClick={() => videoRef.current && videoRef.current.play().catch(() => {})}
       >
         {/* Full-bleed video — 100vw × 100vh, no gaps */}
         <video
@@ -245,6 +246,7 @@ export default function Home() {
           loop
           muted
           playsInline
+          onTouchStart={() => videoRef.current && videoRef.current.play().catch(() => {})}
           style={{
             position: 'absolute', top: 0, left: 0,
             width: '100vw', height: '100vh',
