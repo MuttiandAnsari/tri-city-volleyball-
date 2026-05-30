@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView, animate, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
 import logo from '../assets/logo.png'
-const heroVideo = 'https://res.cloudinary.com/ddrbuehqj/video/upload/v1780100749/Final_tri_clips_bnajsx.mp4'
 import photoViraj from '../assets/viraj.jpg'
 import photoNoah from '../assets/noah.jpg'
 import photoAyaan from '../assets/ayaan.jpg'
@@ -13,6 +12,7 @@ import CursorGlow from '../components/CursorGlow'
 import Tilt from '../components/Tilt'
 import MagneticButton from '../components/MagneticButton'
 
+const heroVideo = 'https://res.cloudinary.com/ddrbuehqj/video/upload/v1780100749/Final_tri_clips_bnajsx.mp4'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 
