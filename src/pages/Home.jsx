@@ -206,6 +206,14 @@ export default function Home() {
   const heroOverlayOpacity = useSpring(rawOverlayOpacity, { stiffness: 120, damping: 28, mass: 0.5 })
   const heroContentY = useSpring(rawHeroContentY, { stiffness: 120, damping: 28, mass: 0.5 })
 
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {})
+    }
+  }, [])
+
   const rawX = useMotionValue(0)
   const rawY = useMotionValue(0)
   const parallaxX = useSpring(rawX, { stiffness: 50, damping: 20, mass: 0.8 })
@@ -232,6 +240,7 @@ export default function Home() {
       >
         {/* Full-bleed video — 100vw × 100vh, no gaps */}
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
