@@ -236,7 +236,6 @@ export default function Home() {
           loop
           muted
           playsInline
-          src="https://res.cloudinary.com/ddrbuehqj/video/upload/v1780100749/Final_tri_clips_bnajsx.mp4"
           style={{
             position: 'absolute', top: 0, left: 0,
             width: '100vw', height: '100vh',
@@ -244,7 +243,10 @@ export default function Home() {
             willChange: 'transform',
             transform: 'translate3d(0,0,0)',
           }}
-        />
+        >
+          <source src="https://res.cloudinary.com/ddrbuehqj/video/upload/sp_auto/v1780100749/Final_tri_clips_bnajsx.m3u8" type="application/x-mpegURL" />
+          <source src="https://res.cloudinary.com/ddrbuehqj/video/upload/v1780100749/Final_tri_clips_bnajsx.mp4" type="video/mp4" />
+        </video>
         {/* Scroll-deepening dark overlay */}
         <motion.div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgb(10,20,40)', opacity: heroOverlayOpacity }} />
 
