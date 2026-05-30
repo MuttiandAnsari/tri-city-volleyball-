@@ -207,12 +207,23 @@ export default function Home() {
   const heroContentY = useSpring(rawHeroContentY, { stiffness: 120, damping: 28, mass: 0.5 })
 
   const videoRef = useRef(null)
+  const [showTapToPlay, setShowTapToPlay] = useState(false)
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        if (isMobile) setShowTapToPlay(true)
+      })
+    }
+  }, [])
+
+  const handleTapToPlay = () => {
     if (videoRef.current) {
       videoRef.current.play().catch(() => {})
     }
-  }, [])
+    setShowTapToPlay(false)
+  }
 
   const rawX = useMotionValue(0)
   const rawY = useMotionValue(0)
@@ -257,6 +268,36 @@ export default function Home() {
         >
           <source src="https://sgdreaasfmgswafyooqu.supabase.co/storage/v1/object/public/Videos%20tri%20city/Final%20tri%20clips.mp4" type="video/mp4" />
         </video>
+        {/* Tap to Play overlay — mobile only, shown when autoplay is blocked */}
+        <AnimatePresence>
+          {showTapToPlay && (
+            <motion.button
+              className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 md:hidden"
+              style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(4px)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={handleTapToPlay}
+            >
+              <motion.div
+                className="w-20 h-20 rounded-full flex items-center justify-center"
+                style={{ background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.4)' }}
+                whileTap={{ scale: 0.92 }}
+                animate={{ scale: [1, 1.06, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <svg className="w-9 h-9 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </motion.div>
+              <span className="text-white text-lg font-semibold tracking-wide" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>
+                Tap to Play
+              </span>
+            </motion.button>
+          )}
+        </AnimatePresence>
+
         {/* Scroll-deepening dark overlay */}
         <motion.div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgb(10,20,40)', opacity: heroOverlayOpacity }} />
 
