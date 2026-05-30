@@ -48,7 +48,7 @@ const steps = [
 
 const homeFaqs = [
   { q: 'How much does it cost?', a: 'Your first session is completely free, no commitment needed. After that, Beginner clinics (K–4) are $10/session and Intermediate & Advanced are $15/session.' },
-  { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and knee pads if they have them. Knee pads are recommended but not required. We provide all the volleyballs.' },
+  { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and a competitive attitude. We provide all the volleyballs.' },
   { q: 'What happens at the first free session?', a: 'Coaches introduce themselves, group kids by skill level, run fun drills, and make sure every athlete feels welcome. Zero pressure. Just come out and play!' },
   { q: 'How do I pick the right level?', a: 'Beginner (K–4) is for kids brand new to the sport. Intermediate (grades 5–7) is for players with at least a season of experience. Advanced (grades 8–12) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
   { q: 'Is this for boys and girls?', a: 'Yes! All clinics are open to every athlete regardless of gender.' },

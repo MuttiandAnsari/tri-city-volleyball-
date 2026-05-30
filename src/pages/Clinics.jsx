@@ -18,7 +18,6 @@ const clinics = [
 const gear = [
   { icon: '👟', label: 'Athletic shoes' },
   { icon: '💧', label: 'Water bottle' },
-  { icon: '🩹', label: 'Knee pads (recommended)' },
   { icon: '😤', label: 'Competitive attitude' },
 ]
 
