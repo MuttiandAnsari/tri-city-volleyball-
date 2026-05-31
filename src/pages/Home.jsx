@@ -14,7 +14,7 @@ import MagneticButton from '../components/MagneticButton'
 import Reviews from '../components/Reviews'
 import VerticalVideoSection from '../components/VerticalVideoSection'
 
-const heroVideo = 'https://res.cloudinary.com/ddrbuehqj/video/upload/f_auto,q_auto/v1780100749/Final_tri_clips_bnajsx.mp4'
+const heroVideo = 'https://res.cloudinary.com/ddrbuehqj/video/upload/f_auto,q_auto:best,vc_auto/v1780100749/Final_tri_clips_bnajsx.mp4'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 
@@ -233,6 +233,7 @@ export default function Home() {
           loop
           muted
           playsInline
+          preload="auto"
           onTouchStart={() => videoRef.current && videoRef.current.play().catch(() => {})}
           style={{
             position: 'absolute', top: 0, left: 0,
@@ -240,10 +241,9 @@ export default function Home() {
             objectFit: 'cover', display: 'block',
             willChange: 'transform',
             transform: 'translate3d(0,0,0)',
-            filter: 'contrast(1.08) saturate(1.15) brightness(1.02)',
           }}
         >
-          <source src="https://sgdreaasfmgswafyooqu.supabase.co/storage/v1/object/public/Videos%20tri%20city/Final%20tri%20clips.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
         {/* Tap to Play overlay — mobile only, shown when autoplay is blocked */}
         <AnimatePresence>
