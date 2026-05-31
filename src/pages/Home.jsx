@@ -515,13 +515,6 @@ export default function Home() {
         </section>
       </CursorGlow>
 
-      {/* ── Vertical Video Highlights ── */}
-      <VerticalVideoSection
-        src="https://sgdreaasfmgswafyooqu.supabase.co/storage/v1/object/public/Videos%20tri%20city/Final%20tri%20clips.mp4"
-        title="Watch Us Play"
-        subtitle="Real clips from our clinics and tournaments. This is what we're building together."
-      />
-
       {/* ── Pricing ── */}
       <section className="relative bg-slate-950 py-24 overflow-hidden">
         <div className="absolute inset-0 dot-pattern pointer-events-none opacity-40" />
