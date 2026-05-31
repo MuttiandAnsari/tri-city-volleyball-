@@ -6,11 +6,21 @@ import Footer from './components/Footer'
 import AnnouncementBanner from './components/AnnouncementBanner'
 import ScrollProgress from './components/ScrollProgress'
 import ScrollToTop from './components/ScrollToTop'
-import SmoothScroll from './components/SmoothScroll'
+import SmoothScroll, { getLenis } from './components/SmoothScroll'
 
 function ScrollReset() {
   const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  useEffect(() => {
+    const lenis = getLenis()
+    if (lenis) {
+      lenis.stop()
+      lenis.scrollTo(0, { immediate: true })
+      lenis.start()
+    } else {
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
+  }, [pathname])
   return null
 }
 import Home from './pages/Home'

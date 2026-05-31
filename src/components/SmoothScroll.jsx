@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
+// Module-level ref so ScrollReset can access the instance
+let lenisInstance = null
+export function getLenis() { return lenisInstance }
+
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -11,7 +15,8 @@ export default function SmoothScroll() {
       touchMultiplier: 1.5,
     })
 
-    // Keep native scroll position in sync so framer-motion useScroll works
+    lenisInstance = lenis
+
     lenis.on('scroll', ({ scroll }) => {
       window.dispatchEvent(new Event('scroll'))
       document.documentElement.scrollTop = scroll
@@ -27,6 +32,7 @@ export default function SmoothScroll() {
     return () => {
       cancelAnimationFrame(rafId)
       lenis.destroy()
+      lenisInstance = null
     }
   }, [])
 
