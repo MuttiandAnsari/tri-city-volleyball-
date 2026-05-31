@@ -6,6 +6,77 @@ import VolleyballSVG from '../components/VolleyballSVG'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
+const LOCATIONS = [
+  {
+    name: 'Lake Elizabeth Park',
+    city: 'Fremont',
+    address: '40204 Paseo Padre Pkwy, Fremont, CA 94538',
+    embed: 'https://maps.google.com/maps?q=Lake+Elizabeth+Park,+Fremont,+CA+94538&output=embed',
+  },
+  {
+    name: 'Willow Park',
+    city: 'Union City',
+    address: 'Willow Ave, Union City, CA 94587',
+    embed: 'https://maps.google.com/maps?q=Willow+Ave+Park,+Union+City,+CA+94587&output=embed',
+  },
+  {
+    name: "Fallon's Sports Park",
+    city: 'Dublin',
+    address: '4605 Fallon Rd, Dublin, CA 94568',
+    embed: 'https://maps.google.com/maps?q=Fallon+Sports+Park,+Dublin,+CA+94568&output=embed',
+  },
+]
+
+function MapTabs() {
+  const [active, setActive] = useState(0)
+  return (
+    <div>
+      <div className="flex flex-wrap gap-2 justify-center mb-6">
+        {LOCATIONS.map((loc, i) => (
+          <button
+            key={loc.name}
+            onClick={() => setActive(i)}
+            className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${active === i ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg' : 'bg-white/5 border border-white/10 text-slate-400 hover:text-white'}`}
+          >
+            📍 {loc.city}
+          </button>
+        ))}
+      </div>
+      <motion.div
+        key={active}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease }}
+        className="rounded-2xl overflow-hidden border border-white/10"
+      >
+        <div className="bg-white/5 px-5 py-3 flex items-center gap-3">
+          <span className="text-white font-black">{LOCATIONS[active].name}</span>
+          <span className="text-slate-500 text-xs">·</span>
+          <span className="text-slate-400 text-sm">{LOCATIONS[active].address}</span>
+          <a
+            href={`https://maps.google.com/?q=${encodeURIComponent(LOCATIONS[active].address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto text-cyan-400 text-xs font-bold hover:text-cyan-300 transition-colors whitespace-nowrap"
+          >
+            Open in Maps →
+          </a>
+        </div>
+        <iframe
+          title={LOCATIONS[active].name}
+          src={LOCATIONS[active].embed}
+          width="100%"
+          height="360"
+          style={{ border: 0, display: 'block' }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </motion.div>
+    </div>
+  )
+}
+
 const contactItems = [
   {
     icon: (<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>),
@@ -120,6 +191,17 @@ export default function Contact() {
         subtitle="Questions about clinics, tournaments, or registration? We typically respond within 24 hours."
         watermark="HELLO"
       />
+
+      {/* ── Google Maps ── */}
+      <section className="bg-slate-900 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-4">Locations</span>
+            <h2 className="text-3xl font-black text-white">Find Us</h2>
+          </div>
+          <MapTabs />
+        </div>
+      </section>
 
       <section className="bg-slate-950 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

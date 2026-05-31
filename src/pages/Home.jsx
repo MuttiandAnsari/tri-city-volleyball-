@@ -11,6 +11,8 @@ import Marquee from '../components/Marquee'
 import CursorGlow from '../components/CursorGlow'
 import Tilt from '../components/Tilt'
 import MagneticButton from '../components/MagneticButton'
+import Reviews from '../components/Reviews'
+import VerticalVideoSection from '../components/VerticalVideoSection'
 
 const heroVideo = 'https://res.cloudinary.com/ddrbuehqj/video/upload/f_auto,q_auto/v1780100749/Final_tri_clips_bnajsx.mp4'
 const ease = [0.25, 0.46, 0.45, 0.94]
@@ -513,6 +515,13 @@ export default function Home() {
         </section>
       </CursorGlow>
 
+      {/* ── Vertical Video Highlights ── */}
+      <VerticalVideoSection
+        src="https://sgdreaasfmgswafyooqu.supabase.co/storage/v1/object/public/Videos%20tri%20city/Final%20tri%20clips.mp4"
+        title="Watch Us Play"
+        subtitle="Real clips from our clinics and tournaments. This is what we're building together."
+      />
+
       {/* ── Pricing ── */}
       <section className="relative bg-slate-950 py-24 overflow-hidden">
         <div className="absolute inset-0 dot-pattern pointer-events-none opacity-40" />
@@ -587,6 +596,9 @@ export default function Home() {
           </FadeUp>
         </div>
       </section>
+
+      {/* ── Reviews ── */}
+      <Reviews />
 
       {/* ── CTA ── */}
       <section className="relative bg-gradient-to-br from-blue-950 via-blue-800 to-cyan-700 py-24 overflow-hidden clip-hero-bottom-rev">

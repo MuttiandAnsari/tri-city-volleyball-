@@ -66,3 +66,18 @@ CREATE POLICY "Admin all matches" ON tournament_matches FOR ALL USING (true);
 ALTER PUBLICATION supabase_realtime ADD TABLE tournament_registrations;
 ALTER PUBLICATION supabase_realtime ADD TABLE tournament_teams;
 ALTER PUBLICATION supabase_realtime ADD TABLE tournament_matches;
+
+-- 5. Reviews
+CREATE TABLE IF NOT EXISTS reviews (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  name text NOT NULL,
+  rating integer NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  comment text NOT NULL,
+  role text,
+  approved boolean DEFAULT false,
+  created_at timestamptz DEFAULT now()
+);
+ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read approved reviews" ON reviews FOR SELECT USING (approved = true);
+CREATE POLICY "Public insert reviews" ON reviews FOR INSERT WITH CHECK (true);
+CREATE POLICY "Admin all reviews" ON reviews FOR ALL USING (true);

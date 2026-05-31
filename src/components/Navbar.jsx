@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import logo from '../assets/logo.png'
+import { useTheme } from '../context/ThemeContext'
 
 const links = [
   { to: '/', label: 'Home', num: '01' },
@@ -14,6 +15,7 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { dark, toggle } = useTheme()
   const { scrollY } = useScroll()
   const shadow = useTransform(scrollY, [0, 80], ['0 0 0 0 transparent', '0 4px 32px 0 rgba(0,0,0,0.5)'])
   const borderOpacity = useTransform(scrollY, [0, 80], [0, 1])
@@ -75,8 +77,29 @@ export default function Navbar() {
                   )}
                 </NavLink>
               ))}
+              <motion.button
+                onClick={toggle}
+                className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+                whileTap={{ scale: 0.9 }}
+                aria-label="Toggle dark mode"
+                title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                <AnimatePresence mode="wait">
+                  {dark ? (
+                    <motion.svg key="sun" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </motion.svg>
+                  ) : (
+                    <motion.svg key="moon" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+                    </motion.svg>
+                  )}
+                </AnimatePresence>
+              </motion.button>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/register" className="ml-3 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md">
+                <Link to="/register" className="ml-1 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md">
                   Register Now
                 </Link>
               </motion.div>

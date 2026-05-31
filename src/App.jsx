@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import AnnouncementBanner from './components/AnnouncementBanner'
 import ScrollProgress from './components/ScrollProgress'
 import ScrollToTop from './components/ScrollToTop'
 import SmoothScroll from './components/SmoothScroll'
@@ -57,6 +58,7 @@ export default function App() {
       <ScrollProgress />
       <ScrollToTop />
       <div className="min-h-screen flex flex-col text-gray-900" style={{ width: '100%', maxWidth: '100%' }}>
+        <AnnouncementBanner />
         <Navbar />
         <main className="flex-1" style={{ width: '100%' }}>
           <AnimatedRoutes />
