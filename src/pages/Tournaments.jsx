@@ -9,7 +9,7 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 
 const upcoming = [
   { id: 1, name: 'Tri-City Showdown', month: 'JUN', day: '26', year: '2026', fullDate: 'June 26, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Open', deadline: 'June 24, 2026', teams: 8, description: 'Our flagship summer tournament. High school players from across the Bay Area compete for bragging rights in a full-day pool play and losers bracket showdown.', gradient: 'from-blue-600 to-cyan-500' },
-  { id: 2, name: 'Tri-City Showdown II', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'August 7, 2026', teams: 8, description: 'Round two of the Tri-City Showdown. High school players from across the Bay Area return for another day of competitive pool play and bracket action.', gradient: 'from-indigo-600 to-blue-500' },
+  { id: 2, name: 'Tri-City Invitational', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: 'TBD', divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'TBD', teams: 8, description: 'The Tri-City Invitational brings together high school players from across the Bay Area for a day of competitive pool play and bracket action. Location to be announced.', gradient: 'from-indigo-600 to-blue-500' },
   { id: 3, name: 'Tri-City Showdown III', month: 'SEP', day: '13', year: '2026', fullDate: 'September 13, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'September 11, 2026', teams: 8, description: 'The final showdown of the season. Built for high school players gearing up for their school or club seasons with one last competitive tuneup.', gradient: 'from-blue-700 to-indigo-600' },
 ]
 
@@ -70,8 +70,8 @@ function TournamentCard({ t, index }) {
             {t.registration === 'Open' && (
               <motion.div
                 className="absolute inset-0 rounded-full bg-emerald-400"
-                animate={{ scale: [1, 1.6], opacity: [0.3, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+                animate={{ scale: [1, 1.8], opacity: [0.25, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: [0.4, 0, 0.6, 1], repeatDelay: 0.5 }}
               />
             )}
             <motion.span
