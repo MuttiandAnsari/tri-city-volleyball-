@@ -130,7 +130,7 @@ function TournamentCard({ t, index }) {
         </div>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Link
-            to="/contact"
+            to="/tournament-register"
             className={`flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl transition-all duration-200 ${
               t.registration === 'Open'
                 ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600 hover:shadow-lg hover:shadow-blue-900/40'
