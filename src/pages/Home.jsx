@@ -236,7 +236,7 @@ export default function Home() {
           onTouchStart={() => videoRef.current && videoRef.current.play().catch(() => {})}
           style={{
             position: 'absolute', top: 0, left: 0,
-            width: '100vw', height: '100vh',
+            width: '100%', height: '100%',
             objectFit: 'cover', display: 'block',
             willChange: 'transform',
             transform: 'translate3d(0,0,0)',
