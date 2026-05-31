@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import { SlideIn, FadeUp } from '../components/Animate'
 import VolleyballSVG from '../components/VolleyballSVG'
+import ParentGuide from '../components/ParentGuide'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
@@ -152,6 +153,36 @@ function FaqItem({ q, a, index }) {
 
 const FORMSPREE_URL = 'https://formspree.io/f/mojbpbrr'
 
+function SidebarTabs() {
+  const [tab, setTab] = useState('faq')
+  return (
+    <div>
+      <div className="flex gap-2 mb-5">
+        {[{ id: 'faq', label: 'FAQ' }, { id: 'guide', label: "Parent Guide" }].map(t => (
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${tab === t.id ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white' : 'bg-white/5 border border-white/10 text-slate-400 hover:text-white'}`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        {tab === 'faq' ? (
+          <motion.div key="faq" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }} className="space-y-3">
+            {faqs.map((f, i) => <FaqItem key={f.q} {...f} index={i} />)}
+          </motion.div>
+        ) : (
+          <motion.div key="guide" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>
+            <ParentGuide />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', grade: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
@@ -246,11 +277,8 @@ export default function Contact() {
 
               <div>
                 <SlideIn from="left" delay={0.1}>
-                  <h2 className="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-5">FAQ</h2>
+                  <SidebarTabs />
                 </SlideIn>
-                <div className="space-y-3">
-                  {faqs.map((f, i) => <FaqItem key={f.q} {...f} index={i} />)}
-                </div>
               </div>
             </div>
 
