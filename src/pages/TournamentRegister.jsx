@@ -157,7 +157,7 @@ export default function TournamentRegister() {
       <PageHero
         label="Tournament Sign-Up"
         title={<>Register for the<br /><span className="text-gradient">Summer Showdown</span></>}
-        subtitle="July 19, 2026 · Dublin Sports Center · Single Elimination · 8 teams of 4"
+        subtitle="June 26, 2026 · Fallon's Sports Park, Dublin · Pool Play + Losers Bracket · 8 teams of 4 · High School Students Only"
         watermark="REG"
       />
 

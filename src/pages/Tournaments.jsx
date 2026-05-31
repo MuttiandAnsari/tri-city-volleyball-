@@ -8,9 +8,9 @@ import TournamentBracket from '../components/TournamentBracket'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 const upcoming = [
-  { id: 1, name: 'Bay Area Summer Showdown', month: 'JUL', day: '19', year: '2026', fullDate: 'July 19, 2026', location: 'Dublin Sports Center', divisions: ['12U', '14U', '16U', '18U'], format: 'Pool play + single elimination', registration: 'Open', deadline: 'July 12, 2026', teams: 24, description: 'Our flagship summer tournament , the best Bay Area youth clubs compete for bragging rights in a full-day showcase.', gradient: 'from-blue-600 to-cyan-500' },
-  { id: 2, name: 'Tri-City Invitational', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: 'Fremont Recreation Center', divisions: ['10U', '12U', '14U'], format: 'Round robin + finals', registration: 'Open', deadline: 'August 2, 2026', teams: 16, description: 'A home event welcoming clubs from across the Tri-City area. Great competition in a welcoming, well-organized environment.', gradient: 'from-indigo-600 to-blue-500' },
-  { id: 3, name: 'Fall Kickoff Classic', month: 'SEP', day: '13', year: '2026', fullDate: 'September 13, 2026', location: 'Dublin Sports Center', divisions: ['14U', '16U', '18U'], format: 'Pool play + bracket', registration: 'Coming Soon', deadline: 'September 6, 2026', teams: 20, description: 'Kick off the fall season with high-stakes competition. Built for players gearing up for school or club seasons.', gradient: 'from-blue-700 to-indigo-600' },
+  { id: 1, name: 'Bay Area Summer Showdown', month: 'JUN', day: '26', year: '2026', fullDate: 'June 26, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Open', deadline: 'June 24, 2026', teams: 8, description: 'Our flagship summer tournament — high school players from across the Bay Area compete for bragging rights in a full-day single elimination showdown.', gradient: 'from-blue-600 to-cyan-500' },
+  { id: 2, name: 'Tri-City Invitational', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'August 7, 2026', teams: 8, description: 'A home event welcoming high school players from across the Tri-City area. Great competition in a welcoming, well-organized environment.', gradient: 'from-indigo-600 to-blue-500' },
+  { id: 3, name: 'Fall Kickoff Classic', month: 'SEP', day: '13', year: '2026', fullDate: 'September 13, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'September 11, 2026', teams: 8, description: 'Kick off the fall season with high-stakes competition. Built for high school players gearing up for their school or club seasons.', gradient: 'from-blue-700 to-indigo-600' },
 ]
 
 const past = [
@@ -181,7 +181,7 @@ export default function Tournaments() {
             <SlideIn from="left">
               <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">Live · Updates in Real Time</span>
               <h2 className="text-3xl font-black text-white mt-1">Summer Showdown Bracket</h2>
-              <p className="text-slate-500 text-sm mt-1">July 19, 2026 · Dublin Sports Center · Single Elimination</p>
+              <p className="text-slate-500 text-sm mt-1">June 26, 2026 · Fallon's Sports Park, Dublin · Pool Play + Losers Bracket · High School Only</p>
             </SlideIn>
             <Link
               to="/tournament-register"

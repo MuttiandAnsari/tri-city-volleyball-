@@ -213,7 +213,7 @@ export default function TournamentAdmin() {
       <div className="bg-slate-900 border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div>
           <h1 className="font-black text-lg">Tournament Admin</h1>
-          <p className="text-slate-500 text-xs">Bay Area Summer Showdown · July 19, 2026</p>
+          <p className="text-slate-500 text-xs">Bay Area Summer Showdown · June 26, 2026 · Fallon's Sports Park, Dublin</p>
         </div>
         <div className="flex items-center gap-4">
           <span className={`px-3 py-1 rounded-full text-xs font-black ${playerCount >= MAX_PLAYERS ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
