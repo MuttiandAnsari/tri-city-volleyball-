@@ -22,7 +22,10 @@
       "Bash(git commit -m ' *)",
       "Read(//opt/homebrew/bin/**)",
       "Read(//usr/local/bin/**)",
-      "Bash(pkill -f vite)"
+      "Bash(pkill -f vite)",
+      "Bash(git rm *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
