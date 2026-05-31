@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView, animate, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
+import { motion, useInView, animate, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import logo from '../assets/logo.png'
 import photoViraj from '../assets/viraj.jpg'
 import photoNoah from '../assets/noah.jpg'
@@ -24,12 +24,12 @@ const statItems = [
 ]
 
 const features = [
-  { icon: '🏐', title: 'Skill-First Coaching', description: 'Fundamentals, footwork, and game IQ. Sessions structured to build complete players from day one.', accent: 'from-blue-500 to-cyan-400', bg: 'bg-blue-50' },
-  { icon: '🤝', title: 'Peer-Led Community', description: 'Coached by high schoolers who know the grind, creating a relatable and motivating environment.', accent: 'from-indigo-500 to-blue-400', bg: 'bg-indigo-50' },
-  { icon: '📍', title: 'Local & Accessible', description: 'Clinics at Lake Elizabeth (Fremont) and Willow Park (Union City), with tournaments at Fallon\'s Park in Dublin. All Bay Area convenient.', accent: 'from-cyan-500 to-sky-400', bg: 'bg-cyan-50' },
-  { icon: '🏆', title: 'Tournament Play', description: 'Regular tournaments give athletes real competitive experience beyond practice.', accent: 'from-sky-500 to-blue-400', bg: 'bg-sky-50' },
-  { icon: '🌟', title: 'All Ages Welcome', description: 'From kindergartners learning their first serve to seniors refining their game.', accent: 'from-blue-500 to-indigo-400', bg: 'bg-blue-50' },
-  { icon: '📈', title: 'Player Development', description: 'Individualized feedback and structured progression so every player keeps leveling up.', accent: 'from-indigo-500 to-cyan-400', bg: 'bg-indigo-50' },
+  { icon: '🏐', title: 'Skill-First Coaching', description: 'Fundamentals, footwork, and game IQ. Sessions structured to build complete players from day one.', accent: 'from-blue-500 to-cyan-400' },
+  { icon: '🤝', title: 'Peer-Led Community', description: 'Coached by high schoolers who know the grind, creating a relatable and motivating environment.', accent: 'from-indigo-500 to-blue-400' },
+  { icon: '📍', title: 'Local & Accessible', description: 'Clinics at Lake Elizabeth (Fremont) and Willow Park (Union City), with tournaments at Fallon\'s Park in Dublin. All Bay Area convenient.', accent: 'from-cyan-500 to-sky-400' },
+  { icon: '🏆', title: 'Tournament Play', description: 'Regular tournaments give athletes real competitive experience beyond practice.', accent: 'from-sky-500 to-blue-400' },
+  { icon: '🌟', title: 'All Ages Welcome', description: 'From kindergartners learning their first serve to seniors refining their game.', accent: 'from-blue-500 to-indigo-400' },
+  { icon: '📈', title: 'Player Development', description: 'Individualized feedback and structured progression so every player keeps leveling up.', accent: 'from-indigo-500 to-cyan-400' },
 ]
 
 const coaches = [
@@ -137,26 +137,18 @@ function AnimatedStat({ number, label, color, numeric, suffix = '', index }) {
 function FeatureCard({ icon, title, description, accent, index }) {
   return (
     <motion.div
-      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 glow-card"
-      initial={{ opacity: 0, y: 48 }}
+      className="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 glow-card"
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay: index * 0.08, ease }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.4, delay: index * 0.05, ease }}
       whileHover={{ y: -6 }}
     >
-      {/* Shine sweep on hover */}
-      <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none" aria-hidden="true">
-        <motion.div
-          className="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
-          variants={{ hover: { x: '380%', transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } } }}
-        />
-      </div>
-
       <div className={`h-1 w-full bg-gradient-to-r ${accent}`} />
       <div className="p-6">
         <motion.div
           className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 text-2xl"
-          whileHover={{ scale: 1.15, rotate: 8 }}
+          whileHover={{ scale: 1.12, rotate: 6 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         >
           {icon}
@@ -171,11 +163,11 @@ function FeatureCard({ icon, title, description, accent, index }) {
 function CoachCard({ name, role, description, photo, photoPosition, ring, index }) {
   return (
     <motion.div
-      className="group gradient-border bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-center glow-card"
-      initial={{ opacity: 0, scale: 0.88, y: 32 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay: index * 0.12, ease }}
+      className="group gradient-border bg-white/5 rounded-2xl p-6 text-center glow-card"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.4, delay: index * 0.07, ease }}
       whileHover={{ y: -8 }}
     >
       <motion.div
@@ -201,10 +193,7 @@ function CoachCard({ name, role, description, photo, photoPosition, ring, index 
 export default function Home() {
   const heroRef = useRef(null)
   const { scrollY } = useScroll()
-  const rawOverlayOpacity = useTransform(scrollY, [0, 500], [0.42, 0.72])
-  const rawHeroContentY = useTransform(scrollY, [0, 500], [0, 55])
-  const heroOverlayOpacity = useSpring(rawOverlayOpacity, { stiffness: 120, damping: 28, mass: 0.5 })
-  const heroContentY = useSpring(rawHeroContentY, { stiffness: 120, damping: 28, mass: 0.5 })
+  const heroOverlayOpacity = useTransform(scrollY, [0, 600], [0.42, 0.75])
 
   const videoRef = useRef(null)
   const [showTapToPlay, setShowTapToPlay] = useState(false)
@@ -225,21 +214,6 @@ export default function Home() {
     setShowTapToPlay(false)
   }
 
-  const rawX = useMotionValue(0)
-  const rawY = useMotionValue(0)
-  const parallaxX = useSpring(rawX, { stiffness: 50, damping: 20, mass: 0.8 })
-  const parallaxY = useSpring(rawY, { stiffness: 50, damping: 20, mass: 0.8 })
-
-  useEffect(() => {
-    const handleMouse = (e) => {
-      const cx = window.innerWidth / 2
-      const cy = window.innerHeight / 2
-      rawX.set(((e.clientX - cx) / cx) * -12)
-      rawY.set(((e.clientY - cy) / cy) * -8)
-    }
-    window.addEventListener('mousemove', handleMouse)
-    return () => window.removeEventListener('mousemove', handleMouse)
-  }, [rawX, rawY])
 
   return (
     <>
@@ -264,6 +238,7 @@ export default function Home() {
             objectFit: 'cover', display: 'block',
             willChange: 'transform',
             transform: 'translate3d(0,0,0)',
+            filter: 'contrast(1.08) saturate(1.15) brightness(1.02)',
           }}
         >
           <source src="https://sgdreaasfmgswafyooqu.supabase.co/storage/v1/object/public/Videos%20tri%20city/Final%20tri%20clips.mp4" type="video/mp4" />
@@ -299,13 +274,13 @@ export default function Home() {
         </AnimatePresence>
 
         {/* Scroll-deepening dark overlay */}
-        <motion.div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgb(10,20,40)', opacity: heroOverlayOpacity }} />
+        <motion.div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgb(10,20,40)', opacity: heroOverlayOpacity, willChange: 'opacity' }} />
 
 
 
         <motion.div
           className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col items-center justify-center text-center py-24"
-          style={{ y: heroContentY, x: parallaxX }}
+          style={{ willChange: 'auto' }}
         >
           <motion.div className="relative mb-8" initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 200, damping: 18, delay: 0.1 }}>
             {/* Ambient glow behind logo */}
@@ -317,7 +292,7 @@ export default function Home() {
             <motion.img
               src={logo}
               alt="Tri-City VB Logo"
-              className="relative h-52 w-auto brightness-0 invert"
+              className="relative h-72 w-auto brightness-0 invert"
               style={{ filter: 'brightness(0) invert(1) drop-shadow(0 8px 32px rgba(6,182,212,0.5)) drop-shadow(0 2px 8px rgba(255,255,255,0.3))' }}
               whileHover={{ scale: 1.08, y: -6 }}
               transition={{ type: 'spring', stiffness: 300, damping: 18 }}
@@ -369,11 +344,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 1.3, ease }}
           >
-            <motion.span
-              className="text-xl"
-              animate={{ scale: [1, 1.25, 1] }}
-              transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
-            >🎉</motion.span>
+            <span className="text-lg">🎉</span>
             <p className="text-white font-black text-sm sm:text-base tracking-tight">
               First session is <span className="text-cyan-300 underline decoration-wavy decoration-cyan-400/70">completely FREE</span> for every athlete!
             </p>
@@ -522,10 +493,12 @@ export default function Home() {
               <p className="text-slate-400 max-w-xl mx-auto mb-5">Four high school athletes passionate about giving back to the game they love.</p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
-                  🏅 2 Coaches: USA Volleyball 16U Nationals Qualified
+                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  2 Coaches: USA Volleyball 16U Nationals Qualified
                 </span>
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-widest">
-                  🎓 All Active High School Athletes
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0v6m-4-3h8"/></svg>
+                  All Active High School Athletes
                 </span>
               </div>
             </FadeUp>

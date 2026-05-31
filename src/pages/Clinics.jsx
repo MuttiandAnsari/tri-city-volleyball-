@@ -16,9 +16,9 @@ const clinics = [
 ]
 
 const gear = [
-  { icon: '👟', label: 'Athletic shoes' },
-  { icon: '💧', label: 'Water bottle' },
-  { icon: '😤', label: 'Competitive attitude' },
+  { label: 'Athletic shoes', emoji: '👟' },
+  { label: 'Water bottle', emoji: '💧' },
+  { label: 'Competitive attitude', emoji: '🔥' },
 ]
 
 const clinicCardVariants = {
@@ -177,21 +177,12 @@ export default function Clinics() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <motion.span
-            className="text-3xl"
-            animate={{ rotate: [0, -10, 10, -10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-          >🎉</motion.span>
+          <span className="text-3xl">🎉</span>
           <div>
             <span className="text-white font-black text-xl sm:text-2xl tracking-tight">Your first session is </span>
             <span className="text-cyan-300 font-black text-2xl sm:text-3xl uppercase tracking-widest underline decoration-wavy decoration-cyan-400/60">completely FREE</span>
             <span className="text-white font-black text-xl sm:text-2xl"> for everyone!</span>
           </div>
-          <motion.span
-            className="text-3xl"
-            animate={{ rotate: [0, 10, -10, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3, delay: 0.2 }}
-          >🏐</motion.span>
         </motion.div>
         <p className="text-center text-blue-200 text-sm mt-2 font-medium">No commitment, no cost. Just come out and play.</p>
       </div>
@@ -217,7 +208,7 @@ export default function Clinics() {
               <h2 className="text-3xl font-black text-white mt-2">What to<br />Bring</h2>
             </FadeUp>
             <StaggerList className="grid grid-cols-2 sm:grid-cols-4 gap-4 flex-1" stagger={0.12}>
-              {gear.map(({ icon, label }) => (
+              {gear.map(({ emoji, label }) => (
                 <StaggerItem key={label}>
                   <motion.div
                     className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center"
@@ -225,11 +216,11 @@ export default function Clinics() {
                     transition={{ duration: 0.2 }}
                   >
                     <motion.span
-                      className="text-4xl block mb-3"
-                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      className="text-3xl block mb-3"
+                      whileHover={{ scale: 1.15 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                     >
-                      {icon}
+                      {emoji}
                     </motion.span>
                     <span className="text-white text-sm font-semibold leading-snug">{label}</span>
                   </motion.div>

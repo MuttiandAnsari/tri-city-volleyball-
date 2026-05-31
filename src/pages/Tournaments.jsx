@@ -18,7 +18,7 @@ const past = [
 ]
 
 const info = [
-  { icon: '🏐', title: 'Equipment', text: 'Volleyballs provided. Bring knee pads and non-marking athletic shoes.' },
+  { icon: '🏐', title: 'Equipment', text: 'Volleyballs provided. Bring non-marking athletic shoes.' },
   { icon: '👕', title: 'Uniforms', text: 'Teams must wear matching jerseys. Libero jersey must be clearly distinct.' },
   { icon: '📋', title: 'Rules', text: 'USAV youth rules apply. Division modifications published two weeks before each event.' },
   { icon: '🏅', title: 'Awards', text: 'Medals for top 3 teams per division. Tournament MVP awards for standout performers.' },
@@ -190,7 +190,7 @@ export default function Tournaments() {
                 >
                   <motion.div
                     className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl mb-4 shadow-sm"
-                    whileHover={{ scale: 1.15, rotate: 8 }}
+                    whileHover={{ scale: 1.15, rotate: 6 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                   >
                     {icon}
@@ -233,7 +233,7 @@ export default function Tournaments() {
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
                   >
-                    🏆 {r.winner}
+                    {r.winner}
                   </motion.span>
                 </div>
               </motion.div>
