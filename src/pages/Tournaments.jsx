@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import { FadeUp, StaggerList, StaggerItem, SlideIn } from '../components/Animate'
 import CursorGlow from '../components/CursorGlow'
+import TournamentBracket from '../components/TournamentBracket'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
@@ -172,6 +173,29 @@ export default function Tournaments() {
           </div>
         </div>
       </section></CursorGlow>
+
+      {/* Live Bracket */}
+      <section className="bg-slate-950 py-16 sm:py-20 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <SlideIn from="left">
+              <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">Live · Updates in Real Time</span>
+              <h2 className="text-3xl font-black text-white mt-1">Summer Showdown Bracket</h2>
+              <p className="text-slate-500 text-sm mt-1">July 19, 2026 · Dublin Sports Center · Single Elimination</p>
+            </SlideIn>
+            <Link
+              to="/tournament-register"
+              className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black text-sm rounded-xl hover:from-blue-700 hover:to-cyan-600 transition-all"
+            >
+              Register Now
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+          <TournamentBracket />
+        </div>
+      </section>
 
       {/* Info */}
       <section className="bg-white py-16 sm:py-20">

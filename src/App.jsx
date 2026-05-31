@@ -17,9 +17,13 @@ import Clinics from './pages/Clinics'
 import Tournaments from './pages/Tournaments'
 import Contact from './pages/Contact'
 import ClinicRegister from './pages/ClinicRegister'
+import TournamentRegister from './pages/TournamentRegister'
+import TournamentAdmin from './pages/TournamentAdmin'
 
 function AnimatedRoutes() {
   const location = useLocation()
+  // Admin page has no navbar/footer
+  if (location.pathname === '/admin') return <TournamentAdmin />
   return (
     <>
     <ScrollReset />
@@ -38,6 +42,7 @@ function AnimatedRoutes() {
           <Route path="/tournaments" element={<Tournaments />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<ClinicRegister />} />
+          <Route path="/tournament-register" element={<TournamentRegister />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
