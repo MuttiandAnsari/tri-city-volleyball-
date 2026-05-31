@@ -183,22 +183,84 @@ html.light-mode #root {
   background-color: #f8fafc;
   color: #0f172a;
 }
+
+/* Section backgrounds */
 html.light-mode .bg-slate-950 { background-color: #f1f5f9 !important; }
 html.light-mode .bg-slate-900 { background-color: #f8fafc !important; }
 html.light-mode .bg-slate-800 { background-color: #e2e8f0 !important; }
-html.light-mode .text-white { color: #0f172a !important; }
-html.light-mode .text-slate-400 { color: #475569 !important; }
-html.light-mode .text-slate-500 { color: #64748b !important; }
-html.light-mode .text-slate-300 { color: #334155 !important; }
-html.light-mode .border-white\/10 { border-color: rgba(0,0,0,0.08) !important; }
-html.light-mode .bg-white\/5 { background-color: rgba(0,0,0,0.03) !important; }
-html.light-mode .bg-white\/10 { background-color: rgba(0,0,0,0.06) !important; }
-html.light-mode nav.backdrop-blur-md { background-color: rgba(248,250,252,0.92) !important; }
+html.light-mode .bg-slate-800\/80 { background-color: rgba(255,255,255,0.95) !important; }
+html.light-mode .bg-slate-900\/85 { background-color: rgba(248,250,252,0.95) !important; }
+html.light-mode .bg-slate-800\/50 { background-color: rgba(0,0,0,0.04) !important; }
+
+/* Navbar */
+html.light-mode nav.backdrop-blur-md { background-color: rgba(248,250,252,0.95) !important; }
+
+/* Card / subtle backgrounds — give real white cards with shadows */
+html.light-mode .bg-white\/5  { background-color: #ffffff !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important; }
+html.light-mode .bg-white\/10 { background-color: #f8fafc !important; }
+html.light-mode .bg-white\/15 { background-color: #f1f5f9 !important; }
+html.light-mode .bg-white\/20 { background-color: #e2e8f0 !important; }
+
+/* Borders */
+html.light-mode .border-white\/5  { border-color: rgba(0,0,0,0.04) !important; }
+html.light-mode .border-white\/10 { border-color: rgba(0,0,0,0.09) !important; }
+html.light-mode .border-white\/20 { border-color: rgba(0,0,0,0.12) !important; }
+html.light-mode .border-white\/30 { border-color: rgba(0,0,0,0.16) !important; }
+
+/* Text */
+html.light-mode .text-white     { color: #0f172a !important; }
+html.light-mode .text-slate-300 { color: #1e293b !important; }
+html.light-mode .text-slate-400 { color: #334155 !important; }
+html.light-mode .text-slate-500 { color: #475569 !important; }
+html.light-mode .text-slate-600 { color: #334155 !important; }
+html.light-mode .text-blue-100  { color: #1e3a8a !important; }
+html.light-mode .text-blue-200  { color: #1d4ed8 !important; }
+
+/* Placeholder text */
+html.light-mode .placeholder-slate-500::placeholder { color: #94a3b8 !important; }
+
+/* Inputs & selects that have hardcoded dark backgrounds */
+html.light-mode input.bg-white\/5,
+html.light-mode textarea.bg-white\/5 {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(0,0,0,0.12) !important;
+}
+html.light-mode select.bg-slate-800 {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(0,0,0,0.12) !important;
+}
+
+/* Glow effects — remove in light mode (glow looks terrible on light bg) */
+html.light-mode .text-glow-cyan { text-shadow: none !important; }
+html.light-mode .glow-card {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07);
+}
+html.light-mode .glow-card:hover {
+  box-shadow: 0 0 0 1px rgba(6,182,212,0.25), 0 8px 32px rgba(6,182,212,0.1), 0 16px 40px rgba(0,0,0,0.08);
+}
+
+/* Background patterns */
 html.light-mode .grid-pattern {
   background-image:
     linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
 }
 html.light-mode .dot-pattern {
-  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
+/* Atmospheric gradient blobs — lighter tones */
+html.light-mode .bg-blue-600\/10  { background-color: rgba(37,99,235,0.06) !important; }
+html.light-mode .bg-blue-700\/10  { background-color: rgba(29,78,216,0.05) !important; }
+html.light-mode .bg-cyan-600\/10  { background-color: rgba(8,145,178,0.05) !important; }
+html.light-mode .bg-indigo-700\/10 { background-color: rgba(67,56,202,0.05) !important; }
+
+/* Hero stays dark (video bg) — exempt the first section */
+html.light-mode section:first-of-type .text-white,
+html.light-mode section:first-of-type .text-slate-400,
+html.light-mode section:first-of-type .text-slate-300,
+html.light-mode section:first-of-type .text-blue-100 {
+  color: inherit !important;
 }
