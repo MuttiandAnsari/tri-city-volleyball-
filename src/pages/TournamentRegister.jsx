@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { supabase, MAX_PLAYERS, TEAM_SIZE } from '../lib/supabase'
 import PageHero from '../components/PageHero'
+import FocusBorder from '../components/FocusBorder'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
@@ -18,10 +19,12 @@ function Field({ label, error, children }) {
 
 function Input({ className = '', ...props }) {
   return (
-    <input
-      className={`w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-900 text-sm transition-all ${className}`}
-      {...props}
-    />
+    <FocusBorder radius={12}>
+      <input
+        className={`w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none text-slate-900 text-sm transition-all ${className}`}
+        {...props}
+      />
+    </FocusBorder>
   )
 }
 
@@ -243,13 +246,15 @@ export default function TournamentRegister() {
                         <Input type="tel" value={individual.phone} onChange={e => setIndividual(p => ({ ...p, phone: e.target.value }))} placeholder="(555) 555-5555" />
                       </Field>
                       <Field label="Skill Level">
-                        <select
-                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 text-sm"
-                          value={individual.skill}
-                          onChange={e => setIndividual(p => ({ ...p, skill: e.target.value }))}
-                        >
-                          {['Beginner', 'Intermediate', 'Advanced'].map(s => <option key={s}>{s}</option>)}
-                        </select>
+                        <FocusBorder radius={12}>
+                          <select
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none text-slate-900 text-sm"
+                            value={individual.skill}
+                            onChange={e => setIndividual(p => ({ ...p, skill: e.target.value }))}
+                          >
+                            {['Beginner', 'Intermediate', 'Advanced'].map(s => <option key={s}>{s}</option>)}
+                          </select>
+                        </FocusBorder>
                       </Field>
                     </motion.div>
                   ) : (

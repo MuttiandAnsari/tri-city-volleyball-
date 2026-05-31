@@ -139,8 +139,8 @@ export default function ClinicRegister() {
   }
 
   const inputBase =
-    'w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm font-medium placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all'
-  const inputErr = 'border-rose-400 bg-rose-50 focus:ring-rose-400'
+    'w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm font-medium placeholder-slate-400 focus:outline-none transition-all'
+  const inputErr = 'border-rose-400 bg-rose-50'
 
   return (
     <>
@@ -201,38 +201,44 @@ export default function ClinicRegister() {
                 {/* Name row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Field label="First Name" >
-                    <input
-                      type="text"
-                      value={form.firstName}
-                      onChange={e => set('firstName', e.target.value)}
-                      placeholder="e.g. Jordan"
-                      className={`${inputBase} ${errors.firstName ? inputErr : ''}`}
-                    />
+                    <FocusBorder radius={12}>
+                      <input
+                        type="text"
+                        value={form.firstName}
+                        onChange={e => set('firstName', e.target.value)}
+                        placeholder="e.g. Jordan"
+                        className={`${inputBase} ${errors.firstName ? inputErr : ''}`}
+                      />
+                    </FocusBorder>
                     {errors.firstName && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.firstName}</p>}
                   </Field>
                   <Field label="Last Name">
-                    <input
-                      type="text"
-                      value={form.lastName}
-                      onChange={e => set('lastName', e.target.value)}
-                      placeholder="e.g. Smith"
-                      className={`${inputBase} ${errors.lastName ? inputErr : ''}`}
-                    />
+                    <FocusBorder radius={12}>
+                      <input
+                        type="text"
+                        value={form.lastName}
+                        onChange={e => set('lastName', e.target.value)}
+                        placeholder="e.g. Smith"
+                        className={`${inputBase} ${errors.lastName ? inputErr : ''}`}
+                      />
+                    </FocusBorder>
                     {errors.lastName && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.lastName}</p>}
                   </Field>
                 </div>
 
                 {/* Age */}
                 <Field label="Age" hint="used to determine if a parent contact is needed">
-                  <input
-                    type="number"
-                    min="4"
-                    max="18"
-                    value={form.age}
-                    onChange={e => set('age', e.target.value)}
-                    placeholder="e.g. 12"
-                    className={`${inputBase} ${errors.age ? inputErr : ''} ${ageBlocked ? 'border-amber-400 bg-amber-50 focus:ring-amber-400' : ''}`}
-                  />
+                  <FocusBorder radius={12} color={ageBlocked ? 'green' : 'cyan'}>
+                    <input
+                      type="number"
+                      min="4"
+                      max="18"
+                      value={form.age}
+                      onChange={e => set('age', e.target.value)}
+                      placeholder="e.g. 12"
+                      className={`${inputBase} ${errors.age ? inputErr : ''} ${ageBlocked ? 'border-amber-400 bg-amber-50' : ''}`}
+                    />
+                  </FocusBorder>
                   {errors.age && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.age}</p>}
                 </Field>
 
@@ -301,13 +307,15 @@ export default function ClinicRegister() {
                         label="Parent / Guardian Phone Number"
                         hint="required for athletes 13 and under"
                       >
-                        <input
-                          type="tel"
-                          value={form.parentPhone}
-                          onChange={e => set('parentPhone', e.target.value)}
-                          placeholder="(555) 000-0000"
-                          className={`${inputBase} ${errors.parentPhone ? inputErr : ''}`}
-                        />
+                        <FocusBorder radius={12}>
+                          <input
+                            type="tel"
+                            value={form.parentPhone}
+                            onChange={e => set('parentPhone', e.target.value)}
+                            placeholder="(555) 000-0000"
+                            className={`${inputBase} ${errors.parentPhone ? inputErr : ''}`}
+                          />
+                        </FocusBorder>
                         {errors.parentPhone && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.parentPhone}</p>}
                       </Field>
                     </motion.div>
@@ -316,39 +324,45 @@ export default function ClinicRegister() {
 
                 {/* Position */}
                 <Field label="What position do you play?">
-                  <select
-                    value={form.position}
-                    onChange={e => set('position', e.target.value)}
-                    className={`${inputBase} ${errors.position ? inputErr : ''}`}
-                  >
-                    <option value="" disabled>Select a position…</option>
-                    {positions.map(p => (
-                      <option key={p} value={p}>{p}</option>
-                    ))}
-                  </select>
+                  <FocusBorder radius={12}>
+                    <select
+                      value={form.position}
+                      onChange={e => set('position', e.target.value)}
+                      className={`${inputBase} ${errors.position ? inputErr : ''}`}
+                    >
+                      <option value="" disabled>Select a position…</option>
+                      {positions.map(p => (
+                        <option key={p} value={p}>{p}</option>
+                      ))}
+                    </select>
+                  </FocusBorder>
                   {errors.position && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.position}</p>}
                 </Field>
 
                 {/* Skills */}
                 <Field label="Any specific skills you want to work on?" hint="optional">
-                  <textarea
-                    rows={3}
-                    value={form.skills}
-                    onChange={e => set('skills', e.target.value)}
-                    placeholder="e.g. Serving consistency, passing, jump approach…"
-                    className={`${inputBase} resize-none`}
-                  />
+                  <FocusBorder radius={12}>
+                    <textarea
+                      rows={3}
+                      value={form.skills}
+                      onChange={e => set('skills', e.target.value)}
+                      placeholder="e.g. Serving consistency, passing, jump approach…"
+                      className={`${inputBase} resize-none`}
+                    />
+                  </FocusBorder>
                 </Field>
 
                 {/* Questions */}
                 <Field label="Any questions for us?" hint="optional">
-                  <textarea
-                    rows={3}
-                    value={form.questions}
-                    onChange={e => set('questions', e.target.value)}
-                    placeholder="e.g. What should I bring? Is equipment provided?…"
-                    className={`${inputBase} resize-none`}
-                  />
+                  <FocusBorder radius={12}>
+                    <textarea
+                      rows={3}
+                      value={form.questions}
+                      onChange={e => set('questions', e.target.value)}
+                      placeholder="e.g. What should I bring? Is equipment provided?…"
+                      className={`${inputBase} resize-none`}
+                    />
+                  </FocusBorder>
                 </Field>
 
                 {/* First session free reminder */}

@@ -3,26 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const positions = [
   {
-    id: 's',
-    name: 'Setter',
-    abbrev: 'SET',
-    x: 85,
-    y: 112,
-    coaches: ['Viraj Mutti', 'Farhaan Ansari'],
-    focus: 'Playmaking & Offense Director',
-    description: 'Acting as the team quarterback, the setter runs the offense, coordinates hitters, and controls the flow of the match with fast decision-making.',
-    skills: ['Overhead Hand Setting', 'Underhand Platform Setting', 'Jump Setting & Dumping', 'Tactical Offense Calling'],
-    drills: ['Target Accuracy Runs', 'Out-of-System Recovery', 'Setter-Hitter Connection Tempo'],
-    color: 'from-cyan-400 to-blue-500',
-    glow: 'rgba(6,182,212,0.15)',
-    zone: { x: 76.6, y: 100, width: 33.4, height: 30 } // Zone 2
-  },
-  {
     id: 'oh',
     name: 'Outside Hitter',
     abbrev: 'OH',
-    x: 25,
-    y: 115,
+    pos: 4,
+    x: 30, y: 115, // Zone 4 — Left Front
     coaches: ['Farhaan Ansari'],
     focus: 'Primary Attacker & Passer',
     description: 'The outside hitter is the primary outlet on offense, attacking from the left side, while also carrying heavy defensive and serve-receive responsibilities.',
@@ -30,14 +15,14 @@ const positions = [
     drills: ['Pass-to-Attack Transitions', 'High-Ball Out-of-System Hitting', 'Block Deflection Attacks'],
     color: 'from-blue-400 to-indigo-500',
     glow: 'rgba(59,130,246,0.15)',
-    zone: { x: 10, y: 100, width: 33.4, height: 30 } // Zone 4
+    zone: { x: 10, y: 100, width: 33, height: 30 },
   },
   {
     id: 'mb',
     name: 'Middle Blocker',
     abbrev: 'MB',
-    x: 50,
-    y: 110,
+    pos: 3,
+    x: 60, y: 115, // Zone 3 — Middle Front
     coaches: ['Noah Lukose'],
     focus: 'Net Defense & Quick Attacks',
     description: 'The middle blocker is the anchor of net defense, shifting laterally to block opposing hitters and attacking fast-tempo sets in the center.',
@@ -45,38 +30,68 @@ const positions = [
     drills: ['Jousting & Penetration Reps', 'Lateral Shuffle Speed Drills', 'Quick-Tempo Slide Attacks'],
     color: 'from-indigo-400 to-purple-500',
     glow: 'rgba(99,102,241,0.15)',
-    zone: { x: 43.4, y: 100, width: 33.2, height: 30 } // Zone 3
+    zone: { x: 43, y: 100, width: 34, height: 30 },
   },
   {
     id: 'opp',
     name: 'Opposite Hitter',
     abbrev: 'OPP',
-    x: 82,
-    y: 160,
+    pos: 2,
+    x: 90, y: 115, // Zone 2 — Right Front
     coaches: ['Ayaan Shansab', 'Farhaan Ansari'],
     focus: 'Right-Side Hitter & Blocker',
-    description: 'Attacking from the right side, the opposite hitter blocks the opponent’s primary outside hitter and provides back-row attacking options.',
+    description: 'Attacking from the right side, the opposite hitter blocks the opposing outside hitter and provides reliable back-row attacking options.',
     skills: ['Right-Side Attacking', 'Opposite-Hitter Blocking', 'Back-Row Attack (D-Ball)', 'Serve & Assist Support'],
     drills: ['Line/Cross Blocking Drills', 'Back-Row Transition Swings', 'Defending Zone 1 Off-Block'],
     color: 'from-sky-400 to-cyan-500',
     glow: 'rgba(56,189,248,0.15)',
-    zone: { x: 76.6, y: 130, width: 33.4, height: 60 } // Zone 1
+    zone: { x: 77, y: 100, width: 33, height: 30 },
   },
   {
-    id: 'l',
-    name: 'Libero / DS',
+    id: 'lib',
+    name: 'Libero',
     abbrev: 'LIB',
-    x: 35,
-    y: 165,
+    pos: 5,
+    x: 30, y: 160, // Zone 5 — Left Back
     coaches: ['Viraj Mutti', 'Farhaan Ansari'],
     focus: 'Defensive & Receive Specialist',
-    description: 'A defensive master, the Libero wears a contrasting jersey, plays strictly back-row, and specializes in serve-receive and spectacular digs.',
+    description: 'The Libero wears a contrasting jersey, plays strictly back-row, and specializes in serve-receive and spectacular digs. They are replaced without counting a substitution.',
     skills: ['Platform Passing Control', 'Digging Hard-Driven Attacks', 'Emergency Hand Setting', 'Floor Coverage & Diving'],
     drills: ['Seam-Coverage Shuffles', 'Rapid-Fire Dig-to-Target', 'Platform Tracking & Reading'],
     color: 'from-emerald-400 to-teal-500',
     glow: 'rgba(16,185,129,0.15)',
-    zone: { x: 10, y: 130, width: 66.6, height: 60 } // Zones 5 & 6
-  }
+    zone: { x: 10, y: 130, width: 33, height: 60 },
+  },
+  {
+    id: 'ds',
+    name: 'Defensive Specialist',
+    abbrev: 'DS',
+    pos: 6,
+    x: 60, y: 160, // Zone 6 — Middle Back
+    coaches: ['Viraj Mutti', 'Farhaan Ansari'],
+    focus: 'Back Row Defense & Coverage',
+    description: 'The defensive specialist anchors the middle back, reading the hitter to dig cross-court and line attacks while providing steady serve-receive support.',
+    skills: ['Reading Hitter Approach', 'Cross-Court Digging', 'Serve Receive Coverage', 'Floor Communication'],
+    drills: ['Down-Ball Digging Series', 'Angle Coverage Footwork', 'Serve Receive Repetition'],
+    color: 'from-amber-400 to-orange-500',
+    glow: 'rgba(251,191,36,0.15)',
+    zone: { x: 43, y: 130, width: 34, height: 60 },
+  },
+  {
+    id: 's',
+    name: 'Setter',
+    abbrev: 'S',
+    pos: 1,
+    x: 90, y: 160, // Zone 1 — Right Back
+    coaches: ['Viraj Mutti', 'Farhaan Ansari'],
+    focus: 'Playmaking & Offense Director',
+    description: 'The setter runs the offense from Zone 1, coordinating hitters and controlling the tempo of the match with fast decision-making and precise ball placement.',
+    skills: ['Overhead Hand Setting', 'Underhand Platform Setting', 'Jump Setting & Dumping', 'Tactical Offense Calling'],
+    drills: ['Target Accuracy Runs', 'Out-of-System Recovery', 'Setter-Hitter Connection Tempo'],
+    color: 'from-cyan-400 to-blue-500',
+    glow: 'rgba(6,182,212,0.15)',
+    zone: { x: 77, y: 130, width: 33, height: 60 },
+  },
 ]
 
 export default function CourtVisualizer() {
@@ -173,7 +188,7 @@ export default function CourtVisualizer() {
                             cx={p.x}
                             cy={p.y}
                             r="10"
-                            stroke={p.id === 'l' ? '#10b981' : '#22d3ee'}
+                            stroke="#22d3ee"
                             strokeWidth="1"
                             fill="transparent"
                             animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0.1, 0.6] }}
@@ -186,7 +201,7 @@ export default function CourtVisualizer() {
                           cy={p.y}
                           r="6.5"
                           fill={isActive ? '#ffffff' : 'rgba(15,23,42,0.9)'}
-                          stroke={p.id === 'l' ? '#10b981' : '#22d3ee'}
+                          stroke={p.id === 'lib' || p.id === 'ds' ? '#10b981' : '#22d3ee'}
                           strokeWidth={isActive ? '2.5' : '1.5'}
                           className="transition-all duration-300"
                         />

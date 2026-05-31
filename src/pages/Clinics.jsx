@@ -5,6 +5,7 @@ import { FadeUp, StaggerList, StaggerItem } from '../components/Animate'
 import CursorGlow from '../components/CursorGlow'
 import Countdown from '../components/Countdown'
 import Tilt from '../components/Tilt'
+import CourtVisualizer from '../components/CourtVisualizer'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
@@ -230,6 +231,8 @@ export default function Clinics() {
           </div>
         </div>
       </section></CursorGlow>
+
+      <CourtVisualizer />
 
       {/* CTA */}
       <section className="relative bg-gradient-to-br from-blue-950 via-blue-800 to-cyan-700 py-20 overflow-hidden">
