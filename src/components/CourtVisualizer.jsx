@@ -1,5 +1,16 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import photoViraj from '../assets/viraj.jpg'
+import photoFarhaan from '../assets/farhaan.jpg'
+import photoNoah from '../assets/noah.jpg'
+import photoAyaan from '../assets/ayaan.jpg'
+
+const coachPhotos = {
+  'Viraj Mutti': photoViraj,
+  'Farhaan Ansari': photoFarhaan,
+  'Noah Lukose': photoNoah,
+  'Ayaan Shansab': photoAyaan,
+}
 
 const positions = [
   {
@@ -294,7 +305,6 @@ export default function CourtVisualizer() {
                   </div>
                   <div className="flex -space-x-2.5">
                     {current.coaches.map((c) => {
-                      const short = c.split(' ')[0].toLowerCase()
                       return (
                         <div
                           key={c}
@@ -302,7 +312,7 @@ export default function CourtVisualizer() {
                           title={c}
                         >
                           <img
-                            src={`/src/assets/${short}.jpg`}
+                            src={coachPhotos[c]}
                             alt={c}
                             className="w-full h-full object-cover"
                           />
