@@ -1,5 +1,6 @@
 *.mp4
 *.mov
+!public/hero.mp4
 dist/
 .vercel
 node_modules/

@@ -14,7 +14,7 @@ import MagneticButton from '../components/MagneticButton'
 import Reviews from '../components/Reviews'
 import VerticalVideoSection from '../components/VerticalVideoSection'
 
-const heroVideo = 'https://res.cloudinary.com/ddrbuehqj/video/upload/f_auto,q_auto:best,vc_auto/v1780100749/Final_tri_clips_bnajsx.mp4'
+const heroVideo = '/hero.mp4'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 
