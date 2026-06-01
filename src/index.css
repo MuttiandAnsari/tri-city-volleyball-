@@ -1,9 +1,28 @@
 @import "tailwindcss";
 
 @layer base {
-  html, body { margin: 0; padding: 0; overflow-x: clip; background-color: #0a1428; }
-  body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  * { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+  /* overflow-x only on html (viewport level) — never on body. Applying overflow-x to body
+     makes iOS Safari treat body as the scroll container, which combined with
+     -webkit-overflow-scrolling causes the page to oscillate rapidly on scroll. */
+  html { margin: 0; padding: 0; overflow-x: hidden; background-color: #0a1428; }
+  body { margin: 0; padding: 0; background-color: #0a1428; }
+
+  /* ── Mobile: strip every backdrop-blur and blur-3xl — they re-composite on every scroll frame ── */
+  @media (max-width: 768px) and (hover: none) {
+    * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+    .blur-3xl, .blur-2xl, .blur-xl { filter: none !important; }
+    .backdrop-blur-md, .backdrop-blur-sm { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background-color: rgba(15,23,42,0.92) !important; }
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Scope backface-visibility only to elements that actually animate —
+     applying it globally breaks GPU compositing and causes scroll jank */
+  [data-animate], .float, .float-slow, .btn-gradient, .text-gradient {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
   h1, h2, h3, .font-display { font-family: 'Outfit', 'Inter', system-ui, sans-serif; letter-spacing: -0.02em; }
   #root { background-color: #0a1428; }
 }
@@ -83,6 +102,41 @@
   }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* Scroll arrow bounce — CSS only */
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(6px); }
+  }
+
+  /* Play button pulse — CSS only */
+  @keyframes play-pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.06); }
+  }
+
+  /* Pure CSS marquee — compositor thread only, never blocks scroll */
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* CSS scroll progress bar — no JS needed */
+  @keyframes scroll-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .scroll-progress-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    transform-origin: left;
+    z-index: 200;
+    pointer-events: none;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4, #3b82f6);
+    animation: scroll-progress linear;
+    animation-timeline: scroll();
+  }
   .gpu { transform: translateZ(0); will-change: transform; }
   .grid-pattern {
     background-image:

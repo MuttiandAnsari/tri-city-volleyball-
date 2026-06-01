@@ -120,8 +120,8 @@ export default function Reviews() {
           <p className="text-slate-400 max-w-xl mx-auto">Hear from the players and parents who've been part of Tri-City.</p>
         </motion.div>
 
-        {/* Review grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        {/* Review grid — min-height reserves space so async load doesn't cause layout shift */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12 min-h-[200px]">
           {allReviews.map((r, i) => (
             <ReviewCard key={r.id} {...r} index={i} />
           ))}

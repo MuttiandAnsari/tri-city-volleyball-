@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView, animate, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+
+const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
 import logo from '../assets/logo.png'
 import photoViraj from '../assets/viraj.jpg'
 import photoNoah from '../assets/noah.jpg'
@@ -60,13 +62,7 @@ const homeFaqs = [
 function HomeFaqItem({ q, a, index }) {
   const [open, setOpen] = useState(false)
   return (
-    <motion.div
-      className="border-b border-white/10 last:border-0"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.07, ease }}
-    >
+    <div className="border-b border-white/10 last:border-0">
       <button
         className="w-full py-5 flex justify-between items-center text-left gap-4 group"
         onClick={() => setOpen(!open)}
@@ -100,17 +96,18 @@ function HomeFaqItem({ q, a, index }) {
           </motion.p>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   )
 }
 
 function AnimatedStat({ number, label, color, numeric, suffix = '', index }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(isTouch ? number : 0)
 
   useEffect(() => {
-    if (!isInView || !numeric) return
+    // Skip counter animation on mobile — rapid setState calls cause scroll jank
+    if (isTouch || !isInView || !numeric) return
     const controls = animate(0, number, {
       duration: 2,
       ease: 'easeOut',
@@ -118,6 +115,17 @@ function AnimatedStat({ number, label, color, numeric, suffix = '', index }) {
     })
     return controls.stop
   }, [isInView, number, numeric])
+
+  if (isTouch) {
+    return (
+      <div className="text-center px-4">
+        <div className={`text-5xl font-black ${color} mb-1 tracking-tight tabular-nums whitespace-nowrap`}>
+          {numeric ? number + suffix : label === 'All Grade Levels' ? 'K–12' : number}
+        </div>
+        <div className="text-slate-400 text-sm font-medium">{label}</div>
+      </div>
+    )
+  }
 
   return (
     <motion.div
@@ -137,6 +145,16 @@ function AnimatedStat({ number, label, color, numeric, suffix = '', index }) {
 }
 
 function FeatureCard({ icon, title, description, accent, index }) {
+  if (isTouch) return (
+    <div className="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 glow-card">
+      <div className={`h-1 w-full bg-gradient-to-r ${accent}`} />
+      <div className="p-6">
+        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 text-2xl">{icon}</div>
+        <h3 className="font-bold text-white mb-2">{title}</h3>
+        <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
+      </div>
+    </div>
+  )
   return (
     <motion.div
       className="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 glow-card"
@@ -163,6 +181,16 @@ function FeatureCard({ icon, title, description, accent, index }) {
 }
 
 function CoachCard({ name, role, description, photo, photoPosition, ring, index }) {
+  if (isTouch) return (
+    <div className="group gradient-border bg-white/5 rounded-2xl p-6 text-center glow-card">
+      <div className={`w-32 h-32 rounded-full mx-auto mb-5 ring-2 ${ring} ring-opacity-60 overflow-hidden`} style={{ boxShadow: '0 0 24px rgba(6,182,212,0.2)' }}>
+        <img src={photo} alt={name} className="w-full h-full object-cover" style={{ objectPosition: photoPosition }} />
+      </div>
+      <h3 className="font-black text-white text-lg mb-1">{name}</h3>
+      <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 text-xs font-bold uppercase tracking-widest mb-3">{role}</p>
+      <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
+    </div>
+  )
   return (
     <motion.div
       className="group gradient-border bg-white/5 rounded-2xl p-6 text-center glow-card"
@@ -178,12 +206,7 @@ function CoachCard({ name, role, description, photo, photoPosition, ring, index 
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         style={{ boxShadow: '0 0 24px rgba(6,182,212,0.2)' }}
       >
-        <img
-          src={photo}
-          alt={name}
-          className="w-full h-full object-cover"
-          style={{ objectPosition: photoPosition }}
-        />
+        <img src={photo} alt={name} className="w-full h-full object-cover" style={{ objectPosition: photoPosition }} />
       </motion.div>
       <h3 className="font-black text-white text-lg mb-1">{name}</h3>
       <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 text-xs font-bold uppercase tracking-widest mb-3">{role}</p>
@@ -195,7 +218,9 @@ function CoachCard({ name, role, description, photo, photoPosition, ring, index 
 export default function Home() {
   const heroRef = useRef(null)
   const { scrollY } = useScroll()
-  const heroOverlayOpacity = useTransform(scrollY, [0, 600], [0.42, 0.75])
+  const heroOverlayOpacityTransform = useTransform(scrollY, [0, 600], [0.42, 0.75])
+  // On mobile: static value only — no scroll-linked DOM updates
+  const heroOverlayOpacity = isTouch ? 0.55 : heroOverlayOpacityTransform
 
   const videoRef = useRef(null)
   const [showTapToPlay, setShowTapToPlay] = useState(false)
@@ -223,8 +248,7 @@ export default function Home() {
       <section
         ref={heroRef}
         className="relative text-white"
-        style={{ width: '100%', minHeight: '100vh' }}
-        onClick={() => videoRef.current && videoRef.current.play().catch(() => {})}
+        style={{ width: '100%', minHeight: '100svh' }}
       >
         {/* Full-bleed video — 100vw × 100vh, no gaps */}
         <video
@@ -234,13 +258,10 @@ export default function Home() {
           muted
           playsInline
           preload="auto"
-          onTouchStart={() => videoRef.current && videoRef.current.play().catch(() => {})}
           style={{
             position: 'absolute', top: 0, left: 0,
             width: '100%', height: '100%',
             objectFit: 'cover', display: 'block',
-            willChange: 'transform',
-            transform: 'translate3d(0,0,0)',
           }}
         >
           <source src={heroVideo} type="video/mp4" />
@@ -257,17 +278,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
               onClick={handleTapToPlay}
             >
-              <motion.div
+              <div
                 className="w-20 h-20 rounded-full flex items-center justify-center"
-                style={{ background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.4)' }}
-                whileTap={{ scale: 0.92 }}
-                animate={{ scale: [1, 1.06, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.4)', animation: 'play-pulse 2s ease-in-out infinite' }}
               >
                 <svg className="w-9 h-9 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
-              </motion.div>
+              </div>
               <span className="text-white text-lg font-semibold tracking-wide" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>
                 Tap to Play
               </span>
@@ -281,7 +299,7 @@ export default function Home() {
 
 
         <motion.div
-          className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col items-center justify-center text-center py-24"
+          className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col items-center justify-center text-center py-24"
           style={{ willChange: 'auto' }}
         >
           <motion.div className="relative mb-8" initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 200, damping: 18, delay: 0.1 }}>
@@ -301,8 +319,8 @@ export default function Home() {
             />
           </motion.div>
 
-          <motion.div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6 text-sm font-medium text-cyan-200" initial={{ opacity: 0, y: 16, filter: 'blur(10px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ duration: 0.7, delay: 0.45, ease }}>
-            <motion.span className="w-2 h-2 rounded-full bg-cyan-400" animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} />
+          <motion.div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6 text-sm font-medium text-cyan-200" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.45, ease }}>
+            <span className="w-2 h-2 rounded-full bg-cyan-400 pulse-dot" />
             Fremont, Union City & Dublin, CA · Est. 2026
           </motion.div>
 
@@ -327,7 +345,7 @@ export default function Home() {
             ))}
           </div>
 
-          <motion.p className="text-lg sm:text-xl text-blue-100 max-w-2xl mb-10 leading-relaxed" initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ duration: 0.8, delay: 0.95, ease }}>
+          <motion.p className="text-lg sm:text-xl text-blue-100 max-w-2xl mb-10 leading-relaxed" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.95, ease }}>
             A youth K–12 volleyball program built by players, for players. Grow your skills, compete hard, and love the game.
           </motion.p>
 
@@ -363,28 +381,22 @@ export default function Home() {
           transition={{ delay: 1.7, duration: 0.6 }}
           aria-label="Scroll down"
         >
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+          <div style={{ animation: 'scroll-bounce 2s ease-in-out infinite' }}>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
             </svg>
-          </motion.div>
+          </div>
         </motion.button>
       </section>
 
       {/* ── Stats ── */}
       <section className="-mt-8 relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="bg-slate-800/80 backdrop-blur-md rounded-3xl border border-white/10 py-8 px-6 glow-card"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-          >
+          <div className="bg-slate-800/80 backdrop-blur-md rounded-3xl border border-white/10 py-8 px-6 glow-card">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-x-0 md:divide-x divide-gray-100">
               {statItems.map((s, i) => <AnimatedStat key={s.label} {...s} index={i} />)}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -396,8 +408,8 @@ export default function Home() {
       {/* ── Why section ── */}
       <section className="relative bg-slate-900 pt-20 pb-24 overflow-hidden">
         <div className="absolute inset-0 grid-pattern pointer-events-none" />
-        <motion.div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" animate={{ scale: [1, 1.2, 1], x: [0, 30, 0] }} transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }} />
-        <motion.div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-cyan-600/10 blur-3xl pointer-events-none" animate={{ scale: [1, 1.15, 1], x: [0, -20, 0] }} transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 4 }} />
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-cyan-600/10 blur-3xl pointer-events-none" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp className="text-center mb-14">
             <span className="inline-block px-4 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-4">Why Choose Us</span>
@@ -418,8 +430,8 @@ export default function Home() {
       <CursorGlow color="rgba(6,182,212,0.06)">
         <section className="relative bg-slate-950 py-24 overflow-hidden">
           <div className="absolute inset-0 dot-pattern pointer-events-none opacity-60" />
-          <motion.div className="absolute -top-32 right-0 w-[600px] h-[600px] rounded-full bg-blue-700/10 blur-3xl pointer-events-none" animate={{ x: [0, -50, 0], y: [0, 30, 0] }} transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }} />
-          <motion.div className="absolute -bottom-16 -left-16 w-[400px] h-[400px] rounded-full bg-cyan-600/10 blur-3xl pointer-events-none" animate={{ x: [0, 30, 0], y: [0, -20, 0] }} transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 5 }} />
+          <div className="absolute -top-32 right-0 w-[600px] h-[600px] rounded-full bg-blue-700/10 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-[400px] h-[400px] rounded-full bg-cyan-600/10 blur-3xl pointer-events-none" />
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeUp className="text-center mb-16">
               <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">The Journey</span>
@@ -485,7 +497,7 @@ export default function Home() {
       <CursorGlow color="rgba(99,102,241,0.07)">
         <section className="relative bg-slate-900 py-24 overflow-hidden">
           <div className="absolute inset-0 grid-pattern pointer-events-none opacity-50" />
-            <motion.div className="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-3xl pointer-events-none" animate={{ scale: [1, 1.18, 1], rotate: [0, 15, 0] }} transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }} />
+            <div className="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-3xl pointer-events-none" />
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeUp className="text-center mb-14">
               <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">The Team</span>
@@ -596,7 +608,7 @@ export default function Home() {
       {/* ── CTA ── */}
       <section className="relative bg-gradient-to-br from-blue-950 via-blue-800 to-cyan-700 py-24 overflow-hidden clip-hero-bottom-rev">
         <div className="absolute inset-0 bg-mesh pointer-events-none" />
-        <motion.div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-cyan-400 opacity-10 blur-3xl" animate={{ scale: [1, 1.2, 1], x: [0, 30, 0] }} transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }} />
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-cyan-400 opacity-10 blur-3xl" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <FadeUp>
             <span className="inline-block px-4 py-1 rounded-full bg-white/10 border border-white/20 text-cyan-300 text-xs font-bold uppercase tracking-widest mb-6">Limited Spots</span>

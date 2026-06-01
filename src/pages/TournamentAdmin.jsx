@@ -77,7 +77,7 @@ function Login({ onLogin }) {
     else setErr(true)
   }
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+    <div className="min-h-[100svh] bg-slate-950 flex items-center justify-center px-4">
       <motion.div
         className="bg-slate-900 border border-white/10 rounded-3xl p-10 w-full max-w-sm"
         initial={{ opacity: 0, y: 30 }}
@@ -208,7 +208,7 @@ export default function TournamentAdmin() {
   teams.forEach(t => { teamMap[t.id] = t })
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-[100svh] bg-slate-950 text-white">
       {/* Header */}
       <div className="bg-slate-900 border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div>

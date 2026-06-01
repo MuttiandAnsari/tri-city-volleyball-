@@ -26,7 +26,12 @@
       "Bash(git rm *)",
       "Bash(git commit *)",
       "Bash(git push *)",
-      "Bash(grep -v \"^$\")"
+      "Bash(grep -v \"^$\")",
+      "Bash(ffmpeg -version)",
+      "Bash(ffprobe -v quiet -print_format json -show_streams \"/Users/vmutti1/tri-city-volleyball/Final_tri_clips_HQ.mp4\")",
+      "Bash(ffmpeg -i /Users/vmutti1/tri-city-volleyball/Final_tri_clips_HQ.mp4 -c:v libx264 -crf 20 -preset slow -maxrate 15M -bufsize 30M -vf scale=1920:1080 -an -movflags +faststart /Users/vmutti1/tri-city-volleyball/public/hero.mp4 -y)",
+      "Bash(xargs cat)",
+      "Bash(git -C /Users/vmutti1/tri-city-volleyball diff --stat)"
     ]
   }
 }

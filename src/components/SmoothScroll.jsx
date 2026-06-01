@@ -5,21 +5,28 @@ import Lenis from 'lenis'
 let lenisInstance = null
 export function getLenis() { return lenisInstance }
 
+// Detect touch/mobile devices — let native scroll handle them
+function isTouchDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0
+}
+
 export default function SmoothScroll() {
   useEffect(() => {
+    // On mobile/touch devices native scrolling is smoother — skip Lenis
+    if (isTouchDevice()) return
+
     const lenis = new Lenis({
-      duration: 0.9,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.9,
+      infinite: false,
     })
 
     lenisInstance = lenis
 
-    lenis.on('scroll', ({ scroll }) => {
+    lenis.on('scroll', () => {
       window.dispatchEvent(new Event('scroll'))
-      document.documentElement.scrollTop = scroll
     })
 
     let rafId

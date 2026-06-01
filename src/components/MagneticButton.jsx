@@ -1,12 +1,19 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
+const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+
 export default function MagneticButton({ children, className = '', strength = 0.35, onClick }) {
   const ref = useRef(null)
   const rawX = useMotionValue(0)
   const rawY = useMotionValue(0)
   const x = useSpring(rawX, { stiffness: 200, damping: 18 })
   const y = useSpring(rawY, { stiffness: 200, damping: 18 })
+
+  // No magnetic effect on touch devices — mouse-only feature
+  if (isTouch) {
+    return <div className={className} onClick={onClick}>{children}</div>
+  }
 
   function handleMouseMove(e) {
     const rect = ref.current.getBoundingClientRect()

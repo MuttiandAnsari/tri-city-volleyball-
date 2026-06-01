@@ -69,16 +69,18 @@ export default function VerticalVideoSection({ src, poster, title = 'Watch Us Pl
                 transition={{ duration: 0.2 }}
                 style={{ background: 'rgba(0,0,0,0.35)' }}
               >
-                <motion.div
+                <div
                   className="w-16 h-16 rounded-full flex items-center justify-center"
-                  style={{ background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.4)' }}
-                  animate={{ scale: [1, 1.06, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  style={{
+                    background: 'rgba(255,255,255,0.15)',
+                    border: '2px solid rgba(255,255,255,0.4)',
+                    animation: 'play-pulse 2s ease-in-out infinite',
+                  }}
                 >
                   <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
-                </motion.div>
+                </div>
               </motion.div>
             </motion.div>
           </motion.div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import logo from '../assets/logo.png'
 import { useTheme } from '../context/ThemeContext'
 
@@ -15,23 +15,26 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { dark, toggle } = useTheme()
-  const { scrollY } = useScroll()
-  const shadow = useTransform(scrollY, [0, 80], ['0 0 0 0 transparent', '0 4px 32px 0 rgba(0,0,0,0.5)'])
-  const borderOpacity = useTransform(scrollY, [0, 80], [0, 1])
   const location = useLocation()
 
   useEffect(() => { setOpen(false) }, [location.pathname])
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    // passive: true is critical — never blocks scroll on mobile
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <>
-      <motion.nav
-        className="backdrop-blur-md sticky top-0 z-50 bg-slate-900/85"
-        style={{ boxShadow: shadow }}
+      <nav
+        className={`backdrop-blur-md sticky top-0 z-50 bg-slate-900/85 transition-shadow duration-300 ${scrolled ? 'shadow-[0_4px_32px_0_rgba(0,0,0,0.5)]' : ''}`}
       >
-        <motion.div
-          className="absolute inset-x-0 bottom-0 h-px bg-white/10"
-          style={{ opacity: borderOpacity }}
+        <div
+          className={`absolute inset-x-0 bottom-0 h-px bg-white/10 transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0'}`}
         />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,7 +133,7 @@ export default function Navbar() {
             </motion.button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Full-screen mobile overlay */}
       <AnimatePresence>

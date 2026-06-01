@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
@@ -10,12 +10,11 @@ const ANNOUNCEMENT = {
 }
 
 export default function AnnouncementBanner() {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const dismissed = sessionStorage.getItem(`banner-${ANNOUNCEMENT.id}`)
-    if (!dismissed) setVisible(true)
-  }, [])
+  // Check synchronously so banner is visible on first render — avoids layout shift
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return !sessionStorage.getItem(`banner-${ANNOUNCEMENT.id}`)
+  })
 
   function dismiss() {
     sessionStorage.setItem(`banner-${ANNOUNCEMENT.id}`, '1')

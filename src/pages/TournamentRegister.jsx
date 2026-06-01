@@ -133,7 +133,7 @@ export default function TournamentRegister() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+      <div className="min-h-[100svh] bg-slate-950 flex items-center justify-center px-4">
         <motion.div
           className="bg-slate-900 border border-white/10 rounded-3xl p-10 text-center max-w-md w-full"
           initial={{ scale: 0.8, opacity: 0 }}

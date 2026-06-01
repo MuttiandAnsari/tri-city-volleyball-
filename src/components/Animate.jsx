@@ -1,8 +1,17 @@
 import { motion } from 'framer-motion'
 
+const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+
+// On mobile: skip all scroll animations — render children immediately.
+// whileInView fires JS mid-scroll and causes stutter on mobile.
+function PassThrough({ children, className = '' }) {
+  return <div className={className}>{children}</div>
+}
+
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 export function FadeUp({ children, delay = 0, duration = 0.6, className = '' }) {
+  if (isTouch) return <PassThrough className={className}>{children}</PassThrough>
   return (
     <motion.div
       className={className}
@@ -17,6 +26,7 @@ export function FadeUp({ children, delay = 0, duration = 0.6, className = '' }) 
 }
 
 export function FadeIn({ children, delay = 0, duration = 0.5, className = '' }) {
+  if (isTouch) return <PassThrough className={className}>{children}</PassThrough>
   return (
     <motion.div
       className={className}
@@ -31,6 +41,7 @@ export function FadeIn({ children, delay = 0, duration = 0.5, className = '' }) 
 }
 
 export function SlideIn({ children, from = 'left', delay = 0, className = '' }) {
+  if (isTouch) return <PassThrough className={className}>{children}</PassThrough>
   const x = from === 'left' ? -64 : from === 'right' ? 64 : 0
   const y = from === 'bottom' ? 48 : 0
   return (
@@ -47,6 +58,7 @@ export function SlideIn({ children, from = 'left', delay = 0, className = '' }) 
 }
 
 export function ScaleIn({ children, delay = 0, className = '' }) {
+  if (isTouch) return <PassThrough className={className}>{children}</PassThrough>
   return (
     <motion.div
       className={className}
@@ -70,6 +82,7 @@ const staggerItem = {
 }
 
 export function StaggerList({ children, className = '', stagger = 0.1, margin = '-80px' }) {
+  if (isTouch) return <div className={className}>{children}</div>
   return (
     <motion.div
       className={className}
@@ -85,6 +98,7 @@ export function StaggerList({ children, className = '', stagger = 0.1, margin = 
 }
 
 export function StaggerItem({ children, className = '' }) {
+  if (isTouch) return <div className={className}>{children}</div>
   return (
     <motion.div className={className} variants={staggerItem}>
       {children}
@@ -92,8 +106,8 @@ export function StaggerItem({ children, className = '' }) {
   )
 }
 
-// Resolves from blurred/invisible to sharp — good for hero text and CTAs
 export function BlurIn({ children, delay = 0, duration = 0.7, className = '' }) {
+  if (isTouch) return <PassThrough className={className}>{children}</PassThrough>
   return (
     <motion.div
       className={className}
@@ -107,8 +121,8 @@ export function BlurIn({ children, delay = 0, duration = 0.7, className = '' }) 
   )
 }
 
-// Clip-path wipe from bottom — dramatic section reveal
 export function ClipReveal({ children, delay = 0, className = '' }) {
+  if (isTouch) return <div className={className}>{children}</div>
   return (
     <div className={`overflow-hidden ${className}`}>
       <motion.div
@@ -123,8 +137,8 @@ export function ClipReveal({ children, delay = 0, className = '' }) {
   )
 }
 
-// Word-by-word cinema reveal , wraps each word in an overflow-hidden clip
 export function TextReveal({ text, className = '', delay = 0, as: Tag = 'span' }) {
+  if (isTouch) return <Tag className={className}>{text}</Tag>
   const words = String(text).split(' ')
   const MotionTag = motion[Tag] ?? motion.span
   return (
@@ -139,7 +153,7 @@ export function TextReveal({ text, className = '', delay = 0, as: Tag = 'span' }
             transition={{ duration: 0.55, delay: delay + i * 0.07, ease }}
           >
             {word}
-            {i < words.length - 1 ? ' ' : ''}
+            {i < words.length - 1 ? ' ' : ''}
           </motion.span>
         </span>
       ))}

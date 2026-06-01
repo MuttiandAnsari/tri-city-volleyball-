@@ -25,6 +25,9 @@ export default function ParticleSides({ count = 90 }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
+    // Skip particle animation on touch/mobile — rAF loop competes with scroll thread
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return
+
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     let animId

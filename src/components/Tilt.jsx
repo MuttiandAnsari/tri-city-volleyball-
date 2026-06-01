@@ -1,7 +1,11 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
+const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+
 export default function Tilt({ children, className = '', intensity = 12 }) {
+  // Skip 3D tilt entirely on touch devices — mouse-only feature
+  if (isTouch) return <div className={className}>{children}</div>
   const ref = useRef(null)
   const rawX = useMotionValue(0)
   const rawY = useMotionValue(0)
