@@ -20,9 +20,9 @@ const past = [
 
 const info = [
   { icon: '🏐', title: 'Equipment', text: 'Volleyballs provided. Bring non-marking athletic shoes.' },
-  { icon: '👕', title: 'Uniforms', text: 'Teams must wear matching jerseys. Libero jersey must be clearly distinct.' },
+  { icon: '👕', title: 'Uniforms', text: 'No matching jerseys required. Just show up ready to play.' },
   { icon: '📋', title: 'Rules', text: 'USAV youth rules apply. Division modifications published two weeks before each event.' },
-  { icon: '🏅', title: 'Awards', text: 'Medals for top 3 teams per division. Tournament MVP awards for standout performers.' },
+  { icon: '🏅', title: 'Awards', text: 'Awards TBD — stay tuned for details closer to the event.' },
 ]
 
 const regStyle = {
