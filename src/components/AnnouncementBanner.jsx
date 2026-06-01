@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 const ANNOUNCEMENT = {
-  id: 'showdown-june-26',
-  text: '🏐 Tri-City Showdown — June 26 at Fallon\'s Sports Park, Dublin.',
+  id: 'clinic-june-13',
+  text: '🏐 First Clinic — June 13 at Lake Elizabeth Park, Fremont.',
   cta: 'Register Now',
-  href: '/tournament-register',
+  href: '/register',
 }
 
 export default function AnnouncementBanner() {
