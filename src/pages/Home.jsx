@@ -56,7 +56,7 @@ const homeFaqs = [
   { q: 'What happens at the first free session?', a: 'Coaches introduce themselves, group kids by skill level, run fun drills, and make sure every athlete feels welcome. Zero pressure. Just come out and play!' },
   { q: 'How do I pick the right level?', a: 'Beginner (K–4) is for kids brand new to the sport. Intermediate (grades 5–7) is for players with at least a season of experience. Advanced (grades 8–12) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
   { q: 'Is this for boys and girls?', a: 'Yes! All clinics are open to every athlete regardless of gender.' },
-  { q: 'When and where is the next clinic?', a: 'Our next clinic is June 13, 2026 at Lake Elizabeth Park, Fremont. Beginner runs 12–1 PM, Intermediate 1:30–3 PM, and Advanced 3:30–5 PM. Future clinics will also be held at Willow Park in Union City and Fallon\'s Park in Dublin.' },
+  { q: 'When and where is the next clinic?', a: 'Our next clinic is June 14, 2026 at Lake Elizabeth Park, Fremont. Beginner runs 12–1 PM, Intermediate 1:30–3 PM, and Advanced 3:30–5 PM. Future clinics will also be held at Willow Park in Union City and Fallon\'s Park in Dublin.' },
 ]
 
 function HomeFaqItem({ q, a, index }) {
@@ -561,7 +561,7 @@ export default function Home() {
                 <div className={`h-1 w-full bg-gradient-to-r ${plan.color} rounded-full mb-6`} />
                 <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">{plan.grades}</p>
                 <h3 className="text-xl font-black text-white mb-1">{plan.level}</h3>
-                <p className="text-slate-500 text-xs mb-5">{plan.time} · June 13, 2026</p>
+                <p className="text-slate-500 text-xs mb-5">{plan.time} · June 14, 2026</p>
                 <div className="flex items-end gap-1 mb-6">
                   <span className={`text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${plan.color}`}>{plan.price}</span>
                   <span className="text-slate-500 text-sm mb-1">{plan.per}</span>

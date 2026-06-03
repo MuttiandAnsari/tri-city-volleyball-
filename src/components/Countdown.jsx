@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-const TARGET = new Date('2026-06-13T12:00:00')
+const TARGET = new Date('2026-06-14T12:00:00')
 
 function getTimeLeft() {
   const diff = TARGET - Date.now()
@@ -65,7 +65,7 @@ export default function Countdown() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          June 13, 2026 · Lake Elizabeth, Fremont
+          June 14, 2026 · Lake Elizabeth, Fremont
         </motion.h3>
         <div className="flex items-end justify-center gap-3 sm:gap-5">
           <Digit value={timeLeft.days}    label="Days"    index={0} />

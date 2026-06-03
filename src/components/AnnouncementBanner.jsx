@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const ANNOUNCEMENT = {
   id: 'clinic-june-13',
-  text: '🏐 First Clinic — June 13 at Lake Elizabeth Park, Fremont.',
+  text: '🏐 First Clinic — June 14 at Lake Elizabeth Park, Fremont.',
   cta: 'Register Now',
   href: '/register',
 }

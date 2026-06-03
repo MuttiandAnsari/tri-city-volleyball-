@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`backdrop-blur-md sticky top-0 z-50 bg-slate-900/85 transition-shadow duration-300 ${scrolled ? 'shadow-[0_4px_32px_0_rgba(0,0,0,0.5)]' : ''}`}
+        className={`md:backdrop-blur-md sticky top-0 z-50 bg-slate-900/85 transition-shadow duration-300 ${scrolled ? 'shadow-[0_4px_32px_0_rgba(0,0,0,0.5)]' : ''}`}
       >
         <div
           className={`absolute inset-x-0 bottom-0 h-px bg-white/10 transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0'}`}

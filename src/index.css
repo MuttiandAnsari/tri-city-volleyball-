@@ -137,6 +137,11 @@
     animation: scroll-progress linear;
     animation-timeline: scroll();
   }
+  /* CSS scroll-driven animations on fixed elements cause iOS Safari to oscillate —
+     disable on touch devices entirely */
+  @media (hover: none) {
+    .scroll-progress-bar { display: none; }
+  }
   .gpu { transform: translateZ(0); will-change: transform; }
   .grid-pattern {
     background-image:
