@@ -272,7 +272,7 @@ export default function PracticeRegister() {
                                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-amber-300 text-amber-800 text-xs font-black rounded-xl hover:bg-amber-100 transition-colors"
                                   >
                                     {c.name}
-                                    <span className="text-amber-500">Grades {c.grades}</span>
+                                    <span className="text-amber-500">Ages {c.ages}</span>
                                     →
                                   </Link>
                                 ))}

@@ -559,7 +559,7 @@ export default function Home() {
                   </div>
                 )}
                 <div className={`h-1 w-full bg-gradient-to-r ${plan.color} rounded-full mb-6`} />
-                <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">{plan.grades}</p>
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">{plan.ages}</p>
                 <h3 className="text-xl font-black text-white mb-1">{plan.level}</h3>
                 <p className="text-slate-500 text-xs mb-5">{plan.time} · June 14, 2026</p>
                 <div className="flex items-end gap-1 mb-6">

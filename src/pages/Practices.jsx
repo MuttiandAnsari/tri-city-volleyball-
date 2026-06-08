@@ -74,7 +74,7 @@ function PracticeCard({ practice, index }) {
                 {practice.level}
               </motion.span>
               <h3 className="text-xl font-black text-slate-900 leading-tight">{practice.title}</h3>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Grades {practice.grades}</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Ages {practice.ages}</p>
             </div>
           </div>
 
