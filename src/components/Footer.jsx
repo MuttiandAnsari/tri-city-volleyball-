@@ -14,7 +14,7 @@ const navLinks = [
 const programs = [
   { to: '/clinics', label: 'Beginner K–4' },
   { to: '/clinics', label: 'Intermediate 5–7' },
-  { to: '/clinics', label: 'Advanced 8–12' },
+  { to: '/clinics', label: 'Advanced 18–22' },
   { to: '/clinics', label: 'Summer All-Skills Camp' },
 ]
 

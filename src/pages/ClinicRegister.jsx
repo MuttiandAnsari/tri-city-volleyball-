@@ -15,14 +15,14 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 const clinicRules = {
   'Beginner Fundamentals':   { min: 5,  max: 10 },
   'Intermediate Skills':     { min: 10, max: 13 },
-  'Advanced Competitive':    { min: 13, max: 18 },
+  'Advanced Competitive':    { min: 18, max: 22 },
   'Summer All-Skills Camp':  { min: 5,  max: 18 },
 }
 
 const allClinics = [
   { name: 'Beginner Fundamentals',  grades: 'K–4',   ages: '5–10'  },
   { name: 'Intermediate Skills',    grades: '5–7',   ages: '10–13' },
-  { name: 'Advanced Competitive',   grades: '8–12',  ages: '13–18' },
+  { name: 'Advanced Competitive',   grades: '18–22',  ages: '18–22' },
   { name: 'Summer All-Skills Camp', grades: 'K–12',  ages: '5–18'  },
 ]
 
