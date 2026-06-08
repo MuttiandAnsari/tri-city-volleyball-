@@ -300,7 +300,7 @@ export default function CourtVisualizer() {
                 {/* Founder alignment */}
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-5 flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Specialist Staff</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Founders</p>
                     <p className="text-white font-bold text-sm">{current.founders.join(' & ')}</p>
                   </div>
                   <div className="flex -space-x-2.5">
