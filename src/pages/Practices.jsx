@@ -9,11 +9,11 @@ import CourtVisualizer from '../components/CourtVisualizer'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
-const clinics = [
-  { id: 1, title: 'Beginner Fundamentals', level: 'Beginner', grades: 'K–4', date: 'June 14, 2026', time: '12:00 – 1:00 PM', location: 'Lake Elizabeth, Fremont', spots: 16, maxSpots: 16, price: '$10 / session', description: 'The perfect first step. Athletes learn passing, serving, and court awareness in a fun, zero-pressure environment.', skills: ['Passing', 'Serving', 'Court Movement', 'Team Play'], accent: 'border-emerald-500', badge: 'bg-emerald-500', bar: 'bg-emerald-500' },
-  { id: 2, title: 'Intermediate Skills', level: 'Intermediate', grades: '5–7', date: 'June 14, 2026', time: '1:30 – 3:00 PM', location: 'Lake Elizabeth, Fremont', spots: 16, maxSpots: 16, price: '$15 / session', description: 'Build on the basics with consistent setting, attacking, and defensive positioning. For players with at least one season of experience.', skills: ['Setting', 'Attacking', 'Defense', 'Serve Receive'], accent: 'border-amber-500', badge: 'bg-amber-500', bar: 'bg-amber-500' },
-  { id: 3, title: 'Advanced Competitive', level: 'Advanced', grades: '18–22', date: 'June 14, 2026', time: '3:30 – 5:00 PM', location: 'Lake Elizabeth, Fremont', spots: 12, maxSpots: 12, price: '$15 / session', description: 'High-intensity training for experienced players. Sharpen competitive skills, game IQ, and tournament readiness.', skills: ['Warm Up', 'Scrimmage'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
-  { id: 4, title: 'Summer All-Skills Camp', level: 'All Levels', grades: 'K–12', date: 'TBD', time: 'TBD', location: 'TBD', spots: 14, maxSpots: 24, price: '$150 / week', description: 'A full week of immersive volleyball. Morning skill sessions, afternoon scrimmages, and lunch included every day.', skills: ['All Skills', 'Scrimmages', 'Team Drills', 'Fun Activities'], accent: 'border-cyan-500', badge: 'bg-cyan-500', bar: 'bg-cyan-500' },
+const practices = [
+  { id: 1, title: 'Beginner Fundamentals', level: 'Beginner', ages: '5–10', date: 'June 14, 2026', time: '12:00 – 1:00 PM', location: 'Lake Elizabeth, Fremont', spots: 16, maxSpots: 16, price: '$10 / session', description: 'The perfect first step. Athletes learn passing, serving, and court awareness in a fun, zero-pressure environment.', skills: ['Passing', 'Serving', 'Court Movement', 'Team Play'], accent: 'border-emerald-500', badge: 'bg-emerald-500', bar: 'bg-emerald-500' },
+  { id: 2, title: 'Intermediate Skills', level: 'Intermediate', ages: '10–13', date: 'June 14, 2026', time: '1:30 – 3:00 PM', location: 'Lake Elizabeth, Fremont', spots: 16, maxSpots: 16, price: '$15 / session', description: 'Build on the basics with consistent setting, attacking, and defensive positioning. For players with at least one season of experience.', skills: ['Setting', 'Attacking', 'Defense', 'Serve Receive'], accent: 'border-amber-500', badge: 'bg-amber-500', bar: 'bg-amber-500' },
+  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '18–22', date: 'June 14, 2026', time: '3:30 – 5:00 PM', location: 'Lake Elizabeth, Fremont', spots: 12, maxSpots: 12, price: '$15 / session', description: 'High-intensity training for experienced players. Sharpen competitive skills, game IQ, and tournament readiness.', skills: ['Warm Up', 'Scrimmage'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
+  { id: 4, title: 'Summer All-Skills Camp', level: 'All Levels', ages: '5–22', date: 'TBD', time: 'TBD', location: 'TBD', spots: 14, maxSpots: 24, price: '$150 / week', description: 'A full week of immersive volleyball. Morning skill sessions, afternoon scrimmages, and lunch included every day.', skills: ['All Skills', 'Scrimmages', 'Team Drills', 'Fun Activities'], accent: 'border-cyan-500', badge: 'bg-cyan-500', bar: 'bg-cyan-500' },
 ]
 
 const gear = [
@@ -22,23 +22,23 @@ const gear = [
   { label: 'Competitive attitude', emoji: '🔥' },
 ]
 
-const clinicCardVariants = {
+const practiceCardVariants = {
   hover: { y: -6, boxShadow: '0 24px 48px rgba(0,0,0,0.12)' },
 }
 
-function ClinicCard({ clinic, index }) {
+function PracticeCard({ practice, index }) {
   const num = String(index + 1).padStart(2, '0')
-  const pct = Math.round((clinic.spots / clinic.maxSpots) * 100)
-  const low = clinic.spots <= 3
+  const pct = Math.round((practice.spots / practice.maxSpots) * 100)
+  const low = practice.spots <= 3
 
   return (
     <motion.div
-      className={`group relative bg-white rounded-2xl overflow-hidden shadow-sm border-l-4 ${clinic.accent}`}
+      className={`group relative bg-white rounded-2xl overflow-hidden shadow-sm border-l-4 ${practice.accent}`}
       initial={{ opacity: 0, y: 56 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease }}
-      variants={clinicCardVariants}
+      variants={practiceCardVariants}
       whileHover="hover"
     >
       {/* Shine sweep on hover */}
@@ -65,27 +65,27 @@ function ClinicCard({ clinic, index }) {
           <div className="flex items-start justify-between mb-4">
             <div>
               <motion.span
-                className={`inline-block px-2.5 py-0.5 ${clinic.badge} text-white text-[10px] font-black uppercase tracking-widest rounded mb-2`}
+                className={`inline-block px-2.5 py-0.5 ${practice.badge} text-white text-[10px] font-black uppercase tracking-widest rounded mb-2`}
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
               >
-                {clinic.level}
+                {practice.level}
               </motion.span>
-              <h3 className="text-xl font-black text-slate-900 leading-tight">{clinic.title}</h3>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Grades {clinic.grades}</p>
+              <h3 className="text-xl font-black text-slate-900 leading-tight">{practice.title}</h3>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Grades {practice.grades}</p>
             </div>
           </div>
 
-          <p className="text-slate-500 text-sm leading-relaxed mb-5">{clinic.description}</p>
+          <p className="text-slate-500 text-sm leading-relaxed mb-5">{practice.description}</p>
 
           <div className="grid grid-cols-2 gap-2 mb-5">
             {[
-              { label: 'Schedule', value: clinic.date },
-              { label: 'Time', value: clinic.time },
-              { label: 'Location', value: clinic.location },
-              { label: 'Price', value: clinic.price },
+              { label: 'Schedule', value: practice.date },
+              { label: 'Time', value: practice.time },
+              { label: 'Location', value: practice.location },
+              { label: 'Price', value: practice.price },
             ].map(({ label, value }) => (
               <motion.div
                 key={label}
@@ -100,7 +100,7 @@ function ClinicCard({ clinic, index }) {
           </div>
 
           <div className="flex flex-wrap gap-1.5 mb-5">
-            {clinic.skills.map((s, i) => (
+            {practice.skills.map((s, i) => (
               <motion.span
                 key={s}
                 className="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-lg"
@@ -120,12 +120,12 @@ function ClinicCard({ clinic, index }) {
             <div className="flex justify-between items-center mb-1.5">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wide">Availability</span>
               <span className={`text-xs font-black ${low ? 'text-rose-600' : 'text-slate-700'}`}>
-                {low ? `Only ${clinic.spots} left!` : `${clinic.spots} spots open`}
+                {low ? `Only ${practice.spots} left!` : `${practice.spots} spots open`}
               </span>
             </div>
             <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
               <motion.div
-                className={`h-full rounded-full ${low ? 'bg-rose-500' : clinic.bar}`}
+                className={`h-full rounded-full ${low ? 'bg-rose-500' : practice.bar}`}
                 initial={{ width: 0 }}
                 whileInView={{ width: `${pct}%` }}
                 viewport={{ once: true }}
@@ -136,10 +136,10 @@ function ClinicCard({ clinic, index }) {
 
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              to={`/register?clinic=${encodeURIComponent(clinic.title)}`}
-              className={`flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-white transition-opacity hover:opacity-90 ${clinic.badge}`}
+              to={`/register?practice=${encodeURIComponent(practice.title)}`}
+              className={`flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-white transition-opacity hover:opacity-90 ${practice.badge}`}
             >
-              Register for This Clinic
+              Register for This Practice
               <motion.svg
                 className="w-4 h-4"
                 fill="none"
@@ -158,13 +158,13 @@ function ClinicCard({ clinic, index }) {
   )
 }
 
-export default function Clinics() {
+export default function Practices() {
   return (
     <>
       <PageHero
         label="Training Programs"
         title={<>Train Smarter.<br /><span className="text-gradient">Level Up Faster.</span></>}
-        subtitle="Structured sessions for every grade level, from K through 12th, in Union City, Fremont & Dublin."
+        subtitle="Structured sessions for every age group, from 5 to 22, in Union City, Fremont & Dublin."
         watermark="TRAIN"
       />
 
@@ -191,9 +191,9 @@ export default function Clinics() {
       <section className="bg-slate-50 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {clinics.map((clinic, i) => (
-              <Tilt key={clinic.id} intensity={6}>
-                <ClinicCard clinic={clinic} index={i} />
+            {practices.map((practice, i) => (
+              <Tilt key={practice.id} intensity={6}>
+                <PracticeCard practice={practice} index={i} />
               </Tilt>
             ))}
           </div>
@@ -240,7 +240,7 @@ export default function Clinics() {
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <FadeUp>
             <span className="text-cyan-300 text-xs font-bold uppercase tracking-widest block mb-4">We're Here to Help</span>
-            <h2 className="text-4xl font-black text-white mb-4">Not sure which clinic<br />is right for you?</h2>
+            <h2 className="text-4xl font-black text-white mb-4">Not sure which practice<br />is right for you?</h2>
             <p className="text-blue-200 mb-8 text-lg">Message us and we'll find the perfect fit for your athlete.</p>
             <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Link

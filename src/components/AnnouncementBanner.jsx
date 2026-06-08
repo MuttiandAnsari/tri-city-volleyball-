@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 const ANNOUNCEMENT = {
-  id: 'clinic-june-13',
-  text: '🏐 First Clinic — June 14 at Lake Elizabeth Park, Fremont.',
+  id: 'practice-june-13',
+  text: '🏐 First Practice — June 14 at Lake Elizabeth Park, Fremont.',
   cta: 'Register Now',
   href: '/register',
 }

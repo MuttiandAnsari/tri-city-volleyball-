@@ -6,16 +6,16 @@ import { FadeUp, StaggerList, StaggerItem } from './Animate'
 
 const navLinks = [
   { to: '/', label: 'Home' },
-  { to: '/clinics', label: 'Clinics' },
+  { to: '/practices', label: 'Practices' },
   { to: '/tournaments', label: 'Tournaments' },
   { to: '/contact', label: 'Contact' },
 ]
 
 const programs = [
-  { to: '/clinics', label: 'Beginner K–4' },
-  { to: '/clinics', label: 'Intermediate 5–7' },
-  { to: '/clinics', label: 'Advanced 18–22' },
-  { to: '/clinics', label: 'Summer All-Skills Camp' },
+  { to: '/practices', label: 'Beginner Ages 5–10' },
+  { to: '/practices', label: 'Intermediate 5–7' },
+  { to: '/practices', label: 'Advanced 18–22' },
+  { to: '/practices', label: 'Summer All-Skills Camp' },
 ]
 
 function FooterLink({ to, label }) {
@@ -139,7 +139,7 @@ export default function Footer() {
               transition={{ duration: 0.5, delay: 0.3, ease }}
             >
               <h3 className="text-xs font-black uppercase tracking-widest text-white mb-5">Stay in the Loop</h3>
-              <p className="text-slate-400 text-sm mb-4 leading-relaxed">Get clinic schedules, tournament dates, and updates delivered to your inbox.</p>
+              <p className="text-slate-400 text-sm mb-4 leading-relaxed">Get practice schedules, tournament dates, and updates delivered to your inbox.</p>
               {subscribed ? (
                 <motion.div
                   className="flex items-center gap-2 text-emerald-400 text-sm font-bold"

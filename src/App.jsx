@@ -16,10 +16,10 @@ function ScrollReset() {
   return null
 }
 import Home from './pages/Home'
-import Clinics from './pages/Clinics'
+import Practices from './pages/Practices'
 import Tournaments from './pages/Tournaments'
 import Contact from './pages/Contact'
-import ClinicRegister from './pages/ClinicRegister'
+import PracticeRegister from './pages/PracticeRegister'
 import TournamentRegister from './pages/TournamentRegister'
 import TournamentAdmin from './pages/TournamentAdmin'
 
@@ -34,10 +34,10 @@ function AnimatedRoutes() {
     {isTouch ? (
       <Routes location={location}>
         <Route path="/" element={<Home />} />
-        <Route path="/clinics" element={<Clinics />} />
+        <Route path="/practices" element={<Practices />} />
         <Route path="/tournaments" element={<Tournaments />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/register" element={<ClinicRegister />} />
+        <Route path="/register" element={<PracticeRegister />} />
         <Route path="/tournament-register" element={<TournamentRegister />} />
       </Routes>
     ) : (
@@ -52,10 +52,10 @@ function AnimatedRoutes() {
         >
           <Routes location={location}>
             <Route path="/" element={<Home />} />
-            <Route path="/clinics" element={<Clinics />} />
+            <Route path="/practices" element={<Practices />} />
             <Route path="/tournaments" element={<Tournaments />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/register" element={<ClinicRegister />} />
+            <Route path="/register" element={<PracticeRegister />} />
             <Route path="/tournament-register" element={<TournamentRegister />} />
           </Routes>
         </motion.div>

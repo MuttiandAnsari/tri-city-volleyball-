@@ -21,7 +21,7 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 
 
 const statItems = [
-  { number: 'K–12', display: 'K–12', label: 'All Grade Levels', color: 'text-cyan-400', numeric: false },
+  { number: '5–22', display: '5–22', label: 'All Age Groups', color: 'text-cyan-400', numeric: false },
   { number: 3, display: '3', label: 'Bay Area Locations', color: 'text-blue-400', numeric: true },
   { number: 4, display: '4', label: 'Dedicated Coaches', color: 'text-indigo-400', numeric: true },
   { number: 100, display: '100%', label: 'Youth-Led Program', color: 'text-sky-400', numeric: true, suffix: '%' },
@@ -30,7 +30,7 @@ const statItems = [
 const features = [
   { icon: '🏐', title: 'Skill-First Coaching', description: 'Fundamentals, footwork, and game IQ. Sessions structured to build complete players from day one.', accent: 'from-blue-500 to-cyan-400' },
   { icon: '🤝', title: 'Peer-Led Community', description: 'Coached by high schoolers who know the grind, creating a relatable and motivating environment.', accent: 'from-indigo-500 to-blue-400' },
-  { icon: '📍', title: 'Local & Accessible', description: 'Clinics at Lake Elizabeth (Fremont) and Willow Park (Union City), with tournaments at Fallon\'s Park in Dublin. All Bay Area convenient.', accent: 'from-cyan-500 to-sky-400' },
+  { icon: '📍', title: 'Local & Accessible', description: 'Practices at Lake Elizabeth (Fremont) and Willow Park (Union City), with tournaments at Fallon\'s Park in Dublin. All Bay Area convenient.', accent: 'from-cyan-500 to-sky-400' },
   { icon: '🏆', title: 'Tournament Play', description: 'Regular tournaments give athletes real competitive experience beyond practice.', accent: 'from-sky-500 to-blue-400' },
   { icon: '🌟', title: 'All Ages Welcome', description: 'From kindergartners learning their first serve to seniors refining their game.', accent: 'from-blue-500 to-indigo-400' },
   { icon: '📈', title: 'Player Development', description: 'Individualized feedback and structured progression so every player keeps leveling up.', accent: 'from-indigo-500 to-cyan-400' },
@@ -45,18 +45,18 @@ const coaches = [
 
 
 const steps = [
-  { num: '01', title: 'Sign Up', icon: '✍️', description: 'Browse our clinics, pick your level, and register in minutes. No experience required. We\'ll place you in the right group.' },
+  { num: '01', title: 'Sign Up', icon: '✍️', description: 'Browse our practices, pick your level, and register in minutes. No experience required. We\'ll place you in the right group.' },
   { num: '02', title: 'Train Hard', icon: '💪', description: 'Show up, work hard, and learn from coaches who\'ve been in your shoes. Every session builds on the last.' },
   { num: '03', title: 'Compete', icon: '🏆', description: 'Put your skills to the test. Face real competition in our tournaments and see exactly how far you\'ve come.' },
 ]
 
 const homeFaqs = [
-  { q: 'How much does it cost?', a: 'Your first session is completely free, no commitment needed. After that, Beginner clinics (K–4) are $10/session and Intermediate & Advanced are $15/session.' },
+  { q: 'How much does it cost?', a: 'Your first session is completely free, no commitment needed. After that, Beginner practices (Ages 5–10) are $10/session and Intermediate & Advanced are $15/session.' },
   { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and a competitive attitude. We provide all the volleyballs.' },
   { q: 'What happens at the first free session?', a: 'Coaches introduce themselves, group kids by skill level, run fun drills, and make sure every athlete feels welcome. Zero pressure. Just come out and play!' },
-  { q: 'How do I pick the right level?', a: 'Beginner (K–4) is for kids brand new to the sport. Intermediate (grades 5–7) is for players with at least a season of experience. Advanced (ages 18–22) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
-  { q: 'Is this for boys and girls?', a: 'Yes! All clinics are open to every athlete regardless of gender.' },
-  { q: 'When and where is the next clinic?', a: 'Our next clinic is June 14, 2026 at Lake Elizabeth Park, Fremont. Beginner runs 12–1 PM, Intermediate 1:30–3 PM, and Advanced 3:30–5 PM. Future clinics will also be held at Willow Park in Union City and Fallon\'s Park in Dublin.' },
+  { q: 'How do I pick the right level?', a: 'Beginner (Ages 5–10) is for kids brand new to the sport. Intermediate (ages 10–13) is for players with at least a season of experience. Advanced (ages 18–22) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
+  { q: 'Is this for boys and girls?', a: 'Yes! All practices are open to every athlete regardless of gender.' },
+  { q: 'When and where is the next practice?', a: 'Our next practice is June 14, 2026 at Lake Elizabeth Park, Fremont. Beginner runs 12–1 PM, Intermediate 1:30–3 PM, and Advanced 3:30–5 PM. Future practices will also be held at Willow Park in Union City and Fallon\'s Park in Dublin.' },
 ]
 
 function HomeFaqItem({ q, a, index }) {
@@ -120,7 +120,7 @@ function AnimatedStat({ number, label, color, numeric, suffix = '', index }) {
     return (
       <div className="text-center px-4">
         <div className={`text-5xl font-black ${color} mb-1 tracking-tight tabular-nums whitespace-nowrap`}>
-          {numeric ? number + suffix : label === 'All Grade Levels' ? 'K–12' : number}
+          {numeric ? number + suffix : label === 'All Age Groups' ? '5–22' : number}
         </div>
         <div className="text-slate-400 text-sm font-medium">{label}</div>
       </div>
@@ -137,7 +137,7 @@ function AnimatedStat({ number, label, color, numeric, suffix = '', index }) {
       transition={{ duration: 0.5, delay: 0.1 + index * 0.1, ease }}
     >
       <div className={`text-5xl font-black ${color} mb-1 tracking-tight tabular-nums whitespace-nowrap`}>
-        {numeric ? count + suffix : label === 'All Grade Levels' ? 'K–12' : number}
+        {numeric ? count + suffix : label === 'All Age Groups' ? '5–22' : number}
       </div>
       <div className="text-slate-400 text-sm font-medium">{label}</div>
     </motion.div>
@@ -346,12 +346,12 @@ export default function Home() {
           </div>
 
           <motion.p className="text-lg sm:text-xl text-blue-100 max-w-2xl mb-10 leading-relaxed" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.95, ease }}>
-            A youth K–12 volleyball program built by players, for players. Grow your skills, compete hard, and love the game.
+            A youth volleyball program for ages 5–22 built by players, for players. Grow your skills, compete hard, and love the game.
           </motion.p>
 
           <motion.div className="flex flex-col sm:flex-row gap-4" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.1, ease }}>
             <MagneticButton>
-              <Link to="/clinics" className="block px-9 py-3.5 bg-white text-blue-800 font-extrabold rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors">View Clinics</Link>
+              <Link to="/practices" className="block px-9 py-3.5 bg-white text-blue-800 font-extrabold rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors">View Practices</Link>
             </MagneticButton>
             <MagneticButton>
               <Link to="/register" className="block px-9 py-3.5 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-extrabold rounded-2xl hover:bg-white/20 transition-colors">Register Now</Link>
@@ -480,8 +480,8 @@ export default function Home() {
 
             <FadeUp className="text-center mt-14">
               <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/clinics" className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black rounded-2xl shadow-lg shadow-blue-900/30 hover:shadow-xl hover:shadow-blue-900/40 transition-all">
-                  Find Your Clinic
+                <Link to="/practices" className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black rounded-2xl shadow-lg shadow-blue-900/30 hover:shadow-xl hover:shadow-blue-900/40 transition-all">
+                  Find Your Practice
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
               </motion.div>
@@ -539,9 +539,9 @@ export default function Home() {
           </FadeUp>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { level: 'Beginner', grades: 'K–4', price: '$10', per: 'per session', time: '12:00 – 1:00 PM', color: 'from-emerald-500 to-teal-400', ring: 'ring-emerald-500/30', glow: 'rgba(16,185,129,0.15)', features: ['Passing & serving basics', 'Court awareness', 'Zero pressure environment', 'First session FREE'] },
-              { level: 'Intermediate', grades: 'Grades 5–7', price: '$15', per: 'per session', time: '1:30 – 3:00 PM', color: 'from-blue-500 to-cyan-400', ring: 'ring-blue-500/30', glow: 'rgba(59,130,246,0.15)', popular: true, features: ['Setting & attacking', 'Defensive positioning', 'Serve receive', 'First session FREE'] },
-              { level: 'Advanced', grades: 'Ages 18–22', price: '$15', per: 'per session', time: '3:30 – 5:00 PM', color: 'from-rose-500 to-pink-400', ring: 'ring-rose-500/30', glow: 'rgba(244,63,94,0.15)', features: ['Competitive game strategy', 'Tournament prep', 'Film review', 'First session FREE'] },
+              { level: 'Beginner', ages: '5–10', price: '$10', per: 'per session', time: '12:00 – 1:00 PM', color: 'from-emerald-500 to-teal-400', ring: 'ring-emerald-500/30', glow: 'rgba(16,185,129,0.15)', features: ['Passing & serving basics', 'Court awareness', 'Zero pressure environment', 'First session FREE'] },
+              { level: 'Intermediate', ages: 'Ages 10–13', price: '$15', per: 'per session', time: '1:30 – 3:00 PM', color: 'from-blue-500 to-cyan-400', ring: 'ring-blue-500/30', glow: 'rgba(59,130,246,0.15)', popular: true, features: ['Setting & attacking', 'Defensive positioning', 'Serve receive', 'First session FREE'] },
+              { level: 'Advanced', ages: 'Ages 18–22', price: '$15', per: 'per session', time: '3:30 – 5:00 PM', color: 'from-rose-500 to-pink-400', ring: 'ring-rose-500/30', glow: 'rgba(244,63,94,0.15)', features: ['Competitive game strategy', 'Tournament prep', 'Film review', 'First session FREE'] },
             ].map((plan, i) => (
               <motion.div
                 key={plan.level}
@@ -576,7 +576,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/clinics" className={`block w-full py-3 text-center font-black text-sm rounded-xl text-white bg-gradient-to-r ${plan.color} hover:opacity-90 transition-opacity`}>
+                <Link to="/practices" className={`block w-full py-3 text-center font-black text-sm rounded-xl text-white bg-gradient-to-r ${plan.color} hover:opacity-90 transition-opacity`}>
                   Register Free
                 </Link>
               </motion.div>
@@ -613,10 +613,10 @@ export default function Home() {
           <FadeUp>
             <span className="inline-block px-4 py-1 rounded-full bg-white/10 border border-white/20 text-cyan-300 text-xs font-bold uppercase tracking-widest mb-6">Limited Spots</span>
             <h2 className="text-4xl font-extrabold text-white mb-4">Ready to play?</h2>
-            <p className="text-blue-200 mb-10 text-lg">Spots fill up fast. Register for an upcoming clinic or tournament today.</p>
+            <p className="text-blue-200 mb-10 text-lg">Spots fill up fast. Register for an upcoming practice or tournament today.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <MagneticButton>
-                <Link to="/clinics" className="block px-9 py-3.5 bg-white text-blue-800 font-extrabold rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors">Browse Clinics</Link>
+                <Link to="/practices" className="block px-9 py-3.5 bg-white text-blue-800 font-extrabold rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors">Browse Practices</Link>
               </MagneticButton>
               <MagneticButton>
                 <Link to="/contact" className="block px-9 py-3.5 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-extrabold rounded-2xl hover:bg-white/20 transition-colors">Get in Touch</Link>

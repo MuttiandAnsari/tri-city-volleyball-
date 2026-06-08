@@ -98,14 +98,14 @@ const contactItems = [
 ]
 
 const faqs = [
-  { q: 'How much does it cost?', a: 'The first session is completely free for every athlete, no strings attached. After that, Beginner clinics are $10/session and Intermediate & Advanced are $15/session.' },
-  { q: 'Do I need prior experience?', a: 'Not at all! Our Beginner clinic (grades K–4) is designed for first-time players. We\'ll meet your child where they are and build from there.' },
+  { q: 'How much does it cost?', a: 'The first session is completely free for every athlete, no strings attached. After that, Beginner practices are $10/session and Intermediate & Advanced are $15/session.' },
+  { q: 'Do I need prior experience?', a: 'Not at all! Our Beginner practice (ages 5–10) is designed for first-time players. We\'ll meet your child where they are and build from there.' },
   { q: 'What should my child bring?', a: 'Athletic shoes (non-marking soles), a water bottle, and knee pads if they have them. Knee pads are recommended but not required. We provide the volleyballs.' },
   { q: 'What happens at the first session?', a: 'Coaches introduce themselves, split athletes by skill, run fun drills, and make sure every kid feels comfortable. There\'s zero pressure. It\'s all about having a good time and learning the basics.' },
-  { q: 'How do I know which level is right for my child?', a: 'Beginner (K–4) is for kids new to volleyball. Intermediate (5–7) is for players with at least one season of experience. Advanced (18–22) is for competitive players. Not sure? Text us at (341) 777-8673 and we\'ll help you decide.' },
-  { q: 'Is this for boys and girls?', a: 'Yes! Our clinics are open to all athletes regardless of gender.' },
-  { q: 'Are there tryouts?', a: 'No tryouts. Clinics are open enrollment. Just register and show up!' },
-  { q: 'Where exactly are the clinics held?', a: 'Clinics are held at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Park (Dublin, CA).' },
+  { q: 'How do I know which level is right for my child?', a: 'Beginner (Ages 5–10) is for kids new to volleyball. Intermediate (5–7) is for players with at least one season of experience. Advanced (18–22) is for competitive players. Not sure? Text us at (341) 777-8673 and we\'ll help you decide.' },
+  { q: 'Is this for boys and girls?', a: 'Yes! Our practices are open to all athletes regardless of gender.' },
+  { q: 'Are there tryouts?', a: 'No tryouts. Practices are open enrollment. Just register and show up!' },
+  { q: 'Where exactly are the practices held?', a: 'Practices are held at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Park (Dublin, CA).' },
 ]
 
 const inputClass = "w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
@@ -219,7 +219,7 @@ export default function Contact() {
       <PageHero
         label="Get in Touch"
         title={<>Let's Talk<br /><span className="text-gradient">Volleyball.</span></>}
-        subtitle="Questions about clinics, tournaments, or registration? We typically respond within 24 hours."
+        subtitle="Questions about practices, tournaments, or registration? We typically respond within 24 hours."
         watermark="HELLO"
       />
 
@@ -365,11 +365,11 @@ export default function Contact() {
                         </motion.div>
                       ))}
                       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18, duration: 0.4 }}>
-                        <label className={labelClass}>Athlete's Grade</label>
+                        <label className={labelClass}>Athlete's Age</label>
                         <select name="grade" value={form.grade} onChange={handleChange} className={inputClass + ' cursor-pointer'}>
-                          <option value="" className="bg-slate-900">Select grade...</option>
-                          {['Kindergarten','1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th'].map((g) => (
-                            <option key={g} value={g} className="bg-slate-900">{g} Grade</option>
+                          <option value="" className="bg-slate-900">Select age...</option>
+                          {['5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'].map((a) => (
+                            <option key={a} value={a} className="bg-slate-900">Age {a}</option>
                           ))}
                         </select>
                       </motion.div>
@@ -379,7 +379,7 @@ export default function Contact() {
                       <label className={labelClass}>Subject <span className="text-rose-500">*</span></label>
                       <select name="subject" value={form.subject} onChange={handleChange} required className={inputClass + ' cursor-pointer'}>
                         <option value="" className="bg-slate-900">Select a topic...</option>
-                        <option value="clinic-registration" className="bg-slate-900">Clinic Registration</option>
+                        <option value="practice-registration" className="bg-slate-900">Practice Registration</option>
                         <option value="tournament-registration" className="bg-slate-900">Tournament Registration</option>
                         <option value="general-question" className="bg-slate-900">General Question</option>
                         <option value="partnership" className="bg-slate-900">Partnership / Sponsorship</option>
@@ -392,7 +392,7 @@ export default function Contact() {
                       <textarea
                         name="message" value={form.message} onChange={handleChange}
                         required rows={5}
-                        placeholder="Tell us about your athlete, which clinic or tournament you're interested in, or any questions you have..."
+                        placeholder="Tell us about your athlete, which practice or tournament you're interested in, or any questions you have..."
                         className={inputClass + ' resize-none'}
                         onFocus={() => setFocused('message')}
                         onBlur={() => setFocused(null)}

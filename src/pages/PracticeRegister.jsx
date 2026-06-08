@@ -11,30 +11,30 @@ const FORMSPREE_URL = 'https://formspree.io/f/mojbpbrr'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
-// Age ranges per clinic (inclusive)
-const clinicRules = {
+// Age ranges per practice (inclusive)
+const practiceRules = {
   'Beginner Fundamentals':   { min: 5,  max: 10 },
   'Intermediate Skills':     { min: 10, max: 13 },
   'Advanced Competitive':    { min: 18, max: 22 },
   'Summer All-Skills Camp':  { min: 5,  max: 18 },
 }
 
-const allClinics = [
-  { name: 'Beginner Fundamentals',  grades: 'K–4',   ages: '5–10'  },
-  { name: 'Intermediate Skills',    grades: '5–7',   ages: '10–13' },
-  { name: 'Advanced Competitive',   grades: '18–22',  ages: '18–22' },
-  { name: 'Summer All-Skills Camp', grades: 'K–12',  ages: '5–18'  },
+const allPractices = [
+  { name: 'Beginner Fundamentals',  ages: '5–10',   ages: '5–10'  },
+  { name: 'Intermediate Skills',    ages: '10–13',   ages: '10–13' },
+  { name: 'Advanced Competitive',   ages: '18–22',  ages: '18–22' },
+  { name: 'Summer All-Skills Camp', ages: '5–22',  ages: '5–18'  },
 ]
 
-function getAgeError(clinicName, age) {
-  const rule = clinicRules[clinicName]
+function getAgeError(practiceName, age) {
+  const rule = practiceRules[practiceName]
   if (!rule || !age) return null
   const n = Number(age)
   if (n >= rule.min && n <= rule.max) return null
 
-  const suggestions = allClinics.filter(c => {
-    const r = clinicRules[c.name]
-    return c.name !== clinicName && r && n >= r.min && n <= r.max
+  const suggestions = allPractices.filter(c => {
+    const r = practiceRules[c.name]
+    return c.name !== practiceName && r && n >= r.min && n <= r.max
   })
 
   return { tooYoung: n < rule.min, suggestions }
@@ -62,9 +62,9 @@ function Field({ label, hint, children }) {
   )
 }
 
-export default function ClinicRegister() {
+export default function PracticeRegister() {
   const [params] = useSearchParams()
-  const clinicName = params.get('clinic') || 'Clinic'
+  const practiceName = params.get('practice') || 'Practice'
 
   const [form, setForm] = useState({
     firstName: '',
@@ -81,7 +81,7 @@ export default function ClinicRegister() {
   const [errors, setErrors] = useState({})
 
   const isMinor   = form.age !== '' && Number(form.age) <= 13
-  const ageError  = getAgeError(clinicName, form.age)
+  const ageError  = getAgeError(practiceName, form.age)
   const ageBlocked = ageError !== null
 
   function set(field, val) {
@@ -114,7 +114,7 @@ export default function ClinicRegister() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          clinic:        clinicName,
+          practice:        practiceName,
           first_name:    form.firstName,
           last_name:     form.lastName,
           age:           form.age,
@@ -146,8 +146,8 @@ export default function ClinicRegister() {
     <>
       <PageHero
         label="Sign Up"
-        title={<>Register for a<br /><span className="text-gradient">Clinic.</span></>}
-        subtitle={`You're signing up for: ${clinicName}`}
+        title={<>Register for a<br /><span className="text-gradient">Practice.</span></>}
+        subtitle={`You're signing up for: ${practiceName}`}
         watermark="JOIN"
       />
 
@@ -169,8 +169,8 @@ export default function ClinicRegister() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Link to="/clinics" className="block px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black rounded-2xl shadow-lg">
-                      Back to Clinics
+                    <Link to="/practices" className="block px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black rounded-2xl shadow-lg">
+                      Back to Practices
                     </Link>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
@@ -189,12 +189,12 @@ export default function ClinicRegister() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease }}
               >
-                {/* Clinic badge */}
+                {/* Practice badge */}
                 <div className="flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-2xl px-4 py-3 mb-2">
                   <span className="text-2xl">📋</span>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-blue-400">Registering for</p>
-                    <p className="text-blue-800 font-black text-sm">{clinicName}</p>
+                    <p className="text-blue-800 font-black text-sm">{practiceName}</p>
                   </div>
                 </div>
 
@@ -257,7 +257,7 @@ export default function ClinicRegister() {
                         <span className="text-xl mt-0.5">⚠️</span>
                         <div>
                           <p className="text-amber-800 font-black text-sm mb-1">
-                            Age {form.age} is {ageError.tooYoung ? 'too young' : 'too old'} for {clinicName}.
+                            Age {form.age} is {ageError.tooYoung ? 'too young' : 'too old'} for {practiceName}.
                           </p>
                           {ageError.suggestions.length > 0 ? (
                             <>
@@ -268,7 +268,7 @@ export default function ClinicRegister() {
                                 {ageError.suggestions.map(c => (
                                   <Link
                                     key={c.name}
-                                    to={`/register?clinic=${encodeURIComponent(c.name)}`}
+                                    to={`/register?practice=${encodeURIComponent(c.name)}`}
                                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-amber-300 text-amber-800 text-xs font-black rounded-xl hover:bg-amber-100 transition-colors"
                                   >
                                     {c.name}
@@ -280,7 +280,7 @@ export default function ClinicRegister() {
                             </>
                           ) : (
                             <p className="text-amber-700 text-xs font-medium">
-                              Unfortunately we don't have a clinic for your age group right now. Contact us at{' '}
+                              Unfortunately we don't have a practice for your age group right now. Contact us at{' '}
                               <a href="mailto:volleyballtricity@gmail.com" className="underline font-bold">
                                 volleyballtricity@gmail.com
                               </a>{' '}

@@ -57,7 +57,7 @@ export default function Countdown() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          First Clinic Starts In
+          First Practice Starts In
         </motion.p>
         <motion.h3
           className="text-white font-black text-xl mb-6"

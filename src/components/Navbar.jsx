@@ -6,7 +6,7 @@ import { useTheme } from '../context/ThemeContext'
 
 const links = [
   { to: '/', label: 'Home', num: '01' },
-  { to: '/clinics', label: 'Clinics', num: '02' },
+  { to: '/practices', label: 'Practices', num: '02' },
   { to: '/tournaments', label: 'Tournaments', num: '03' },
   { to: '/contact', label: 'Contact', num: '04' },
 ]
