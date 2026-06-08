@@ -99,10 +99,10 @@ const contactItems = [
 
 const faqs = [
   { q: 'How much does it cost?', a: 'The first session is completely free for every athlete, no strings attached. After that, Beginner practices are $10/session and Intermediate & Advanced are $15/session.' },
-  { q: 'Do I need prior experience?', a: 'Not at all! Our Beginner practice (ages 5–10) is designed for first-time players. We\'ll meet your child where they are and build from there.' },
+  { q: 'Do I need prior experience?', a: 'Not at all! Our Beginner practice (ages 5–9) is designed for first-time players. We\'ll meet your child where they are and build from there.' },
   { q: 'What should my child bring?', a: 'Athletic shoes (non-marking soles), a water bottle, and knee pads if they have them. Knee pads are recommended but not required. We provide the volleyballs.' },
   { q: 'What happens at the first session?', a: 'Co-founders introduce themselves, split athletes by skill, run fun drills, and make sure every kid feels comfortable. There\'s zero pressure. It\'s all about having a good time and learning the basics.' },
-  { q: 'How do I know which level is right for my child?', a: 'Beginner (Ages 5–10) is for kids new to volleyball. Intermediate (5–7) is for players with at least one season of experience. Advanced (18–22) is for competitive players. Not sure? Text us at (341) 777-8673 and we\'ll help you decide.' },
+  { q: 'How do I know which level is right for my child?', a: 'Beginner (Ages 5–9) is for kids new to volleyball. Intermediate (5–7) is for players with at least one season of experience. Advanced (14–22) is for competitive players. Not sure? Text us at (341) 777-8673 and we\'ll help you decide.' },
   { q: 'Is this for boys and girls?', a: 'Yes! Our practices are open to all athletes regardless of gender.' },
   { q: 'Are there tryouts?', a: 'No tryouts. Practices are open enrollment. Just register and show up!' },
   { q: 'Where exactly are the practices held?', a: 'Practices are held at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Park (Dublin, CA).' },

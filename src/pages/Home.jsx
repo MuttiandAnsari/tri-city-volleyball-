@@ -51,10 +51,10 @@ const steps = [
 ]
 
 const homeFaqs = [
-  { q: 'How much does it cost?', a: 'Your first session is completely free, no commitment needed. After that, Beginner practices (Ages 5–10) are $10/session and Intermediate & Advanced are $15/session.' },
+  { q: 'How much does it cost?', a: 'Your first session is completely free, no commitment needed. After that, Beginner practices (Ages 5–9) are $10/session and Intermediate & Advanced are $15/session.' },
   { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and a competitive attitude. We provide all the volleyballs.' },
   { q: 'What happens at the first free session?', a: 'Co-founders introduce themselves, group kids by skill level, run fun drills, and make sure every athlete feels welcome. Zero pressure. Just come out and play!' },
-  { q: 'How do I pick the right level?', a: 'Beginner (Ages 5–10) is for kids brand new to the sport. Intermediate (ages 10–13) is for players with at least a season of experience. Advanced (ages 18–22) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
+  { q: 'How do I pick the right level?', a: 'Beginner (Ages 5–9) is for kids brand new to the sport. Intermediate (ages 10–13) is for players with at least a season of experience. Advanced (ages 14–22) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
   { q: 'Is this for boys and girls?', a: 'Yes! All practices are open to every athlete regardless of gender.' },
   { q: 'When and where is the next practice?', a: 'Our next practice is June 14, 2026 at Lake Elizabeth Park, Fremont. Beginner runs 12–1 PM, Intermediate 1:30–3 PM, and Advanced 3:30–5 PM. Future practices will also be held at Willow Park in Union City and Fallon\'s Park in Dublin.' },
 ]
@@ -539,9 +539,9 @@ export default function Home() {
           </FadeUp>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { level: 'Beginner', ages: '5–10', price: '$10', per: 'per session', time: '12:00 – 1:00 PM', color: 'from-emerald-500 to-teal-400', ring: 'ring-emerald-500/30', glow: 'rgba(16,185,129,0.15)', features: ['Passing & serving basics', 'Court awareness', 'Zero pressure environment', 'First session FREE'] },
+              { level: 'Beginner', ages: '5–9', price: '$10', per: 'per session', time: '12:00 – 1:00 PM', color: 'from-emerald-500 to-teal-400', ring: 'ring-emerald-500/30', glow: 'rgba(16,185,129,0.15)', features: ['Passing & serving basics', 'Court awareness', 'Zero pressure environment', 'First session FREE'] },
               { level: 'Intermediate', ages: 'Ages 10–13', price: '$15', per: 'per session', time: '1:30 – 3:00 PM', color: 'from-blue-500 to-cyan-400', ring: 'ring-blue-500/30', glow: 'rgba(59,130,246,0.15)', popular: true, features: ['Setting & attacking', 'Defensive positioning', 'Serve receive', 'First session FREE'] },
-              { level: 'Advanced', ages: 'Ages 18–22', price: '$15', per: 'per session', time: '3:30 – 5:00 PM', color: 'from-rose-500 to-pink-400', ring: 'ring-rose-500/30', glow: 'rgba(244,63,94,0.15)', features: ['Competitive game strategy', 'Tournament prep', 'Film review', 'First session FREE'] },
+              { level: 'Advanced', ages: 'Ages 14–22', price: '$15', per: 'per session', time: '3:30 – 5:00 PM', color: 'from-rose-500 to-pink-400', ring: 'ring-rose-500/30', glow: 'rgba(244,63,94,0.15)', features: ['Competitive game strategy', 'Tournament prep', 'Film review', 'First session FREE'] },
             ].map((plan, i) => (
               <motion.div
                 key={plan.level}

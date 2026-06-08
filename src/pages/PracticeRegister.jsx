@@ -13,16 +13,16 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 
 // Age ranges per practice (inclusive)
 const practiceRules = {
-  'Beginner Fundamentals':   { min: 5,  max: 10 },
+  'Beginner Fundamentals':   { min: 5,  max: 9 },
   'Intermediate Skills':     { min: 10, max: 13 },
-  'Advanced Competitive':    { min: 18, max: 22 },
-  'Summer All-Skills Camp':  { min: 5,  max: 18 },
+  'Advanced Competitive':    { min: 14, max: 22 },
+  'Summer All-Skills Camp':  { min: 5,  max: 22 },
 }
 
 const allPractices = [
-  { name: 'Beginner Fundamentals',  ages: '5–10',   ages: '5–10'  },
+  { name: 'Beginner Fundamentals',  ages: '5–9',   ages: '5–9'  },
   { name: 'Intermediate Skills',    ages: '10–13',   ages: '10–13' },
-  { name: 'Advanced Competitive',   ages: '18–22',  ages: '18–22' },
+  { name: 'Advanced Competitive',   ages: '14–22',  ages: '14–22' },
   { name: 'Summer All-Skills Camp', ages: '5–22',  ages: '5–18'  },
 ]
 
