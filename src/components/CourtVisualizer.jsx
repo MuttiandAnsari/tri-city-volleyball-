@@ -5,7 +5,7 @@ import photoFarhaan from '../assets/farhaan.jpg'
 import photoNoah from '../assets/noah.jpg'
 import photoAyaan from '../assets/ayaan.jpg'
 
-const coachPhotos = {
+const founderPhotos = {
   'Viraj Mutti': photoViraj,
   'Farhaan Ansari': photoFarhaan,
   'Noah Lukose': photoNoah,
@@ -119,7 +119,7 @@ export default function CourtVisualizer() {
         <div className="text-center mb-16">
           <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">Training Blueprint</span>
           <h2 className="text-4xl sm:text-5xl font-black text-glow-cyan text-white mb-4">Explore Court Positions</h2>
-          <p className="text-slate-400 max-w-xl mx-auto">Click or hover on any position to understand its tactical focus, skills checklist, and coaching staff.</p>
+          <p className="text-slate-400 max-w-xl mx-auto">Click or hover on any position to understand its tactical focus, skills checklist, and founding team.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
@@ -297,7 +297,7 @@ export default function CourtVisualizer() {
                   </div>
                 </div>
 
-                {/* Coaching alignment */}
+                {/* Founder alignment */}
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-5 flex items-center justify-between gap-4">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Specialist Staff</p>
@@ -312,7 +312,7 @@ export default function CourtVisualizer() {
                           title={c}
                         >
                           <img
-                            src={coachPhotos[c]}
+                            src={founderPhotos[c]}
                             alt={c}
                             className="w-full h-full object-cover"
                           />

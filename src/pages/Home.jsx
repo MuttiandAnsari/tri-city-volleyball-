@@ -23,13 +23,13 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 const statItems = [
   { number: '5–22', display: '5–22', label: 'All Age Groups', color: 'text-cyan-400', numeric: false },
   { number: 3, display: '3', label: 'Bay Area Locations', color: 'text-blue-400', numeric: true },
-  { number: 4, display: '4', label: 'Co-Founders', color: 'text-indigo-400', numeric: true },
+  { number: 4, display: '4', label: 'Founders', color: 'text-indigo-400', numeric: true },
   { number: 100, display: '100%', label: 'Youth-Led Program', color: 'text-sky-400', numeric: true, suffix: '%' },
 ]
 
 const features = [
-  { icon: '🏐', title: 'Skill-First Coaching', description: 'Fundamentals, footwork, and game IQ. Sessions structured to build complete players from day one.', accent: 'from-blue-500 to-cyan-400' },
-  { icon: '🤝', title: 'Peer-Led Community', description: 'Led by co-founders who know the grind, creating a relatable and motivating environment.', accent: 'from-indigo-500 to-blue-400' },
+  { icon: '🏐', title: 'Skill-First Training', description: 'Fundamentals, footwork, and game IQ. Sessions structured to build complete players from day one.', accent: 'from-blue-500 to-cyan-400' },
+  { icon: '🤝', title: 'Peer-Led Community', description: 'Led by founders who know the grind, creating a relatable and motivating environment.', accent: 'from-indigo-500 to-blue-400' },
   { icon: '📍', title: 'Local & Accessible', description: 'Practices at Lake Elizabeth (Fremont) and Willow Park (Union City), with tournaments at Fallon\'s Park in Dublin. All Bay Area convenient.', accent: 'from-cyan-500 to-sky-400' },
   { icon: '🏆', title: 'Tournament Play', description: 'Regular tournaments give athletes real competitive experience beyond practice.', accent: 'from-sky-500 to-blue-400' },
   { icon: '🌟', title: 'All Ages Welcome', description: 'From kindergartners learning their first serve to seniors refining their game.', accent: 'from-blue-500 to-indigo-400' },
@@ -37,16 +37,16 @@ const features = [
 ]
 
 const founders = [
-  { name: 'Viraj Mutti', role: 'Co-Founder', description: 'Viraj plays on the James Logan High School volleyball team and has also played at Lakas and UVA. He focuses on setting and receiving and helps with other aspects of the game as well.', photo: photoViraj, photoPosition: 'center 30%', ring: 'ring-blue-400' },
-  { name: 'Farhaan Ansari', role: 'Co-Founder', description: 'Farhaan plays outside/opposite hitter on the American High School volleyball team. He specializes in setting and receiving while also being knowledgeable in other aspects of the game.', photo: photoFarhaan, photoPosition: 'center 15%', ring: 'ring-indigo-400' },
-  { name: 'Noah Lukose', role: 'Co-Founder', description: 'Noah is a middle blocker on the James Logan Volleyball team and has also played at UVA and Lakas. He specializes in blocking and hitting.', photo: photoNoah, photoPosition: 'center 45%', ring: 'ring-sky-400' },
-  { name: 'Ayaan Shansab', role: 'Co-Founder', description: 'Ayaan plays on the Campolindo High School varsity boys volleyball team as an opposite hitter. He can assist newcomers with the fundamentals of hitting and blocking.', photo: photoAyaan, photoPosition: 'center 20%', ring: 'ring-cyan-400' },
+  { name: 'Viraj Mutti', role: 'Founder', description: 'Viraj plays on the James Logan High School volleyball team and has also played at Lakas and UVA. He focuses on setting and receiving and helps with other aspects of the game as well.', photo: photoViraj, photoPosition: 'center 30%', ring: 'ring-blue-400' },
+  { name: 'Farhaan Ansari', role: 'Founder', description: 'Farhaan plays outside/opposite hitter on the American High School volleyball team. He specializes in setting and receiving while also being knowledgeable in other aspects of the game.', photo: photoFarhaan, photoPosition: 'center 15%', ring: 'ring-indigo-400' },
+  { name: 'Noah Lukose', role: 'Founder', description: 'Noah is a middle blocker on the James Logan Volleyball team and has also played at UVA and Lakas. He specializes in blocking and hitting.', photo: photoNoah, photoPosition: 'center 45%', ring: 'ring-sky-400' },
+  { name: 'Ayaan Shansab', role: 'Founder', description: 'Ayaan plays on the Campolindo High School varsity boys volleyball team as an opposite hitter. He can assist newcomers with the fundamentals of hitting and blocking.', photo: photoAyaan, photoPosition: 'center 20%', ring: 'ring-cyan-400' },
 ]
 
 
 const steps = [
   { num: '01', title: 'Sign Up', icon: '✍️', description: 'Browse our practices, pick your level, and register in minutes. No experience required. We\'ll place you in the right group.' },
-  { num: '02', title: 'Train Hard', icon: '💪', description: 'Show up, work hard, and learn from co-founders who\'ve been in your shoes. Every session builds on the last.' },
+  { num: '02', title: 'Train Hard', icon: '💪', description: 'Show up, work hard, and learn from founders who\'ve been in your shoes. Every session builds on the last.' },
   { num: '03', title: 'Compete', icon: '🏆', description: 'Put your skills to the test. Face real competition in our tournaments and see exactly how far you\'ve come.' },
 ]
 
@@ -180,7 +180,7 @@ function FeatureCard({ icon, title, description, accent, index }) {
   )
 }
 
-function CoachCard({ name, role, description, photo, photoPosition, ring, index }) {
+function FounderCard({ name, role, description, photo, photoPosition, ring, index }) {
   if (isTouch) return (
     <div className="group gradient-border bg-white/5 rounded-2xl p-6 text-center glow-card">
       <div className={`w-32 h-32 rounded-full mx-auto mb-5 ring-2 ${ring} ring-opacity-60 overflow-hidden`} style={{ boxShadow: '0 0 24px rgba(6,182,212,0.2)' }}>
@@ -493,33 +493,33 @@ export default function Home() {
       {/* ── Reverse marquee ── */}
       <Marquee bg="bg-slate-950" textColor="text-slate-500" accentColor="text-slate-700" reverse />
 
-      {/* ── Co-Founders ── */}
+      {/* ── Founders ── */}
       <CursorGlow color="rgba(99,102,241,0.07)">
         <section className="relative bg-slate-900 py-24 overflow-hidden">
           <div className="absolute inset-0 grid-pattern pointer-events-none opacity-50" />
             <div className="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-3xl pointer-events-none" />
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeUp className="text-center mb-14">
-              <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">The Co-Founders</span>
+              <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">The Founders</span>
               <div className="flex items-center justify-center gap-3 mb-4">
-                <h2 className="text-5xl font-black text-white text-glow-cyan" style={{ fontFamily: "'Outfit', sans-serif" }}>Meet the Co-Founders</h2>
+                <h2 className="text-5xl font-black text-white text-glow-cyan" style={{ fontFamily: "'Outfit', sans-serif" }}>Meet the Founders</h2>
               </div>
-              <p className="text-slate-400 max-w-xl mx-auto mb-5">Four co-founders passionate about giving back to the game they love.</p>
+              <p className="text-slate-400 max-w-xl mx-auto mb-5">Four founders passionate about giving back to the game they love.</p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
                   <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  2 Co-Founders: USA Volleyball 16U Nationals Qualified
+                  2 Founders: USA Volleyball 16U Nationals Qualified
                 </span>
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-widest">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0v6m-4-3h8"/></svg>
-                  All Active High School Co-Founders
+                  All Active High School Founders
                 </span>
               </div>
             </FadeUp>
             <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0 lg:mx-0 lg:px-0">
               (founders.map((c, i) => (
                 <div key={c.name} className="snap-center shrink-0 w-72 lg:w-auto">
-                  <CoachCard {...c} index={i} />
+                  <FounderCard {...c} index={i} />
                 </div>
               ))}
             </div>
