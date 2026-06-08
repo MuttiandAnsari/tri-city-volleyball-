@@ -23,37 +23,37 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 const statItems = [
   { number: '5–22', display: '5–22', label: 'All Age Groups', color: 'text-cyan-400', numeric: false },
   { number: 3, display: '3', label: 'Bay Area Locations', color: 'text-blue-400', numeric: true },
-  { number: 4, display: '4', label: 'Dedicated Coaches', color: 'text-indigo-400', numeric: true },
+  { number: 4, display: '4', label: 'Co-Founders', color: 'text-indigo-400', numeric: true },
   { number: 100, display: '100%', label: 'Youth-Led Program', color: 'text-sky-400', numeric: true, suffix: '%' },
 ]
 
 const features = [
   { icon: '🏐', title: 'Skill-First Coaching', description: 'Fundamentals, footwork, and game IQ. Sessions structured to build complete players from day one.', accent: 'from-blue-500 to-cyan-400' },
-  { icon: '🤝', title: 'Peer-Led Community', description: 'Coached by high schoolers who know the grind, creating a relatable and motivating environment.', accent: 'from-indigo-500 to-blue-400' },
+  { icon: '🤝', title: 'Peer-Led Community', description: 'Led by co-founders who know the grind, creating a relatable and motivating environment.', accent: 'from-indigo-500 to-blue-400' },
   { icon: '📍', title: 'Local & Accessible', description: 'Practices at Lake Elizabeth (Fremont) and Willow Park (Union City), with tournaments at Fallon\'s Park in Dublin. All Bay Area convenient.', accent: 'from-cyan-500 to-sky-400' },
   { icon: '🏆', title: 'Tournament Play', description: 'Regular tournaments give athletes real competitive experience beyond practice.', accent: 'from-sky-500 to-blue-400' },
   { icon: '🌟', title: 'All Ages Welcome', description: 'From kindergartners learning their first serve to seniors refining their game.', accent: 'from-blue-500 to-indigo-400' },
   { icon: '📈', title: 'Player Development', description: 'Individualized feedback and structured progression so every player keeps leveling up.', accent: 'from-indigo-500 to-cyan-400' },
 ]
 
-const coaches = [
-  { name: 'Viraj Mutti', role: 'Co-Founder & Coach', description: 'Viraj plays on the James Logan High School volleyball team and has also played at Lakas and UVA. He focuses on setting and receiving and helps with other aspects of the game as well.', photo: photoViraj, photoPosition: 'center 30%', ring: 'ring-blue-400' },
-  { name: 'Farhaan Ansari', role: 'Co-Founder & Coach', description: 'Farhaan plays outside/opposite hitter on the American High School volleyball team. He specializes in setting and receiving while also being knowledgeable in other aspects of the game.', photo: photoFarhaan, photoPosition: 'center 15%', ring: 'ring-indigo-400' },
-  { name: 'Noah Lukose', role: 'Co-Founder & Coach', description: 'Noah is a middle blocker on the James Logan Volleyball team and has also played at UVA and Lakas. He specializes in blocking and hitting.', photo: photoNoah, photoPosition: 'center 45%', ring: 'ring-sky-400' },
-  { name: 'Ayaan Shansab', role: 'Co-Founder & Coach', description: 'Ayaan plays on the Campolindo High School varsity boys volleyball team as an opposite hitter. He can assist newcomers with the fundamentals of hitting and blocking.', photo: photoAyaan, photoPosition: 'center 20%', ring: 'ring-cyan-400' },
+const founders = [
+  { name: 'Viraj Mutti', role: 'Co-Founder', description: 'Viraj plays on the James Logan High School volleyball team and has also played at Lakas and UVA. He focuses on setting and receiving and helps with other aspects of the game as well.', photo: photoViraj, photoPosition: 'center 30%', ring: 'ring-blue-400' },
+  { name: 'Farhaan Ansari', role: 'Co-Founder', description: 'Farhaan plays outside/opposite hitter on the American High School volleyball team. He specializes in setting and receiving while also being knowledgeable in other aspects of the game.', photo: photoFarhaan, photoPosition: 'center 15%', ring: 'ring-indigo-400' },
+  { name: 'Noah Lukose', role: 'Co-Founder', description: 'Noah is a middle blocker on the James Logan Volleyball team and has also played at UVA and Lakas. He specializes in blocking and hitting.', photo: photoNoah, photoPosition: 'center 45%', ring: 'ring-sky-400' },
+  { name: 'Ayaan Shansab', role: 'Co-Founder', description: 'Ayaan plays on the Campolindo High School varsity boys volleyball team as an opposite hitter. He can assist newcomers with the fundamentals of hitting and blocking.', photo: photoAyaan, photoPosition: 'center 20%', ring: 'ring-cyan-400' },
 ]
 
 
 const steps = [
   { num: '01', title: 'Sign Up', icon: '✍️', description: 'Browse our practices, pick your level, and register in minutes. No experience required. We\'ll place you in the right group.' },
-  { num: '02', title: 'Train Hard', icon: '💪', description: 'Show up, work hard, and learn from coaches who\'ve been in your shoes. Every session builds on the last.' },
+  { num: '02', title: 'Train Hard', icon: '💪', description: 'Show up, work hard, and learn from co-founders who\'ve been in your shoes. Every session builds on the last.' },
   { num: '03', title: 'Compete', icon: '🏆', description: 'Put your skills to the test. Face real competition in our tournaments and see exactly how far you\'ve come.' },
 ]
 
 const homeFaqs = [
   { q: 'How much does it cost?', a: 'Your first session is completely free, no commitment needed. After that, Beginner practices (Ages 5–10) are $10/session and Intermediate & Advanced are $15/session.' },
   { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and a competitive attitude. We provide all the volleyballs.' },
-  { q: 'What happens at the first free session?', a: 'Coaches introduce themselves, group kids by skill level, run fun drills, and make sure every athlete feels welcome. Zero pressure. Just come out and play!' },
+  { q: 'What happens at the first free session?', a: 'Co-founders introduce themselves, group kids by skill level, run fun drills, and make sure every athlete feels welcome. Zero pressure. Just come out and play!' },
   { q: 'How do I pick the right level?', a: 'Beginner (Ages 5–10) is for kids brand new to the sport. Intermediate (ages 10–13) is for players with at least a season of experience. Advanced (ages 18–22) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
   { q: 'Is this for boys and girls?', a: 'Yes! All practices are open to every athlete regardless of gender.' },
   { q: 'When and where is the next practice?', a: 'Our next practice is June 14, 2026 at Lake Elizabeth Park, Fremont. Beginner runs 12–1 PM, Intermediate 1:30–3 PM, and Advanced 3:30–5 PM. Future practices will also be held at Willow Park in Union City and Fallon\'s Park in Dublin.' },
@@ -493,31 +493,31 @@ export default function Home() {
       {/* ── Reverse marquee ── */}
       <Marquee bg="bg-slate-950" textColor="text-slate-500" accentColor="text-slate-700" reverse />
 
-      {/* ── Coaches ── */}
+      {/* ── Co-Founders ── */}
       <CursorGlow color="rgba(99,102,241,0.07)">
         <section className="relative bg-slate-900 py-24 overflow-hidden">
           <div className="absolute inset-0 grid-pattern pointer-events-none opacity-50" />
             <div className="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-3xl pointer-events-none" />
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeUp className="text-center mb-14">
-              <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">The Team</span>
+              <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">The Co-Founders</span>
               <div className="flex items-center justify-center gap-3 mb-4">
-                <h2 className="text-5xl font-black text-white text-glow-cyan" style={{ fontFamily: "'Outfit', sans-serif" }}>Meet the Coaches</h2>
+                <h2 className="text-5xl font-black text-white text-glow-cyan" style={{ fontFamily: "'Outfit', sans-serif" }}>Meet the Co-Founders</h2>
               </div>
-              <p className="text-slate-400 max-w-xl mx-auto mb-5">Four high school athletes passionate about giving back to the game they love.</p>
+              <p className="text-slate-400 max-w-xl mx-auto mb-5">Four co-founders passionate about giving back to the game they love.</p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-widest">
                   <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  2 Coaches: USA Volleyball 16U Nationals Qualified
+                  2 Co-Founders: USA Volleyball 16U Nationals Qualified
                 </span>
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-widest">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0v6m-4-3h8"/></svg>
-                  All Active High School Athletes
+                  All Active High School Co-Founders
                 </span>
               </div>
             </FadeUp>
             <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0 lg:mx-0 lg:px-0">
-              {coaches.map((c, i) => (
+              (founders.map((c, i) => (
                 <div key={c.name} className="snap-center shrink-0 w-72 lg:w-auto">
                   <CoachCard {...c} index={i} />
                 </div>

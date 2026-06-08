@@ -19,7 +19,7 @@ const positions = [
     abbrev: 'OH',
     pos: 4,
     x: 30, y: 115, // Zone 4 — Left Front
-    coaches: ['Farhaan Ansari'],
+    founders: ['Farhaan Ansari'],
     focus: 'Primary Attacker & Passer',
     description: 'The outside hitter is the primary outlet on offense, attacking from the left side, while also carrying heavy defensive and serve-receive responsibilities.',
     skills: ['Left-Side Attacking', 'Serve Receive Passing', 'Perimeter Block Defending', 'Transition Tooling'],
@@ -34,7 +34,7 @@ const positions = [
     abbrev: 'MB',
     pos: 3,
     x: 60, y: 115, // Zone 3 — Middle Front
-    coaches: ['Noah Lukose'],
+    founders: ['Noah Lukose'],
     focus: 'Net Defense & Quick Attacks',
     description: 'The middle blocker is the anchor of net defense, shifting laterally to block opposing hitters and attacking fast-tempo sets in the center.',
     skills: ['Lateral Block Footwork', 'Quick A/B/C Attack Timing', 'Read-Blocking & Closing', 'Transition Penetration'],
@@ -49,7 +49,7 @@ const positions = [
     abbrev: 'OPP',
     pos: 2,
     x: 90, y: 115, // Zone 2 — Right Front
-    coaches: ['Ayaan Shansab', 'Farhaan Ansari'],
+    founders: ['Ayaan Shansab', 'Farhaan Ansari'],
     focus: 'Right-Side Hitter & Blocker',
     description: 'Attacking from the right side, the opposite hitter blocks the opposing outside hitter and provides reliable back-row attacking options.',
     skills: ['Right-Side Attacking', 'Opposite-Hitter Blocking', 'Back-Row Attack (D-Ball)', 'Serve & Assist Support'],
@@ -64,7 +64,7 @@ const positions = [
     abbrev: 'LIB',
     pos: 5,
     x: 30, y: 160, // Zone 5 — Left Back
-    coaches: ['Viraj Mutti', 'Farhaan Ansari'],
+    founders: ['Viraj Mutti', 'Farhaan Ansari'],
     focus: 'Defensive & Receive Specialist',
     description: 'The Libero wears a contrasting jersey, plays strictly back-row, and specializes in serve-receive and spectacular digs. They are replaced without counting a substitution.',
     skills: ['Platform Passing Control', 'Digging Hard-Driven Attacks', 'Emergency Hand Setting', 'Floor Coverage & Diving'],
@@ -79,7 +79,7 @@ const positions = [
     abbrev: 'DS',
     pos: 6,
     x: 60, y: 160, // Zone 6 — Middle Back
-    coaches: ['Viraj Mutti', 'Farhaan Ansari'],
+    founders: ['Viraj Mutti', 'Farhaan Ansari'],
     focus: 'Back Row Defense & Coverage',
     description: 'The defensive specialist anchors the middle back, reading the hitter to dig cross-court and line attacks while providing steady serve-receive support.',
     skills: ['Reading Hitter Approach', 'Cross-Court Digging', 'Serve Receive Coverage', 'Floor Communication'],
@@ -94,7 +94,7 @@ const positions = [
     abbrev: 'S',
     pos: 1,
     x: 90, y: 160, // Zone 1 — Right Back
-    coaches: ['Viraj Mutti', 'Farhaan Ansari'],
+    founders: ['Viraj Mutti', 'Farhaan Ansari'],
     focus: 'Playmaking & Offense Director',
     description: 'The setter runs the offense from Zone 1, coordinating hitters and controlling the tempo of the match with fast decision-making and precise ball placement.',
     skills: ['Overhead Hand Setting', 'Underhand Platform Setting', 'Jump Setting & Dumping', 'Tactical Offense Calling'],
@@ -301,10 +301,10 @@ export default function CourtVisualizer() {
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-5 flex items-center justify-between gap-4">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Specialist Staff</p>
-                    <p className="text-white font-bold text-sm">{current.coaches.join(' & ')}</p>
+                    <p className="text-white font-bold text-sm">{current.founders.join(' & ')}</p>
                   </div>
                   <div className="flex -space-x-2.5">
-                    {current.coaches.map((c) => {
+                    {current.founders.map((c) => {
                       return (
                         <div
                           key={c}
