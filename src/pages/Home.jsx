@@ -517,7 +517,7 @@ export default function Home() {
               </div>
             </FadeUp>
             <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0 lg:mx-0 lg:px-0">
-              (founders.map((c, i) => (
+              {founders.map((c, i) => (
                 <div key={c.name} className="snap-center shrink-0 w-72 lg:w-auto">
                   <FounderCard {...c} index={i} />
                 </div>
