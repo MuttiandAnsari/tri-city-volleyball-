@@ -340,7 +340,7 @@ export default function PracticeRegister() {
                 </Field>
 
                 {/* Skills + Questions — hidden for Advanced (ages 14-22) */}
-                {clinicName !== 'Advanced Competitive' && (
+                {practiceName !== 'Advanced Competitive' && (
                   <>
                     <Field label="Any specific skills you want to work on?" hint="optional">
                       <FocusBorder radius={12}>
