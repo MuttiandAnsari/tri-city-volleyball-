@@ -111,39 +111,38 @@ export default function PracticeRegister() {
     setSendError('')
 
     try {
-      const res = await fetch(FORMSPREE_URL, {
+      // Always insert to Supabase first so spot count is always tracked
+      await supabase.from('practice_registrations').insert({
+        practice_name: practiceName,
+        first_name:    form.firstName,
+        last_name:     form.lastName,
+        age:           Number(form.age),
+        parent_phone:  form.parentPhone || null,
+        position:      form.position || null,
+        skills:        form.skills || null,
+        questions:     form.questions || null,
+      })
+
+      // Also send to Formspree for email notifications (best-effort)
+      fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          practice:        practiceName,
-          first_name:    form.firstName,
-          last_name:     form.lastName,
-          age:           form.age,
-          parent_phone:  form.parentPhone || 'N/A',
-          position:      form.position,
-          skills:        form.skills || 'None specified',
-          questions:     form.questions || 'None',
+          practice:     practiceName,
+          first_name:   form.firstName,
+          last_name:    form.lastName,
+          age:          form.age,
+          parent_phone: form.parentPhone || 'N/A',
+          position:     form.position,
+          skills:       form.skills || 'None specified',
+          questions:    form.questions || 'None',
         }),
-      })
+      }).catch(() => {}) // silently ignore Formspree failures
 
-      if (res.ok) {
-        await supabase.from('practice_registrations').insert({
-          practice_name: practiceName,
-          first_name:    form.firstName,
-          last_name:     form.lastName,
-          age:           Number(form.age),
-          parent_phone:  form.parentPhone || null,
-          position:      form.position || null,
-          skills:        form.skills || null,
-          questions:     form.questions || null,
-        })
-        setSubmitted(true)
-        confetti({ particleCount: 140, spread: 80, origin: { y: 0.55 }, colors: ['#3b82f6','#06b6d4','#ffffff','#a5f3fc'] })
-      } else {
-        setSendError('Submission failed. Please email us directly at volleyballtricity@gmail.com.')
-      }
+      setSubmitted(true)
+      confetti({ particleCount: 140, spread: 80, origin: { y: 0.55 }, colors: ['#3b82f6','#06b6d4','#ffffff','#a5f3fc'] })
     } catch {
-      setSendError('Network error. Please email us directly at volleyballtricity@gmail.com.')
+      setSendError('Submission failed. Please email us directly at volleyballtricity@gmail.com.')
     } finally {
       setSending(false)
     }
