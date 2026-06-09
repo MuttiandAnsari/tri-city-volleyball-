@@ -21,13 +21,13 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 const statItems = [
   { number: '5–22', display: '5–22', label: 'All Ages', color: 'text-white', numeric: false },
   { number: 3, display: '3', label: 'Bay Area Courts', color: 'text-cyan-400', numeric: true },
-  { number: 4, display: '4', label: 'Varsity Founders', color: 'text-white', numeric: true },
+  { number: 4, display: '4', label: 'HS Player Founders', color: 'text-white', numeric: true },
   { number: 100, display: '100', label: 'Youth-Led', color: 'text-cyan-400', numeric: true, suffix: '%' },
 ]
 
 const features = [
   { num: '01', title: 'Reps That Actually Transfer', description: 'Every drill maps to a real game situation. Passing sequences, serve-receive patterns, live rally sets. Your athlete gets better because the session design demands it.' },
-  { num: '02', title: 'Coached by Players Still Grinding', description: 'All four founders play varsity high school volleyball right now. Two qualified for USA Volleyball 16U Nationals. They coach what they live.' },
+  { num: '02', title: 'Coached by Players Still Grinding', description: 'All four founders are active high school volleyball players. Two qualified for USA Volleyball 16U Nationals. They coach what they live.' },
   { num: '03', title: 'Lake Elizabeth. Willow Park. Fallon\'s Park.', description: 'Three Bay Area outdoor courts in Fremont, Union City, and Dublin. No gym smell, no dead air. Real volleyball the way it\'s meant to be played.' },
   { num: '04', title: 'No Tryouts. No Cuts. Show Up.', description: 'Every athlete ages 5–22 is welcome. Never played before? Perfect starting point. We group by skill level so everyone is challenged and no one drowns.' },
   { num: '05', title: 'Competition That Forces Growth', description: 'Tournaments put your athlete in front of teams they\'ve never seen. Reading new players under pressure — that\'s what separates training from developing.' },
@@ -38,7 +38,7 @@ const founders = [
   { name: 'Viraj Mutti', role: 'Founder', school: 'James Logan HS · Setter / DS', description: 'Plays setter and DS at James Logan High School. Also competed at Lakas and UVA. Coaches serve-receive, setting mechanics, and court communication.', photo: photoViraj, photoPosition: 'center 30%' },
   { name: 'Farhaan Ansari', role: 'Founder', school: 'American HS · Outside / Opposite', description: 'Outside and opposite hitter at American High School. Brings attacking technique and system-level volleyball knowledge to every session.', photo: photoFarhaan, photoPosition: 'center 15%' },
   { name: 'Noah Lukose', role: 'Founder', school: 'James Logan HS · Middle Blocker', description: 'Middle blocker at James Logan, also played at UVA and Lakas. Coaches blocking timing, footwork, and transition hitting.', photo: photoNoah, photoPosition: 'center 45%' },
-  { name: 'Ayaan Shansab', role: 'Founder', school: 'Campolindo HS · Opposite Hitter', description: 'Varsity opposite hitter at Campolindo High School. Specializes in fundamentals of hitting and blocking for athletes at every level.', photo: photoAyaan, photoPosition: 'center 20%' },
+  { name: 'Ayaan Shansab', role: 'Founder', school: 'Campolindo HS · Opposite Hitter', description: 'Opposite hitter at Campolindo High School. Specializes in fundamentals of hitting and blocking for athletes at every level.', photo: photoAyaan, photoPosition: 'center 20%' },
 ]
 
 const steps = [
@@ -466,7 +466,7 @@ export default function Home() {
                     ★ 2 Founders: USA VB 16U Nationals
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 text-[11px] font-bold uppercase tracking-wider">
-                    All Active Varsity Players
+                    All Active HS Players
                   </span>
                 </div>
               </div>
