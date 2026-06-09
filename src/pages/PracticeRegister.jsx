@@ -5,6 +5,7 @@ import confetti from 'canvas-confetti'
 import PageHero from '../components/PageHero'
 import VolleyballSVG from '../components/VolleyballSVG'
 import FocusBorder from '../components/FocusBorder'
+import { supabase } from '../lib/supabase'
 
 // Paste your Formspree endpoint here (formspree.io → New Form → copy URL)
 const FORMSPREE_URL = 'https://formspree.io/f/mojbpbrr'
@@ -126,6 +127,16 @@ export default function PracticeRegister() {
       })
 
       if (res.ok) {
+        await supabase.from('practice_registrations').insert({
+          practice_name: practiceName,
+          first_name:    form.firstName,
+          last_name:     form.lastName,
+          age:           Number(form.age),
+          parent_phone:  form.parentPhone || null,
+          position:      form.position || null,
+          skills:        form.skills || null,
+          questions:     form.questions || null,
+        })
         setSubmitted(true)
         confetti({ particleCount: 140, spread: 80, origin: { y: 0.55 }, colors: ['#3b82f6','#06b6d4','#ffffff','#a5f3fc'] })
       } else {

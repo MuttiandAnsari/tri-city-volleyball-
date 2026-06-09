@@ -51,7 +51,7 @@ const steps = [
 ]
 
 const homeFaqs = [
-  { q: 'How much does it cost?', a: 'Your first session is completely free, no commitment needed. After that, Beginner practices (Ages 5–9) are $10/session and Intermediate & Advanced are $15/session.' },
+  { q: 'How much does it cost?', a: 'All sessions are currently free — no commitment needed. Just come out and play!' },
   { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and a competitive attitude. We provide all the volleyballs.' },
   { q: 'What happens at the first free session?', a: 'Co-founders introduce themselves, group kids by skill level, run fun drills, and make sure every athlete feels welcome. Zero pressure. Just come out and play!' },
   { q: 'How do I pick the right level?', a: 'Beginner (Ages 5–9) is for kids brand new to the sport. Intermediate (ages 10–13) is for players with at least a season of experience. Advanced (ages 14–22) is for competitive players. Still unsure? Text us at (341) 777-8673.' },
@@ -366,7 +366,7 @@ export default function Home() {
           >
             <span className="text-lg">🎉</span>
             <p className="text-white font-black text-sm sm:text-base tracking-tight">
-              First session is <span className="text-cyan-300 underline decoration-wavy decoration-cyan-400/70">completely FREE</span> for every athlete!
+              All sessions are <span className="text-cyan-300 underline decoration-wavy decoration-cyan-400/70">completely FREE</span> right now!
             </p>
           </motion.div>
         </motion.div>
@@ -535,13 +535,13 @@ export default function Home() {
           <FadeUp className="text-center mb-14">
             <span className="inline-block px-4 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-4">Simple Pricing</span>
             <h2 className="text-5xl font-black text-white mb-3 text-glow-cyan" style={{ fontFamily: "'Outfit', sans-serif" }}>Clear. Affordable. Worth It.</h2>
-            <p className="text-slate-400 max-w-lg mx-auto">Your first session is always free. After that, pricing stays simple.</p>
+            <p className="text-slate-400 max-w-lg mx-auto">All sessions are currently free — come out and play!</p>
           </FadeUp>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { level: 'Beginner', ages: '5–9', price: '$10', per: 'per session', time: '12:00 – 1:00 PM', color: 'from-emerald-500 to-teal-400', ring: 'ring-emerald-500/30', glow: 'rgba(16,185,129,0.15)', features: ['Passing & serving basics', 'Court awareness', 'Zero pressure environment', 'First session FREE'] },
-              { level: 'Intermediate', ages: 'Ages 10–13', price: '$15', per: 'per session', time: '1:30 – 3:00 PM', color: 'from-blue-500 to-cyan-400', ring: 'ring-blue-500/30', glow: 'rgba(59,130,246,0.15)', popular: true, features: ['Setting & attacking', 'Defensive positioning', 'Serve receive', 'First session FREE'] },
-              { level: 'Advanced', ages: 'Ages 14–22', price: '$15', per: 'per session', time: '3:30 – 5:00 PM', color: 'from-rose-500 to-pink-400', ring: 'ring-rose-500/30', glow: 'rgba(244,63,94,0.15)', features: ['Competitive game strategy', 'Tournament prep', 'Film review', 'First session FREE'] },
+              { level: 'Beginner', ages: '5–9', price: 'Free', per: '', time: '12:00 – 1:00 PM', color: 'from-emerald-500 to-teal-400', ring: 'ring-emerald-500/30', glow: 'rgba(16,185,129,0.15)', features: ['Passing & serving basics', 'Court awareness', 'Zero pressure environment', 'Always FREE'] },
+              { level: 'Intermediate', ages: 'Ages 10–13', price: 'Free', per: '', time: '1:30 – 3:00 PM', color: 'from-blue-500 to-cyan-400', ring: 'ring-blue-500/30', glow: 'rgba(59,130,246,0.15)', popular: true, features: ['Setting & attacking', 'Defensive positioning', 'Serve receive', 'Always FREE'] },
+              { level: 'Advanced', ages: 'Ages 14–22', price: 'Free', per: '', time: '3:30 – 7:00 PM', color: 'from-rose-500 to-pink-400', ring: 'ring-rose-500/30', glow: 'rgba(244,63,94,0.15)', features: ['Competitive game strategy', 'Tournament prep', 'Film review', 'Always FREE'] },
             ].map((plan, i) => (
               <motion.div
                 key={plan.level}

@@ -1,19 +1,21 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import { FadeUp, StaggerList, StaggerItem } from '../components/Animate'
 import CursorGlow from '../components/CursorGlow'
 import Countdown from '../components/Countdown'
 import Tilt from '../components/Tilt'
 import CourtVisualizer from '../components/CourtVisualizer'
+import { supabase } from '../lib/supabase'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
-const practices = [
-  { id: 1, title: 'Beginner Fundamentals', level: 'Beginner', ages: '5–9', date: 'June 14, 2026', time: '12:00 – 1:00 PM', location: 'Lake Elizabeth, Fremont', spots: 16, maxSpots: 16, price: '$10 / session', description: 'The perfect first step. Athletes learn passing, serving, and court awareness in a fun, zero-pressure environment.', skills: ['Passing', 'Serving', 'Court Movement', 'Team Play'], accent: 'border-emerald-500', badge: 'bg-emerald-500', bar: 'bg-emerald-500' },
-  { id: 2, title: 'Intermediate Skills', level: 'Intermediate', ages: '10–13', date: 'June 14, 2026', time: '1:30 – 3:00 PM', location: 'Lake Elizabeth, Fremont', spots: 16, maxSpots: 16, price: '$15 / session', description: 'Build on the basics with consistent setting, attacking, and defensive positioning. For players with at least one season of experience.', skills: ['Setting', 'Attacking', 'Defense', 'Serve Receive'], accent: 'border-amber-500', badge: 'bg-amber-500', bar: 'bg-amber-500' },
-  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '14–22', date: 'June 14, 2026', time: '3:30 – 5:00 PM', location: 'Lake Elizabeth, Fremont', spots: 22, maxSpots: 22, price: '$15 / session', description: 'High-intensity training for experienced players. Sharpen competitive skills, game IQ, and tournament readiness.', skills: ['Warm Up', 'Scrimmage', '2v2', '4v4'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
-  { id: 4, title: 'Summer All-Skills Camp', level: 'All Levels', ages: '5–22', date: 'TBD', time: 'TBD', location: 'TBD', spots: 14, maxSpots: 24, price: '$150 / week', description: 'A full week of immersive volleyball. Morning skill sessions, afternoon scrimmages, and lunch included every day.', skills: ['All Skills', 'Scrimmages', 'Team Drills', 'Fun Activities'], accent: 'border-cyan-500', badge: 'bg-cyan-500', bar: 'bg-cyan-500' },
+const practiceBase = [
+  { id: 1, title: 'Beginner Fundamentals', level: 'Beginner', ages: '5–9', date: 'June 14, 2026', time: '12:00 – 1:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 16, price: 'Free', description: 'The perfect first step. Athletes learn passing, serving, and court awareness in a fun, zero-pressure environment.', skills: ['Passing', 'Serving', 'Court Movement', 'Team Play'], accent: 'border-emerald-500', badge: 'bg-emerald-500', bar: 'bg-emerald-500' },
+  { id: 2, title: 'Intermediate Skills', level: 'Intermediate', ages: '10–13', date: 'June 14, 2026', time: '1:30 – 3:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 16, price: 'Free', description: 'Build on the basics with consistent setting, attacking, and defensive positioning. For players with at least one season of experience.', skills: ['Setting', 'Attacking', 'Defense', 'Serve Receive'], accent: 'border-amber-500', badge: 'bg-amber-500', bar: 'bg-amber-500' },
+  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '14–22', date: 'June 14, 2026', time: '3:30 – 7:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 22, price: 'Free', description: 'High-intensity training for experienced players. Sharpen competitive skills, game IQ, and tournament readiness.', skills: ['Warm Up', 'Scrimmage', '2v2', '4v4'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
+  { id: 4, title: 'Summer All-Skills Camp', level: 'All Levels', ages: '5–22', date: 'TBD', time: 'TBD', location: 'TBD', maxSpots: 24, price: 'Free', description: 'A full week of immersive volleyball. Morning skill sessions, afternoon scrimmages, and lunch included every day.', skills: ['All Skills', 'Scrimmages', 'Team Drills', 'Fun Activities'], accent: 'border-cyan-500', badge: 'bg-cyan-500', bar: 'bg-cyan-500' },
 ]
 
 const gear = [
@@ -159,6 +161,26 @@ function PracticeCard({ practice, index }) {
 }
 
 export default function Practices() {
+  const [practices, setPractices] = useState(practiceBase.map(p => ({ ...p, spots: p.maxSpots })))
+
+  useEffect(() => {
+    async function fetchCounts() {
+      const { data, error } = await supabase
+        .from('practice_registrations')
+        .select('practice_name')
+      if (error || !data) return
+      const counts = {}
+      data.forEach(row => {
+        counts[row.practice_name] = (counts[row.practice_name] || 0) + 1
+      })
+      setPractices(practiceBase.map(p => ({
+        ...p,
+        spots: Math.max(0, p.maxSpots - (counts[p.title] || 0)),
+      })))
+    }
+    fetchCounts()
+  }, [])
+
   return (
     <>
       <PageHero
@@ -180,9 +202,9 @@ export default function Practices() {
         >
           <span className="text-3xl">🎉</span>
           <div>
-            <span className="text-white font-black text-xl sm:text-2xl tracking-tight">Your first session is </span>
+            <span className="text-white font-black text-xl sm:text-2xl tracking-tight">All sessions are </span>
             <span className="text-cyan-300 font-black text-2xl sm:text-3xl uppercase tracking-widest underline decoration-wavy decoration-cyan-400/60">completely FREE</span>
-            <span className="text-white font-black text-xl sm:text-2xl"> for everyone!</span>
+            <span className="text-white font-black text-xl sm:text-2xl"> right now!</span>
           </div>
         </motion.div>
         <p className="text-center text-blue-200 text-sm mt-2 font-medium">No commitment, no cost. Just come out and play.</p>
