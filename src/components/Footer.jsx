@@ -13,7 +13,7 @@ const navLinks = [
 
 const programs = [
   { to: '/practices', label: 'Beginner Ages 5–9' },
-  { to: '/practices', label: 'Intermediate 5–7' },
+  { to: '/practices', label: 'Intermediate Ages 10–13' },
   { to: '/practices', label: 'Advanced 14–22' },
   { to: '/practices', label: 'Summer All-Skills Camp' },
 ]

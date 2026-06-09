@@ -23,7 +23,9 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  h1, h2, h3, .font-display { font-family: 'Outfit', 'Inter', system-ui, sans-serif; letter-spacing: -0.02em; }
+  h1, h2, h3, .font-display { font-family: 'Outfit', 'Inter', system-ui, sans-serif; letter-spacing: -0.03em; }
+  /* Ensure deep-black sections render consistently */
+  .bg-black { background-color: #05080f; }
   #root { background-color: #0a1428; }
 }
 
