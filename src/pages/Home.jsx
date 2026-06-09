@@ -35,10 +35,10 @@ const features = [
 ]
 
 const founders = [
-  { name: 'Viraj Mutti', role: 'Founder', school: 'James Logan HS · Setter / DS', description: 'Plays setter and DS at James Logan High School. Also competed at Lakas and UVA. Coaches serve-receive, setting mechanics, and court communication.', photo: photoViraj, photoPosition: 'center 30%' },
-  { name: 'Farhaan Ansari', role: 'Founder', school: 'American HS · Outside / Opposite', description: 'Outside and opposite hitter at American High School. Brings attacking technique and system-level volleyball knowledge to every session.', photo: photoFarhaan, photoPosition: 'center 15%' },
-  { name: 'Noah Lukose', role: 'Founder', school: 'James Logan HS · Middle Blocker', description: 'Middle blocker at James Logan, also played at UVA and Lakas. Coaches blocking timing, footwork, and transition hitting.', photo: photoNoah, photoPosition: 'center 45%' },
-  { name: 'Ayaan Shansab', role: 'Founder', school: 'Campolindo HS · Opposite Hitter', description: 'Opposite hitter at Campolindo High School. Specializes in fundamentals of hitting and blocking for athletes at every level.', photo: photoAyaan, photoPosition: 'center 20%' },
+  { name: 'Viraj Mutti', role: 'Founder', school: 'James Logan HS · Setter / DS', description: 'Plays setter and DS at James Logan High School. Also competed at Lakas and UVA.', photo: photoViraj, photoPosition: 'center 30%' },
+  { name: 'Farhaan Ansari', role: 'Founder', school: 'American HS · Outside / Opposite', description: 'Outside and opposite hitter at American High School.', photo: photoFarhaan, photoPosition: 'center 15%' },
+  { name: 'Noah Lukose', role: 'Founder', school: 'James Logan HS · Middle Blocker', description: 'Middle blocker at James Logan, also played at UVA and Lakas.', photo: photoNoah, photoPosition: 'center 45%' },
+  { name: 'Ayaan Shansab', role: 'Founder', school: 'Campolindo HS · Opposite Hitter', description: 'Varsity opposite hitter at Campolindo High School.', photo: photoAyaan, photoPosition: 'center 20%' },
 ]
 
 const steps = [
