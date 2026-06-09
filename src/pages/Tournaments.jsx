@@ -8,9 +8,9 @@ import TournamentBracket from '../components/TournamentBracket'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 const upcoming = [
-  { id: 1, name: 'Tri-City Showdown', month: 'JUN', day: '26', year: '2026', fullDate: 'June 26, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Open', deadline: 'June 24, 2026', teams: 8, description: 'Our flagship summer tournament. High school players from across the Bay Area compete for bragging rights in a full-day pool play and losers bracket showdown.', gradient: 'from-blue-600 to-cyan-500' },
-  { id: 2, name: 'Tri-City Invitational', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: 'TBD', divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'TBD', teams: 8, description: 'The Tri-City Invitational brings together high school players from across the Bay Area for a day of competitive pool play and bracket action. Location to be announced.', gradient: 'from-indigo-600 to-blue-500' },
-  { id: 3, name: 'Tri-City Showdown III', month: 'SEP', day: '13', year: '2026', fullDate: 'September 13, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['High School Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'September 11, 2026', teams: 8, description: 'The final showdown of the season. Built for high school players gearing up for their school or club seasons with one last competitive tuneup.', gradient: 'from-blue-700 to-indigo-600' },
+  { id: 1, name: 'Tri-City Showdown', month: 'JUN', day: '26', year: '2026', fullDate: 'June 26, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['14+ Open'], format: 'Pool play + losers bracket', registration: 'Open', deadline: 'June 24, 2026', teams: 8, description: 'Our flagship summer tournament. Players 14 and up from across the Bay Area compete for bragging rights in a full-day pool play and losers bracket showdown.', gradient: 'from-blue-600 to-cyan-500' },
+  { id: 2, name: 'Tri-City Invitational', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: 'TBD', divisions: ['14+ Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'TBD', teams: 8, description: 'The Tri-City Invitational brings together players 14 and up from across the Bay Area for a day of competitive pool play and bracket action. Location to be announced.', gradient: 'from-indigo-600 to-blue-500' },
+  { id: 3, name: 'Tri-City Showdown III', month: 'SEP', day: '13', year: '2026', fullDate: 'September 13, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['14+ Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'September 11, 2026', teams: 8, description: 'The final showdown of the season. Open to all players 14 and up gearing up for their school or club seasons with one last competitive tuneup.', gradient: 'from-blue-700 to-indigo-600' },
 ]
 
 const past = [
@@ -152,7 +152,7 @@ export default function Tournaments() {
       <PageHero
         label="Events & Competition"
         title={<>Compete.<br /><span className="text-gradient">Rise Up.</span></>}
-        subtitle="Youth tournaments across all age groups. Test your skills against the best teams in the Bay Area."
+        subtitle="Open to all players 14 and up. Test your skills against the best teams in the Bay Area."
         watermark="COMPETE"
       />
 
