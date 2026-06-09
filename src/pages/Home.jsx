@@ -354,7 +354,7 @@ export default function Home() {
                   What We<br />Stand For.
                 </h2>
                 <p className="text-slate-400 leading-relaxed">
-                  Not a rec league. Not a club tryout. Structured enough to improve, open enough for anyone ages 5 to 22.
+                  Not a rec league. Not a club tryout. Structured enough to improve, open enough for anyone ages 14 to 22.
                 </p>
                 <motion.div className="mt-10" whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 300 }}>
                   <Link to="/practices" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5">
@@ -503,7 +503,7 @@ export default function Home() {
               </div>
               <div className="sm:text-right pb-2">
                 <p className="text-slate-300 font-bold text-lg">Lake Elizabeth Park</p>
-                <p className="text-slate-500 text-sm">Fremont, CA · All sessions free · All levels welcome</p>
+                <p className="text-slate-500 text-sm">Fremont, CA · Ages 14–22 · All sessions free</p>
               </div>
             </div>
           </FadeUp>
@@ -545,6 +545,30 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Tournament callout ── */}
+      <section className="bg-black border-t border-white/[0.07]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          <FadeUp>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border border-white/[0.08] rounded-2xl px-8 py-7 hover:border-cyan-400/20 transition-colors duration-300">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-5 h-px bg-cyan-400" />
+                  <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">Also Running Tournaments</span>
+                </div>
+                <h3 className="text-2xl font-black text-white tracking-tight">Tournaments are open to all players 14+</h3>
+                <p className="text-slate-400 text-sm mt-1">No upper age limit — if you're 14 or older, you're in. Next tournament: June 26, 2026 at Fallon's Sports Park, Dublin.</p>
+              </div>
+              <motion.div whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 300 }} className="shrink-0">
+                <Link to="/tournaments" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5 whitespace-nowrap">
+                  View Tournaments
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
+              </motion.div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
