@@ -98,13 +98,13 @@ const contactItems = [
 ]
 
 const faqs = [
-  { q: 'How much does it cost?', a: 'The first session is completely free for every athlete, no strings attached. After that, Beginner practices are $10/session and Intermediate & Advanced are $15/session.' },
-  { q: 'Do I need prior experience?', a: 'Not at all! Our Beginner practice (ages 5–9) is designed for first-time players. We\'ll meet your child where they are and build from there.' },
-  { q: 'What should my child bring?', a: 'Athletic shoes (non-marking soles), a water bottle, and knee pads if they have them. Knee pads are recommended but not required. We provide the volleyballs.' },
-  { q: 'What happens at the first session?', a: 'Co-founders introduce themselves, split athletes by skill, run fun drills, and make sure every kid feels comfortable. There\'s zero pressure. It\'s all about having a good time and learning the basics.' },
-  { q: 'How do I know which level is right for my child?', a: 'Beginner (Ages 5–9) is for kids new to volleyball. Intermediate (5–7) is for players with at least one season of experience. Advanced (14–22) is for competitive players. Not sure? Text us at (341) 777-8673 and we\'ll help you decide.' },
-  { q: 'Is this for boys and girls?', a: 'Yes! Our practices are open to all athletes regardless of gender.' },
-  { q: 'Are there tryouts?', a: 'No tryouts. Practices are open enrollment. Just register and show up!' },
+  { q: 'How much does it cost?', a: 'All sessions are currently free — no commitment needed. Just show up.' },
+  { q: 'Do I need prior experience?', a: 'No experience needed. Our session welcomes all skill levels ages 14–22. We\'ll meet you where you are and build from there.' },
+  { q: 'What should I bring?', a: 'Athletic shoes, a water bottle, and knee pads if you have them (not required). We provide the volleyballs.' },
+  { q: 'What happens at the first session?', a: 'Founders introduce themselves, group athletes by skill level, run focused drills, and make sure everyone feels welcome. Zero pressure.' },
+  { q: 'Who can join?', a: 'Athletes ages 14–22 of any skill level. No tryouts, no cuts — just register and show up.' },
+  { q: 'Is this for boys and girls?', a: 'Yes — practices are open to all athletes regardless of gender.' },
+  { q: 'Are there tryouts?', a: 'No tryouts. Open enrollment. Just register and show up.' },
   { q: 'Where exactly are the practices held?', a: 'Practices are held at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Park (Dublin, CA).' },
 ]
 
@@ -368,7 +368,7 @@ export default function Contact() {
                         <label className={labelClass}>Athlete's Age</label>
                         <select name="grade" value={form.grade} onChange={handleChange} className={inputClass + ' cursor-pointer'}>
                           <option value="" className="bg-slate-900">Select age...</option>
-                          {['5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'].map((a) => (
+                          {['14','15','16','17','18','19','20','21','22'].map((a) => (
                             <option key={a} value={a} className="bg-slate-900">Age {a}</option>
                           ))}
                         </select>
