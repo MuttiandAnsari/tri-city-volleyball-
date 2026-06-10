@@ -12,7 +12,7 @@ const navLinks = [
 ]
 
 const programs = [
-  { to: '/practices', label: 'Advanced Competitive 14–22' },
+  { to: '/practices', label: 'Advanced Competitive 13–22' },
   { to: '/practices', label: 'Summer All-Skills Camp' },
   { to: '/tournaments', label: 'Tournaments 14+' },
 ]

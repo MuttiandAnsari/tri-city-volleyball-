@@ -19,7 +19,7 @@ const heroVideo = '/hero.mp4'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 const statItems = [
-  { number: '14–22', display: '14–22', label: 'All Ages', color: 'text-white', numeric: false },
+  { number: '13–22', display: '13–22', label: 'All Ages', color: 'text-white', numeric: false },
   { number: 3, display: '3', label: 'Bay Area Courts', color: 'text-cyan-400', numeric: true },
   { number: 4, display: '4', label: 'HS Player Founders', color: 'text-white', numeric: true },
   { number: 100, display: '100', label: 'Youth-Led', color: 'text-cyan-400', numeric: true, suffix: '%' },
@@ -29,7 +29,7 @@ const features = [
   { num: '01', title: 'Reps That Actually Transfer', description: 'Every drill maps to a real game situation. Passing sequences, serve-receive patterns, live rally sets. Your athlete gets better because the session design demands it.' },
   { num: '02', title: 'Coached by Players Still Grinding', description: 'All four founders are active high school volleyball players. Two qualified for USA Volleyball 16U Nationals. They coach what they live.' },
   { num: '03', title: 'Lake Elizabeth. Willow Park. Fallon\'s Park.', description: 'Three Bay Area outdoor courts in Fremont, Union City, and Dublin. No gym smell, no dead air. Real volleyball the way it\'s meant to be played.' },
-  { num: '04', title: 'No Tryouts. No Cuts. Show Up.', description: 'Every athlete ages 14–22 is welcome. Whether you\'re new to the game or a seasoned competitor, we have a place for you.' },
+  { num: '04', title: 'No Tryouts. No Cuts. Show Up.', description: 'Every athlete ages 13–22 is welcome. Whether you\'re new to the game or a seasoned competitor, we have a place for you.' },
   { num: '05', title: 'Competition That Forces Growth', description: 'Tournaments put your athlete in front of teams they\'ve never seen. Reading new players under pressure — that\'s what separates training from developing.' },
   { num: '06', title: 'Feedback You Can Actually Use', description: 'After every session, athletes hear what to improve. Not "great job." Specific, technical, actionable — the kind of coaching that actually sticks.' },
 ]
@@ -48,14 +48,14 @@ const steps = [
 ]
 
 const sessions = [
-  { num: '01', level: 'Advanced Competitive', ages: '14–22', time: '3:30 – 7:00 PM', timeColor: 'text-rose-400', badge: 'bg-rose-500', features: ['Competitive game strategy', 'Tournament prep sets', 'Live full scrimmage'] },
+  { num: '01', level: 'Advanced Competitive', ages: '13–22', time: '3:30 – 7:00 PM', timeColor: 'text-rose-400', badge: 'bg-rose-500', features: ['Competitive game strategy', 'Tournament prep sets', 'Live full scrimmage'] },
 ]
 
 const homeFaqs = [
   { q: 'How much does it cost?', a: 'All sessions are currently free — no commitment needed. Just show up.' },
   { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and a competitive attitude. We provide all the volleyballs.' },
   { q: 'What happens at the first session?', a: 'Our founders introduce themselves, group athletes by skill level, run focused drills, and make sure everyone feels welcome. Zero pressure.' },
-  { q: 'Who can join?', a: 'Our program is for athletes ages 14–22. All skill levels are welcome — whether you\'re brand new to volleyball or competing at a high level.' },
+  { q: 'Who can join?', a: 'Our program is for athletes ages 13–22. All skill levels are welcome — whether you\'re brand new to volleyball or competing at a high level.' },
   { q: 'Is this for boys and girls?', a: 'Yes — all practices are open to every athlete regardless of gender.' },
   { q: 'When and where is the next practice?', a: 'June 14, 2026 at Lake Elizabeth Park, Fremont. Advanced session runs 3:30–7:00 PM.' },
 ]
@@ -274,7 +274,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.95, ease }}
           >
-            Built by four Bay Area high schoolers who play the game. Ages 14–22. All levels. Always free right now.
+            Built by four Bay Area high schoolers who play the game. Ages 13–22. All levels. Always free right now.
           </motion.p>
 
           <motion.div
@@ -354,7 +354,7 @@ export default function Home() {
                   What We<br />Stand For.
                 </h2>
                 <p className="text-slate-400 leading-relaxed">
-                  Not a rec league. Not a club tryout. Structured enough to improve, open enough for anyone ages 14 to 22.
+                  Not a rec league. Not a club tryout. Structured enough to improve, open enough for anyone ages 13 to 22.
                 </p>
                 <motion.div className="mt-10" whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 300 }}>
                   <Link to="/practices" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5">
@@ -503,7 +503,7 @@ export default function Home() {
               </div>
               <div className="sm:text-right pb-2">
                 <p className="text-slate-300 font-bold text-lg">Lake Elizabeth Park</p>
-                <p className="text-slate-500 text-sm">Fremont, CA · Ages 14–22 · All sessions free</p>
+                <p className="text-slate-500 text-sm">Fremont, CA · Ages 13–22 · All sessions free</p>
               </div>
             </div>
           </FadeUp>

@@ -38,7 +38,12 @@
       "mcp__d8256819-f5d9-4d71-a36e-d49f114781a3__web_fetch_vercel_url",
       "Bash(sed -i '' -e 's/Grades {practice\\\\.grades}/Ages {practice.ages}/g' /Users/vmutti1/tri-city-volleyball/src/pages/Practices.jsx)",
       "Bash(sed -i '' -e 's/Grades {c\\\\.grades}/Ages {c.ages}/g' /Users/vmutti1/tri-city-volleyball/src/pages/PracticeRegister.jsx)",
-      "Bash(sed -i '' -e 's/{plan\\\\.grades}/{plan.ages}/g' /Users/vmutti1/tri-city-volleyball/src/pages/Home.jsx)"
+      "Bash(sed -i '' -e 's/{plan\\\\.grades}/{plan.ages}/g' /Users/vmutti1/tri-city-volleyball/src/pages/Home.jsx)",
+      "mcp__723365b2-29f2-465e-bb8d-65d4204f1912__list_tables",
+      "mcp__723365b2-29f2-465e-bb8d-65d4204f1912__apply_migration",
+      "mcp__723365b2-29f2-465e-bb8d-65d4204f1912__execute_sql",
+      "Bash(grep -n \"10\\\\|15\\\\|150\\\\|\\\\$\" /Users/vmutti1/tri-city-volleyball/src/pages/Home.jsx)",
+      "Bash(grep -i \"session\\\\|week\\\\|price\\\\|\\\\$10\\\\|\\\\$15\\\\|\\\\$150\")"
     ]
   }
 }

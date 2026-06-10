@@ -99,10 +99,10 @@ const contactItems = [
 
 const faqs = [
   { q: 'How much does it cost?', a: 'All sessions are currently free — no commitment needed. Just show up.' },
-  { q: 'Do I need prior experience?', a: 'No experience needed. Our session welcomes all skill levels ages 14–22. We\'ll meet you where you are and build from there.' },
+  { q: 'Do I need prior experience?', a: 'No experience needed. Our session welcomes all skill levels ages 13–22. We\'ll meet you where you are and build from there.' },
   { q: 'What should I bring?', a: 'Athletic shoes, a water bottle, and knee pads if you have them (not required). We provide the volleyballs.' },
   { q: 'What happens at the first session?', a: 'Founders introduce themselves, group athletes by skill level, run focused drills, and make sure everyone feels welcome. Zero pressure.' },
-  { q: 'Who can join?', a: 'Athletes ages 14–22 of any skill level. No tryouts, no cuts — just register and show up.' },
+  { q: 'Who can join?', a: 'Athletes ages 13–22 of any skill level. No tryouts, no cuts — just register and show up.' },
   { q: 'Is this for boys and girls?', a: 'Yes — practices are open to all athletes regardless of gender.' },
   { q: 'Are there tryouts?', a: 'No tryouts. Open enrollment. Just register and show up.' },
   { q: 'Where exactly are the practices held?', a: 'Practices are held at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Park (Dublin, CA).' },
@@ -368,7 +368,7 @@ export default function Contact() {
                         <label className={labelClass}>Athlete's Age</label>
                         <select name="grade" value={form.grade} onChange={handleChange} className={inputClass + ' cursor-pointer'}>
                           <option value="" className="bg-slate-900">Select age...</option>
-                          {['14','15','16','17','18','19','20','21','22'].map((a) => (
+                          {['13','14','15','16','17','18','19','20','21','22'].map((a) => (
                             <option key={a} value={a} className="bg-slate-900">Age {a}</option>
                           ))}
                         </select>

@@ -14,13 +14,13 @@ const ease = [0.25, 0.46, 0.45, 0.94]
 
 // Age ranges per practice (inclusive)
 const practiceRules = {
-  'Advanced Competitive':    { min: 14, max: 22 },
-  'Summer All-Skills Camp':  { min: 14, max: 22 },
+  'Advanced Competitive':    { min: 13, max: 22 },
+  'Summer All-Skills Camp':  { min: 13, max: 22 },
 }
 
 const allPractices = [
-  { name: 'Advanced Competitive',   ages: '14–22' },
-  { name: 'Summer All-Skills Camp', ages: '14–22' },
+  { name: 'Advanced Competitive',   ages: '13–22' },
+  { name: 'Summer All-Skills Camp', ages: '13–22' },
 ]
 
 function getAgeError(practiceName, age) {
@@ -77,7 +77,7 @@ export default function PracticeRegister() {
   const [sendError, setSendError] = useState('')
   const [errors, setErrors] = useState({})
 
-  const isMinor   = form.age !== '' && Number(form.age) <= 13
+  const isMinor   = form.age !== '' && Number(form.age) <= 15
   const ageError  = getAgeError(practiceName, form.age)
   const ageBlocked = ageError !== null
 
@@ -91,7 +91,7 @@ export default function PracticeRegister() {
     if (!form.firstName.trim()) e.firstName = 'First name is required.'
     if (!form.lastName.trim()) e.lastName = 'Last name is required.'
     if (!form.age.trim()) e.age = 'Age is required.'
-    if (isMinor && !form.parentPhone.trim()) e.parentPhone = 'Required for athletes 13 and under.'
+    if (isMinor && !form.parentPhone.trim()) e.parentPhone = 'Required for athletes 15 and under.'
     if (!form.position) e.position = 'Please select a position.'
     return e
   }
@@ -345,7 +345,7 @@ export default function PracticeRegister() {
                   {errors.position && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.position}</p>}
                 </Field>
 
-                {/* Skills + Questions — hidden for Advanced (ages 14-22) */}
+                {/* Skills + Questions — hidden for Advanced (ages 13-22) */}
                 {practiceName !== 'Advanced Competitive' && (
                   <>
                     <Field label="Any specific skills you want to work on?" hint="optional">

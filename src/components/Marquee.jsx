@@ -1,5 +1,5 @@
 const items = [
-  'FREMONT', 'UNION CITY', 'DUBLIN', 'AGES 14–22', 'ALL FREE', 'JUNE 14', 'LAKE ELIZABETH', 'TRAIN HARD', 'COMPETE', 'SHOW UP',
+  'FREMONT', 'UNION CITY', 'DUBLIN', 'AGES 13–22', 'ALL FREE', 'JUNE 14', 'LAKE ELIZABETH', 'TRAIN HARD', 'COMPETE', 'SHOW UP',
 ]
 
 // Pure CSS marquee — runs on the compositor thread, never blocks scroll
