@@ -345,34 +345,6 @@ export default function PracticeRegister() {
                   {errors.position && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.position}</p>}
                 </Field>
 
-                {/* Skills + Questions — hidden for Advanced (ages 13-22) */}
-                {practiceName !== 'Advanced Competitive' && (
-                  <>
-                    <Field label="Any specific skills you want to work on?" hint="optional">
-                      <FocusBorder radius={12}>
-                        <textarea
-                          rows={3}
-                          value={form.skills}
-                          onChange={e => set('skills', e.target.value)}
-                          placeholder="e.g. Serving consistency, passing, jump approach…"
-                          className={`${inputBase} resize-none`}
-                        />
-                      </FocusBorder>
-                    </Field>
-
-                    <Field label="Any questions for us?" hint="optional">
-                      <FocusBorder radius={12}>
-                        <textarea
-                          rows={3}
-                          value={form.questions}
-                          onChange={e => set('questions', e.target.value)}
-                          placeholder="e.g. What should I bring? Is equipment provided?…"
-                          className={`${inputBase} resize-none`}
-                        />
-                      </FocusBorder>
-                    </Field>
-                  </>
-                )}
 
                 {/* First session free reminder */}
                 <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-100 rounded-2xl px-4 py-3">
