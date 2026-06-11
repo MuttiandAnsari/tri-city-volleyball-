@@ -288,7 +288,7 @@ export default function Home() {
               </Link>
             </MagneticButton>
             <MagneticButton>
-              <Link to="/register" className="block px-9 py-3.5 border border-white/30 text-white font-black rounded-2xl hover:bg-white/10 transition-colors tracking-tight" style={{ background: 'rgba(255,255,255,0.07)' }}>
+              <Link to="/register?practice=Advanced%20Competitive" className="block px-9 py-3.5 border border-white/30 text-white font-black rounded-2xl hover:bg-white/10 transition-colors tracking-tight" style={{ background: 'rgba(255,255,255,0.07)' }}>
                 Register Free
               </Link>
             </MagneticButton>

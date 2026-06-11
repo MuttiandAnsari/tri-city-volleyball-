@@ -6,7 +6,7 @@ const ANNOUNCEMENT = {
   id: 'practice-june-13',
   text: '🏐 First Practice — June 14 at Lake Elizabeth Park, Fremont.',
   cta: 'Register Now',
-  href: '/register',
+  href: '/register?practice=Advanced%20Competitive',
 }
 
 export default function AnnouncementBanner() {
