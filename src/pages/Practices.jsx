@@ -12,7 +12,7 @@ import { supabase } from '../lib/supabase'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 const practiceBase = [
-  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '13–22', date: 'June 14, 2026', time: '3:30 – 7:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 20, price: 'Free', description: 'High-intensity training for competitive players. Sharpen your game IQ, attacking, defense, and tournament readiness.', skills: ['Warm Up', 'Scrimmage', '2v2', '4v4'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
+  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '13–22', date: 'June 14, 2026', time: '3:30 – 7:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 20, price: 'Free', description: 'High-intensity training for competitive players. Sharpen your game IQ, attacking, defense, and tournament readiness.', skills: ['Warm Up', 'Scrimmage', '2 Courts', '4v4'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
   { id: 4, title: 'Summer All-Skills Camp', level: 'All Levels', ages: '13–22', date: 'TBD', time: 'TBD', location: 'TBD', maxSpots: 24, price: 'Free', description: 'A full week of immersive volleyball. Morning skill sessions, afternoon scrimmages, and competitive sets every day.', skills: ['All Skills', 'Scrimmages', 'Team Drills', 'Competitive Sets'], accent: 'border-cyan-500', badge: 'bg-cyan-500', bar: 'bg-cyan-500' },
 ]
 
