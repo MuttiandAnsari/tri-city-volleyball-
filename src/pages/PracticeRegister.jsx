@@ -237,8 +237,8 @@ export default function PracticeRegister() {
                   <FocusBorder radius={12} color={ageBlocked ? 'green' : 'cyan'}>
                     <input
                       type="number"
-                      min="4"
-                      max="18"
+                      min="13"
+                      max="22"
                       value={form.age}
                       onChange={e => set('age', e.target.value)}
                       placeholder="e.g. 12"
