@@ -23,6 +23,7 @@ import Contact from './pages/Contact'
 import PracticeRegister from './pages/PracticeRegister'
 import TournamentRegister from './pages/TournamentRegister'
 import TournamentAdmin from './pages/TournamentAdmin'
+import Roster from './pages/Roster'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -40,6 +41,7 @@ function AnimatedRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<PracticeRegister />} />
         <Route path="/tournament-register" element={<TournamentRegister />} />
+        <Route path="/roster" element={<Roster />} />
       </Routes>
     ) : (
       <AnimatePresence mode="wait">

@@ -8,7 +8,8 @@ const links = [
   { to: '/', label: 'Home', num: '01' },
   { to: '/practices', label: 'Practices', num: '02' },
   { to: '/tournaments', label: 'Tournaments', num: '03' },
-  { to: '/contact', label: 'Contact', num: '04' },
+  { to: '/roster', label: 'Roster', num: '04' },
+  { to: '/contact', label: 'Contact', num: '05' },
 ]
 
 const ease = [0.25, 0.46, 0.45, 0.94]
@@ -102,7 +103,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </motion.button>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/register" className="ml-1 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md">
+                <Link to="/register?practice=Advanced%20Competitive" className="ml-1 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md">
                   Register Now
                 </Link>
               </motion.div>
@@ -186,7 +187,7 @@ export default function Navbar() {
                 transition={{ delay: 0.42, duration: 0.4, ease }}
               >
                 <Link
-                  to="/register"
+                  to="/register?practice=Advanced%20Competitive"
                   onClick={() => setOpen(false)}
                   className="block w-full py-4 btn-gradient text-white rounded-2xl text-lg font-black text-center shadow-xl"
                 >
