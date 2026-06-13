@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Lake+Elizabeth+Park+Fremont+CA'
+const MAPS_URL = 'https://www.google.com/maps?q=37.5449580,-121.9625977'
 const SESSION_KEY = 'location-toast-seen'
 
 export default function LocationToast() {
