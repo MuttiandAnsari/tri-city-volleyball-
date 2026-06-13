@@ -69,6 +69,7 @@ export default function PracticeRegister() {
     firstName: '',
     lastName: '',
     age: '',
+    phone: '',
     parentPhone: '',
     position: '',
     skills: '',
@@ -93,6 +94,7 @@ export default function PracticeRegister() {
     if (!form.firstName.trim()) e.firstName = 'First name is required.'
     if (!form.lastName.trim()) e.lastName = 'Last name is required.'
     if (!form.age.trim()) e.age = 'Age is required.'
+    if (!form.phone.trim()) e.phone = 'Phone number is required.'
     if (isMinor && !form.parentPhone.trim()) e.parentPhone = 'Required for athletes 15 and under.'
     if (!form.position) e.position = 'Please select a position.'
     return e
@@ -115,6 +117,7 @@ export default function PracticeRegister() {
         first_name:    form.firstName,
         last_name:     form.lastName,
         age:           Number(form.age),
+        phone:         form.phone || null,
         parent_phone:  form.parentPhone || null,
         position:      form.position || null,
         skills:        form.skills || null,
@@ -130,6 +133,7 @@ export default function PracticeRegister() {
           first_name: form.firstName,
           last_name:  form.lastName,
           age:        form.age,
+          phone:      form.phone,
           position:   form.position,
           questions:  form.questions || 'None',
         }),
@@ -231,6 +235,20 @@ export default function PracticeRegister() {
                     {errors.lastName && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.lastName}</p>}
                   </Field>
                 </div>
+
+                {/* Phone */}
+                <Field label="Your Phone Number">
+                  <FocusBorder radius={12}>
+                    <input
+                      type="tel"
+                      value={form.phone}
+                      onChange={e => set('phone', e.target.value)}
+                      placeholder="(555) 000-0000"
+                      className={`${inputBase} ${errors.phone ? inputErr : ''}`}
+                    />
+                  </FocusBorder>
+                  {errors.phone && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.phone}</p>}
+                </Field>
 
                 {/* Age */}
                 <Field label="Age" hint="used to determine if a parent contact is needed">
