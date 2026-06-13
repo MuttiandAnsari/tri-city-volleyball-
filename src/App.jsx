@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import AnnouncementBanner from './components/AnnouncementBanner'
 import ScrollProgress from './components/ScrollProgress'
 import ScrollToTop from './components/ScrollToTop'
+import LocationToast from './components/LocationToast'
 function ScrollReset() {
   const { pathname } = useLocation()
   useEffect(() => {
@@ -73,6 +74,7 @@ export default function App() {
     <BrowserRouter>
       <ScrollProgress />
       <ScrollToTop />
+      <LocationToast />
       <div className="flex flex-col text-gray-900" style={{ width: '100%', maxWidth: '100%', minHeight: '100svh' }}>
         <AnnouncementBanner />
         <Navbar />
