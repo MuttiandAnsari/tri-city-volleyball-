@@ -126,14 +126,12 @@ export default function PracticeRegister() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          practice:     practiceName,
-          first_name:   form.firstName,
-          last_name:    form.lastName,
-          age:          form.age,
-          parent_phone: form.parentPhone || 'N/A',
-          position:     form.position,
-          skills:       form.skills || 'None specified',
-          questions:    form.questions || 'None',
+          practice:   practiceName,
+          first_name: form.firstName,
+          last_name:  form.lastName,
+          age:        form.age,
+          position:   form.position,
+          questions:  form.questions || 'None',
         }),
       }).catch(() => {}) // silently ignore Formspree failures
 
@@ -347,6 +345,19 @@ export default function PracticeRegister() {
                   {errors.position && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.position}</p>}
                 </Field>
 
+
+                {/* Any questions */}
+                <Field label="Any questions?" hint="optional">
+                  <FocusBorder radius={12}>
+                    <textarea
+                      rows={3}
+                      value={form.questions}
+                      onChange={e => set('questions', e.target.value)}
+                      placeholder="e.g. Can I bring a friend? Do I need prior experience?"
+                      className={`${inputBase} resize-none`}
+                    />
+                  </FocusBorder>
+                </Field>
 
                 {/* First session free reminder */}
                 <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-100 rounded-2xl px-4 py-3">
