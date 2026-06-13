@@ -41,15 +41,8 @@ function PracticeCard({ practice, index }) {
       variants={practiceCardVariants}
       whileHover="hover"
     >
-      {/* Shine sweep on hover */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-r-2xl" aria-hidden="true">
-        <motion.div
-          className="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-          variants={{ hover: { x: '380%', transition: { duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] } } }}
-        />
-      </div>
 
-      <div className="p-6 sm:p-7 relative overflow-hidden">
+<div className="p-6 sm:p-7 relative overflow-hidden">
         {/* Ghost number */}
         <motion.span
           className="absolute -top-3 right-4 text-8xl font-black text-gray-50 select-none pointer-events-none leading-none"
