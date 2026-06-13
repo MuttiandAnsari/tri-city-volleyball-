@@ -21,13 +21,19 @@ export default function Roster() {
 
   useEffect(() => {
     async function fetchRoster() {
-      const { data } = await supabase
-        .from('practice_registrations')
-        .select('first_name, last_name, position, created_at')
-        .eq('practice_name', 'Advanced Competitive')
-        .order('created_at', { ascending: true })
-      setPlayers(data ?? [])
-      setLoading(false)
+      try {
+        const { data, error } = await supabase
+          .from('practice_registrations')
+          .select('first_name, last_name, position, created_at')
+          .eq('practice_name', 'Advanced Competitive')
+          .order('created_at', { ascending: true })
+        if (error) console.error('Roster fetch error:', error)
+        setPlayers(data ?? [])
+      } catch (err) {
+        console.error('Roster fetch threw:', err)
+      } finally {
+        setLoading(false)
+      }
     }
     fetchRoster()
   }, [])
