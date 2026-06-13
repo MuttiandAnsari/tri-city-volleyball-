@@ -60,6 +60,7 @@ function AnimatedRoutes() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/register" element={<PracticeRegister />} />
             <Route path="/tournament-register" element={<TournamentRegister />} />
+            <Route path="/roster" element={<Roster />} />
           </Routes>
         </motion.div>
       </AnimatePresence>
