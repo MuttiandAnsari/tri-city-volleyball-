@@ -23,10 +23,10 @@ export default function Roster() {
     async function fetchRoster() {
       const { data } = await supabase
         .from('practice_registrations')
-        .select('first_name, last_name, position, practice_name, created_at')
+        .select('first_name, last_name, position, created_at')
         .eq('practice_name', 'Advanced Competitive')
         .order('created_at', { ascending: true })
-      setPlayers(data || [])
+      setPlayers(data ?? [])
       setLoading(false)
     }
     fetchRoster()
