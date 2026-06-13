@@ -61,7 +61,9 @@ function Field({ label, hint, children }) {
 
 export default function PracticeRegister() {
   const [params] = useSearchParams()
-  const practiceName = params.get('practice') || 'Practice'
+  const validPractices = Object.keys(practiceRules)
+  const rawPractice = params.get('practice') || ''
+  const practiceName = validPractices.includes(rawPractice) ? rawPractice : 'Advanced Competitive'
 
   const [form, setForm] = useState({
     firstName: '',
