@@ -205,9 +205,7 @@ export default function Practices() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {practices.map((practice, i) => (
-              <Tilt key={practice.id} intensity={6}>
-                <PracticeCard practice={practice} index={i} />
-              </Tilt>
+              <PracticeCard key={practice.id} practice={practice} index={i} />
             ))}
           </div>
         </div>
