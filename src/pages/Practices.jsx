@@ -12,7 +12,7 @@ import { supabase } from '../lib/supabase'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 const practiceBase = [
-  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '13–22', date: 'June 14, 2026', time: '3:30 – 7:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 20, price: 'Free', description: 'High-intensity training for competitive players. Sharpen your game IQ, attacking, defense, and tournament readiness.', skills: ['Warm Up', 'Scrimmage', '2 Courts', '4v4'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
+  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '13–22', date: 'June 14, 2026', time: '3:30 – 7:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 24, price: 'Free', description: 'High-intensity training for competitive players. Sharpen your game IQ, attacking, defense, and tournament readiness.', skills: ['Warm Up', 'Scrimmage', '2 Courts', '4v4'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
   { id: 4, title: 'Summer All-Skills Camp', level: 'All Levels', ages: '13–22', date: 'TBD', time: 'TBD', location: 'TBD', maxSpots: 24, price: 'Free', description: 'A full week of immersive volleyball. Morning skill sessions, afternoon scrimmages, and competitive sets every day.', skills: ['All Skills', 'Scrimmages', 'Team Drills', 'Competitive Sets'], accent: 'border-cyan-500', badge: 'bg-cyan-500', bar: 'bg-cyan-500' },
 ]
 
@@ -29,17 +29,18 @@ const practiceCardVariants = {
 function PracticeCard({ practice, index }) {
   const num = String(index + 1).padStart(2, '0')
   const pct = Math.round((practice.spots / practice.maxSpots) * 100)
-  const low = practice.spots <= 3
+  const low = practice.spots > 0 && practice.spots <= 3
+  const full = practice.spots === 0
 
   return (
     <motion.div
-      className={`group relative bg-white rounded-2xl overflow-hidden shadow-sm border-l-4 ${practice.accent}`}
+      className={`group relative rounded-2xl overflow-hidden shadow-sm border-l-4 ${practice.accent} ${full ? 'bg-slate-100 opacity-75' : 'bg-white'}`}
       initial={{ opacity: 0, y: 56 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: full ? 0.75 : 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease }}
-      variants={practiceCardVariants}
-      whileHover="hover"
+      variants={full ? {} : practiceCardVariants}
+      whileHover={full ? {} : 'hover'}
     >
 
 <div className="p-6 sm:p-7 relative overflow-hidden">
@@ -112,39 +113,45 @@ function PracticeCard({ practice, index }) {
           <div className="mb-5">
             <div className="flex justify-between items-center mb-1.5">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wide">Availability</span>
-              <span className={`text-xs font-black ${low ? 'text-rose-600' : 'text-slate-700'}`}>
-                {low ? `Only ${practice.spots} left!` : `${practice.spots} spots open`}
+              <span className={`text-xs font-black ${full ? 'text-slate-400' : low ? 'text-rose-600' : 'text-slate-700'}`}>
+                {full ? `Registration closed — 0 of ${practice.maxSpots} spots left` : low ? `Only ${practice.spots} of ${practice.maxSpots} left!` : `${practice.spots} of ${practice.maxSpots} spots open`}
               </span>
             </div>
-            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+            <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
               <motion.div
-                className={`h-full rounded-full ${low ? 'bg-rose-500' : practice.bar}`}
+                className={`h-full rounded-full ${full ? 'bg-slate-400' : low ? 'bg-rose-500' : practice.bar}`}
                 initial={{ width: 0 }}
-                whileInView={{ width: `${pct}%` }}
+                whileInView={{ width: full ? '100%' : `${pct}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: index * 0.1 + 0.4, ease: 'easeOut' }}
               />
             </div>
           </div>
 
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Link
-              to={`/register?practice=${encodeURIComponent(practice.title)}`}
-              className={`flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-white transition-opacity hover:opacity-90 ${practice.badge}`}
-            >
-              Register for This Practice
-              <motion.svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          {full ? (
+            <div className="flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-slate-400 bg-slate-200 cursor-not-allowed select-none">
+              🔒 Registration Closed — Spots Full
+            </div>
+          ) : (
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                to={`/register?practice=${encodeURIComponent(practice.title)}`}
+                className={`flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-white transition-opacity hover:opacity-90 ${practice.badge}`}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </motion.svg>
-            </Link>
-          </motion.div>
+                Register for This Practice
+                <motion.svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </motion.svg>
+              </Link>
+            </motion.div>
+          )}
         </div>
       </div>
     </motion.div>

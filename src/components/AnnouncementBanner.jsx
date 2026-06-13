@@ -1,23 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
 
-const ANNOUNCEMENT = {
-  id: 'practice-june-13',
-  text: '🏐 First Practice — June 14 at Lake Elizabeth Park, Fremont.',
-  cta: 'Register Now',
-  href: '/register?practice=Advanced%20Competitive',
-}
+const MAX_SPOTS = 24
 
 export default function AnnouncementBanner() {
-  // Check synchronously so banner is visible on first render — avoids layout shift
   const [visible, setVisible] = useState(() => {
     if (typeof window === 'undefined') return false
-    return !sessionStorage.getItem(`banner-${ANNOUNCEMENT.id}`)
+    return !sessionStorage.getItem('banner-practice-june-13')
   })
+  const [isFull, setIsFull] = useState(false)
+
+  useEffect(() => {
+    async function checkSpots() {
+      const { data } = await supabase
+        .from('practice_registrations')
+        .select('practice_name')
+        .eq('practice_name', 'Advanced Competitive')
+      if (data && data.length >= MAX_SPOTS) setIsFull(true)
+    }
+    checkSpots()
+  }, [])
 
   function dismiss() {
-    sessionStorage.setItem(`banner-${ANNOUNCEMENT.id}`, '1')
+    sessionStorage.setItem('banner-practice-june-13', '1')
     setVisible(false)
   }
 
@@ -25,7 +32,7 @@ export default function AnnouncementBanner() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="relative z-50 bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-700 text-white text-sm"
+          className={`relative z-50 text-white text-sm ${isFull ? 'bg-slate-700' : 'bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-700'}`}
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
@@ -33,14 +40,18 @@ export default function AnnouncementBanner() {
         >
           <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
             <p className="font-semibold text-center flex-1 text-xs sm:text-sm">
-              {ANNOUNCEMENT.text}
-              {ANNOUNCEMENT.href && (
-                <Link
-                  to={ANNOUNCEMENT.href}
-                  className="ml-2 underline font-black hover:text-cyan-200 transition-colors whitespace-nowrap"
-                >
-                  {ANNOUNCEMENT.cta} →
-                </Link>
+              {isFull ? (
+                <>🔒 Advanced Competitive sign-ups are <span className="font-black">FULL</span>. Check back for future sessions.</>
+              ) : (
+                <>
+                  🏐 First Practice — June 14 at Lake Elizabeth Park, Fremont.
+                  <Link
+                    to="/register?practice=Advanced%20Competitive"
+                    className="ml-2 underline font-black hover:text-cyan-200 transition-colors whitespace-nowrap"
+                  >
+                    Register Now →
+                  </Link>
+                </>
               )}
             </p>
             <button
