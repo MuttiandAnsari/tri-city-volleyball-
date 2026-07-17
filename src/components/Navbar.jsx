@@ -49,8 +49,8 @@ export default function Navbar() {
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               />
               <div className="hidden sm:block leading-tight">
-                <div className="font-extrabold text-white text-base tracking-tight">Tri-City Volleyball</div>
-                <div className="text-xs font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent uppercase tracking-widest">Grass · Open Play</div>
+                <div className="font-extrabold text-white text-base tracking-tight whitespace-nowrap">Tri-City Volleyball</div>
+                <div className="text-xs font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent uppercase tracking-widest whitespace-nowrap">Grass · Open Play</div>
               </div>
             </Link>
 
@@ -62,7 +62,7 @@ export default function Navbar() {
                   to={to}
                   end={to === '/'}
                   className={({ isActive }) =>
-                    `relative px-4 py-2 rounded-xl text-sm font-semibold transition-colors duration-200 ${
+                    `relative px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors duration-200 ${
                       isActive ? 'text-white' : 'text-slate-300 hover:text-white'
                     }`
                   }
@@ -103,7 +103,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </motion.button>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/register?session=Open%20Play" className="ml-1 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md">
+                <Link to="/register?session=Open%20Play" className="ml-1 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md whitespace-nowrap">
                   Join Open Play
                 </Link>
               </motion.div>
