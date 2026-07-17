@@ -1,16 +1,5 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import photoViraj from '../assets/viraj.jpg'
-import photoFarhaan from '../assets/farhaan.jpg'
-import photoNoah from '../assets/noah.jpg'
-import photoAyaan from '../assets/ayaan.jpg'
-
-const founderPhotos = {
-  'Viraj Mutti': photoViraj,
-  'Farhaan Ansari': photoFarhaan,
-  'Noah Lukose': photoNoah,
-  'Ayaan Shansab': photoAyaan,
-}
 
 const positions = [
   {
@@ -117,9 +106,9 @@ export default function CourtVisualizer() {
       
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">Training Blueprint</span>
+          <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest block mb-4">Positions 101</span>
           <h2 className="text-4xl sm:text-5xl font-black text-glow-cyan text-white mb-4">Explore Court Positions</h2>
-          <p className="text-slate-400 max-w-xl mx-auto">Click or hover on any position to understand its tactical focus, skills checklist, and founding team.</p>
+          <p className="text-slate-400 max-w-xl mx-auto">New to the game? Click or hover on any position to see what it does on the court.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
@@ -265,61 +254,18 @@ export default function CourtVisualizer() {
                   {current.description}
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
-                  {/* Skills checklist */}
-                  <div>
-                    <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <span className="text-cyan-400">✓</span> Skills Focus
-                    </h4>
-                    <ul className="space-y-2.5">
-                      {current.skills.map((s) => (
-                        <li key={s} className="flex items-start gap-2.5 text-sm text-slate-400">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/60 mt-2 shrink-0" />
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Standard drills */}
-                  <div>
-                    <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <span className="text-cyan-400">⚙</span> Training Drills
-                    </h4>
-                    <ul className="space-y-2.5">
-                      {current.drills.map((d) => (
-                        <li key={d} className="flex items-start gap-2.5 text-sm text-slate-400">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500/60 mt-2 shrink-0" />
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Founder alignment */}
-                <div className="bg-white/5 border border-white/5 rounded-2xl p-5 flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Founders</p>
-                    <p className="text-white font-bold text-sm">{current.founders.join(' & ')}</p>
-                  </div>
-                  <div className="flex -space-x-2.5">
-                    {current.founders.map((c) => {
-                      return (
-                        <div
-                          key={c}
-                          className="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 overflow-hidden"
-                          title={c}
-                        >
-                          <img
-                            src={founderPhotos[c]}
-                            alt={c}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      )
-                    })}
-                  </div>
+                <div>
+                  <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <span className="text-cyan-400">✓</span> What This Position Does
+                  </h4>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                    {current.skills.map((s) => (
+                      <li key={s} className="flex items-start gap-2.5 text-sm text-slate-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/60 mt-2 shrink-0" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             </AnimatePresence>
