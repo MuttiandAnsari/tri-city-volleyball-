@@ -55,7 +55,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop links */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {links.map(({ to, label }) => (
                 <NavLink
                   key={to}
@@ -111,7 +111,7 @@ export default function Navbar() {
 
             {/* Mobile hamburger */}
             <motion.button
-              className="md:hidden relative z-[60] w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+              className="lg:hidden relative z-[60] w-10 h-10 flex flex-col items-center justify-center gap-1.5"
               onClick={() => setOpen(!open)}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle menu"
@@ -140,7 +140,7 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-40 md:hidden bg-slate-950 flex flex-col"
+            className="fixed inset-0 z-40 lg:hidden bg-slate-950 flex flex-col"
             initial={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 2rem)' }}
             animate={{ clipPath: 'circle(150% at calc(100% - 2.5rem) 2rem)' }}
             exit={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 2rem)' }}
