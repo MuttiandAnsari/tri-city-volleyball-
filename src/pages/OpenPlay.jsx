@@ -4,87 +4,103 @@ import { useState, useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import { FadeUp, StaggerList, StaggerItem } from '../components/Animate'
 import CursorGlow from '../components/CursorGlow'
-import Countdown from '../components/Countdown'
-import Tilt from '../components/Tilt'
 import CourtVisualizer from '../components/CourtVisualizer'
 import { supabase } from '../lib/supabase'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
-const practiceBase = [
-  { id: 3, title: 'Advanced Competitive', level: 'Advanced', ages: '13–22', date: 'June 14, 2026', time: '3:30 – 7:00 PM', location: 'Lake Elizabeth, Fremont', maxSpots: 24, price: 'Free', description: 'High-intensity training for competitive players. Sharpen your game IQ, attacking, defense, and tournament readiness.', skills: ['Warm Up', 'Scrimmage', '2 Courts', '4v4'], accent: 'border-rose-500', badge: 'bg-rose-500', bar: 'bg-rose-500' },
-  { id: 4, title: 'Summer All-Skills Camp', level: 'All Levels', ages: '13–22', date: 'TBD', time: 'TBD', location: 'TBD', maxSpots: 24, price: 'Free', description: 'A full week of immersive volleyball. Morning skill sessions, afternoon scrimmages, and competitive sets every day.', skills: ['All Skills', 'Scrimmages', 'Team Drills', 'Competitive Sets'], accent: 'border-cyan-500', badge: 'bg-cyan-500', bar: 'bg-cyan-500' },
+// `title` is the source of truth for practice_registrations.practice_name —
+// the Roster and the spot counter both key off this exact string.
+const SESSION = {
+  title: 'Open Play',
+  level: 'All Levels',
+  ages: '13+',
+  date: 'TBD — check back soon',
+  time: 'TBD',
+  location: 'Lake Elizabeth Park, Fremont',
+  maxSpots: 24,
+  price: 'Free',
+  description: 'Grass volleyball, open to anyone 13 and up. We bring the nets and the balls, you bring yourself. Teams get sorted on site and winners rotate in — no rosters, no cuts, no coaches.',
+  skills: ['Grass Courts', '4v4', 'Rotate In', 'All Levels'],
+  accent: 'border-emerald-500',
+  badge: 'bg-emerald-500',
+  bar: 'bg-emerald-500',
+}
+
+const courts = [
+  { name: 'Lake Elizabeth Park', city: 'Fremont', note: 'Our home grass — most open play runs here.' },
+  { name: 'Willow Park', city: 'Union City', note: 'Second grass site. Watch for pop-up sessions.' },
+  { name: "Fallon's Sports Park", city: 'Dublin', note: 'Where we run the bracket tournaments.' },
 ]
 
 const gear = [
-  { label: 'Athletic shoes', emoji: '👟' },
+  { label: 'Bare feet or turf shoes', emoji: '👣' },
   { label: 'Water bottle', emoji: '💧' },
-  { label: 'Competitive attitude', emoji: '🔥' },
+  { label: 'Sunscreen', emoji: '🧴' },
+  { label: 'Nets and balls are on us', emoji: '🏐' },
 ]
 
-const practiceCardVariants = {
+const sessionCardVariants = {
   hover: { y: -6, boxShadow: '0 24px 48px rgba(0,0,0,0.12)' },
 }
 
-function PracticeCard({ practice, index }) {
-  const num = String(index + 1).padStart(2, '0')
-  const pct = Math.round((practice.spots / practice.maxSpots) * 100)
-  const low = practice.spots > 0 && practice.spots <= 3
-  const full = practice.spots === 0
+function SessionCard({ session }) {
+  const pct = Math.round((session.spots / session.maxSpots) * 100)
+  const low = session.spots > 0 && session.spots <= 3
+  const full = session.spots === 0
 
   return (
     <motion.div
-      className={`group relative rounded-2xl overflow-hidden shadow-sm border-l-4 ${practice.accent} ${full ? 'bg-slate-100 opacity-75' : 'bg-white'}`}
+      className={`group relative rounded-2xl overflow-hidden shadow-sm border-l-4 ${session.accent} ${full ? 'bg-slate-100 opacity-75' : 'bg-white'}`}
       initial={{ opacity: 0, y: 56 }}
       whileInView={{ opacity: full ? 0.75 : 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease }}
-      variants={full ? {} : practiceCardVariants}
+      transition={{ duration: 0.6, ease }}
+      variants={full ? {} : sessionCardVariants}
       whileHover={full ? {} : 'hover'}
     >
-
-<div className="p-6 sm:p-7 relative overflow-hidden">
+      <div className="p-6 sm:p-8 relative overflow-hidden">
         {/* Ghost number */}
         <motion.span
           className="absolute -top-3 right-4 text-8xl font-black text-gray-50 select-none pointer-events-none leading-none"
           initial={{ opacity: 0, scale: 0.5 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.1 + 0.3, ease }}
+          transition={{ duration: 0.5, delay: 0.3, ease }}
         >
-          {num}
+          01
         </motion.span>
 
         <div className="relative">
           <div className="flex items-start justify-between mb-4">
             <div>
               <motion.span
-                className={`inline-block px-2.5 py-0.5 ${practice.badge} text-white text-[10px] font-black uppercase tracking-widest rounded mb-2`}
+                className={`inline-block px-2.5 py-0.5 ${session.badge} text-white text-[10px] font-black uppercase tracking-widest rounded mb-2`}
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
               >
-                {practice.level}
+                {session.level}
               </motion.span>
-              <h3 className="text-xl font-black text-slate-900 leading-tight">{practice.title}</h3>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Ages {practice.ages}</p>
+              <h3 className="text-2xl font-black text-slate-900 leading-tight">{session.title}</h3>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Ages {session.ages} · No upper limit</p>
             </div>
           </div>
 
-          <p className="text-slate-500 text-sm leading-relaxed mb-5">{practice.description}</p>
+          <p className="text-slate-500 text-sm leading-relaxed mb-5">{session.description}</p>
 
           <div className="grid grid-cols-2 gap-2 mb-5">
             {[
-              { label: 'Schedule', value: practice.date },
-              { label: 'Time', value: practice.time },
-              { label: 'Location', value: practice.location },
-              { label: 'Price', value: practice.price },
+              { label: 'Next Date', value: session.date },
+              { label: 'Time', value: session.time },
+              { label: 'Location', value: session.location },
+              { label: 'Price', value: session.price },
             ].map(({ label, value }) => (
               <motion.div
                 key={label}
                 className="bg-slate-50 rounded-xl p-3"
-                whileHover={{ backgroundColor: '#eff6ff' }}
+                whileHover={{ backgroundColor: '#ecfdf5' }}
                 transition={{ duration: 0.2 }}
               >
                 <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">{label}</p>
@@ -94,15 +110,15 @@ function PracticeCard({ practice, index }) {
           </div>
 
           <div className="flex flex-wrap gap-1.5 mb-5">
-            {practice.skills.map((s, i) => (
+            {session.skills.map((s, i) => (
               <motion.span
                 key={s}
-                className="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-lg"
+                className="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 + 0.3 + i * 0.05 }}
-                whileHover={{ scale: 1.08, backgroundColor: '#dbeafe' }}
+                transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
+                whileHover={{ scale: 1.08, backgroundColor: '#d1fae5' }}
               >
                 {s}
               </motion.span>
@@ -114,31 +130,31 @@ function PracticeCard({ practice, index }) {
             <div className="flex justify-between items-center mb-1.5">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wide">Availability</span>
               <span className={`text-xs font-black ${full ? 'text-slate-400' : low ? 'text-rose-600' : 'text-slate-700'}`}>
-                {full ? `Registration closed — 0 of ${practice.maxSpots} spots left` : low ? `Only ${practice.spots} of ${practice.maxSpots} left!` : `${practice.spots} of ${practice.maxSpots} spots open`}
+                {full ? `Sign-ups closed — 0 of ${session.maxSpots} spots left` : low ? `Only ${session.spots} of ${session.maxSpots} left!` : `${session.spots} of ${session.maxSpots} spots open`}
               </span>
             </div>
             <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
               <motion.div
-                className={`h-full rounded-full ${full ? 'bg-slate-400' : low ? 'bg-rose-500' : practice.bar}`}
+                className={`h-full rounded-full ${full ? 'bg-slate-400' : low ? 'bg-rose-500' : session.bar}`}
                 initial={{ width: 0 }}
                 whileInView={{ width: full ? '100%' : `${pct}%` }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: index * 0.1 + 0.4, ease: 'easeOut' }}
+                transition={{ duration: 1.2, delay: 0.4, ease: 'easeOut' }}
               />
             </div>
           </div>
 
           {full ? (
             <div className="flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-slate-400 bg-slate-200 cursor-not-allowed select-none">
-              🔒 Registration Closed — Spots Full
+              🔒 Sign-ups Closed — Spots Full
             </div>
           ) : (
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                to={`/register?practice=${encodeURIComponent(practice.title)}`}
-                className={`flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-white transition-opacity hover:opacity-90 ${practice.badge}`}
+                to={`/register?session=${encodeURIComponent(session.title)}`}
+                className={`flex items-center justify-center gap-2 w-full py-3 font-black text-sm rounded-xl text-white transition-opacity hover:opacity-90 ${session.badge}`}
               >
-                Register for This Practice
+                Save Your Spot
                 <motion.svg
                   className="w-4 h-4"
                   fill="none"
@@ -158,67 +174,85 @@ function PracticeCard({ practice, index }) {
   )
 }
 
-export default function Practices() {
-  const [practices, setPractices] = useState(practiceBase.map(p => ({ ...p, spots: p.maxSpots })))
+export default function OpenPlay() {
+  const [session, setSession] = useState({ ...SESSION, spots: SESSION.maxSpots })
 
   useEffect(() => {
-    async function fetchCounts() {
+    async function fetchCount() {
       const { data, error } = await supabase
         .from('practice_registrations')
         .select('practice_name')
+        .eq('practice_name', SESSION.title)
       if (error || !data) return
-      const counts = {}
-      data.forEach(row => {
-        counts[row.practice_name] = (counts[row.practice_name] || 0) + 1
-      })
-      setPractices(practiceBase.map(p => ({
-        ...p,
-        spots: Math.max(0, p.maxSpots - (counts[p.title] || 0)),
-      })))
+      setSession({ ...SESSION, spots: Math.max(0, SESSION.maxSpots - data.length) })
     }
-    fetchCounts()
+    fetchCount()
   }, [])
 
   return (
     <>
       <PageHero
-        label="Training Programs"
-        title={<>Train Smarter.<br /><span className="text-gradient">Level Up Faster.</span></>}
-        subtitle="Competitive training for ages 13–22 in Fremont, Union City & Dublin."
-        watermark="TRAIN"
+        label="Open Grass Volleyball"
+        title={<>Show Up.<br /><span className="text-gradient">Get On a Team.</span></>}
+        subtitle="Grass courts across Fremont, Union City & Dublin. Ages 13+, all levels, always free."
+        watermark="GRASS"
       />
 
-      <Countdown />
-
-      {/* FREE first session banner */}
-      <div className="bg-gradient-to-r from-blue-950 via-blue-800 to-cyan-700 py-6 px-4">
+      {/* Free banner */}
+      <div className="bg-gradient-to-r from-emerald-900 via-emerald-700 to-cyan-700 py-6 px-4">
         <motion.div
           className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-center"
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="text-3xl">🎉</span>
+          <span className="text-3xl">🏐</span>
           <div>
-            <span className="text-white font-black text-xl sm:text-2xl tracking-tight">All sessions are </span>
+            <span className="text-white font-black text-xl sm:text-2xl tracking-tight">Open play is </span>
             <span className="text-cyan-300 font-black text-2xl sm:text-3xl uppercase tracking-widest underline decoration-wavy decoration-cyan-400/60">completely FREE</span>
-            <span className="text-white font-black text-xl sm:text-2xl"> right now!</span>
           </div>
         </motion.div>
-        <p className="text-center text-blue-200 text-sm mt-2 font-medium">No commitment, no cost. Just come out and play.</p>
+        <p className="text-center text-emerald-100 text-sm mt-2 font-medium">No dues, no commitment, no tryouts. Just come out and play.</p>
       </div>
 
+      {/* Session */}
       <section className="bg-slate-50 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {practices.map((practice, i) => (
-              <PracticeCard key={practice.id} practice={practice} index={i} />
-            ))}
-          </div>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <SessionCard session={session} />
+          <FadeUp className="mt-6">
+            <p className="text-center text-slate-400 text-sm">
+              Dates go up here as soon as they're locked in. Sign up now and we'll let you know the next one.
+            </p>
+          </FadeUp>
         </div>
       </section>
 
-      {/* What to bring , dark strip */}
+      {/* Where we play */}
+      <section className="bg-white py-16 sm:py-20 border-t border-slate-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp className="text-center mb-12">
+            <span className="text-emerald-600 text-xs font-bold uppercase tracking-widest">Three Cities</span>
+            <h2 className="text-3xl font-black text-slate-900 mt-2">Where We Play</h2>
+          </FadeUp>
+          <StaggerList className="grid grid-cols-1 sm:grid-cols-3 gap-5" stagger={0.1}>
+            {courts.map(({ name, city, note }) => (
+              <StaggerItem key={name}>
+                <motion.div
+                  className="bg-slate-50 rounded-2xl p-6 border border-slate-100 h-full"
+                  whileHover={{ y: -6, borderColor: '#a7f3d0', backgroundColor: '#ecfdf5', boxShadow: '0 20px 40px rgba(16,185,129,0.1)' }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-2">{city}</p>
+                  <h3 className="font-black text-slate-900 mb-2">{name}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{note}</p>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </StaggerList>
+        </div>
+      </section>
+
+      {/* What to bring — dark strip */}
       <CursorGlow><section className="bg-slate-900 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center gap-10">
@@ -253,19 +287,19 @@ export default function Practices() {
       <CourtVisualizer />
 
       {/* CTA */}
-      <section className="relative bg-gradient-to-br from-blue-950 via-blue-800 to-cyan-700 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-emerald-950 via-emerald-800 to-cyan-700 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-mesh pointer-events-none" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <FadeUp>
-            <span className="text-cyan-300 text-xs font-bold uppercase tracking-widest block mb-4">We're Here to Help</span>
-            <h2 className="text-4xl font-black text-white mb-4">Not sure which practice<br />is right for you?</h2>
-            <p className="text-blue-200 mb-8 text-lg">Message us and we'll find the perfect fit for your athlete.</p>
+            <span className="text-cyan-300 text-xs font-bold uppercase tracking-widest block mb-4">Never Played on Grass?</span>
+            <h2 className="text-4xl font-black text-white mb-4">You'll be fine.</h2>
+            <p className="text-emerald-100 mb-8 text-lg">Grass is slower and more forgiving than sand or hardwood. Show up on your own and you'll leave having played with a dozen new people.</p>
             <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-9 py-4 bg-white text-blue-800 font-black rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors"
+                className="inline-flex items-center gap-2 px-9 py-4 bg-white text-emerald-800 font-black rounded-2xl shadow-xl hover:bg-emerald-50 transition-colors"
               >
-                Contact Us
+                Ask Us Anything
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>

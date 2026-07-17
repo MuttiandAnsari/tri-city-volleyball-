@@ -19,45 +19,47 @@ const heroVideo = '/hero.mp4'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 const statItems = [
-  { number: '13–22', display: '13–22', label: 'All Ages', color: 'text-white', numeric: false },
-  { number: 3, display: '3', label: 'Bay Area Courts', color: 'text-cyan-400', numeric: true },
-  { number: 4, display: '4', label: 'HS Player Founders', color: 'text-white', numeric: true },
-  { number: 100, display: '100', label: 'Youth-Led', color: 'text-cyan-400', numeric: true, suffix: '%' },
+  { number: '13+', display: '13+', label: 'All Ages Welcome', color: 'text-white', numeric: false },
+  { number: 3, display: '3', label: 'Bay Area Grass Courts', color: 'text-cyan-400', numeric: true },
+  { number: 0, display: '0', label: 'Cost to Play', color: 'text-white', numeric: true, prefix: '$' },
+  { number: 100, display: '100', label: 'Player-Run', color: 'text-cyan-400', numeric: true, suffix: '%' },
 ]
 
 const features = [
-  { num: '01', title: 'Reps That Actually Transfer', description: 'Every drill maps to a real game situation. Passing sequences, serve-receive patterns, live rally sets. Your athlete gets better because the session design demands it.' },
-  { num: '02', title: 'Coached by Players Still Grinding', description: 'All four founders are active high school volleyball players. Two qualified for USA Volleyball 16U Nationals. They coach what they live.' },
-  { num: '03', title: 'Lake Elizabeth. Willow Park. Fallon\'s Park.', description: 'Three Bay Area outdoor courts in Fremont, Union City, and Dublin. No gym smell, no dead air. Real volleyball the way it\'s meant to be played.' },
-  { num: '04', title: 'No Tryouts. No Cuts. Show Up.', description: 'Every athlete ages 13–22 is welcome. Whether you\'re new to the game or a seasoned competitor, we have a place for you.' },
-  { num: '05', title: 'Competition That Forces Growth', description: 'Tournaments put your athlete in front of teams they\'ve never seen. Reading new players under pressure — that\'s what separates training from developing.' },
-  { num: '06', title: 'Feedback You Can Actually Use', description: 'After every session, athletes hear what to improve. Not "great job." Specific, technical, actionable — the kind of coaching that actually sticks.' },
+  { num: '01', title: 'Grass, Not Hardwood', description: 'Outdoor grass courts. Softer landings, longer rallies, and you can actually go for the dig. It\'s the version of volleyball people play because they want to, not because a gym was booked.' },
+  { num: '02', title: 'No Coaches. No Drills. Just Play.', description: 'Nobody\'s running you through passing lines. You show up, get on a team, and play the game. That\'s the whole thing.' },
+  { num: '03', title: 'Lake Elizabeth. Willow Park. Fallon\'s Park.', description: 'Three Bay Area grass sites across Fremont, Union City, and Dublin. We bring the nets and the balls.' },
+  { num: '04', title: 'No Tryouts. No Cuts. Show Up.', description: 'Anyone 13 or older is welcome — no upper age limit. Bring a whole crew or come solo, we\'ll get you on a side.' },
+  { num: '05', title: 'Real Bracket Tournaments', description: 'When you want the competitive version: pool play into a losers bracket, teams from across the Bay, a full day of volleyball that actually counts.' },
+  { num: '06', title: 'Run by People Who Play', description: 'Four of us organize this, and we\'re on the grass every session too. It\'s a pickup community we wanted to exist, so we built it.' },
 ]
 
 const founders = [
-  { name: 'Viraj Mutti', role: 'Founder', school: 'James Logan HS · Middle Blocker', description: 'Plays middle blocker at James Logan High School. Also competed at Lakas and UVA.', photo: photoViraj, photoPosition: 'center 30%' },
-  { name: 'Farhaan Ansari', role: 'Founder', school: 'American HS · Outside / Opposite', description: 'Outside and opposite hitter at American High School.', photo: photoFarhaan, photoPosition: 'center 15%' },
-  { name: 'Noah Lukose', role: 'Founder', school: 'James Logan HS · Middle Blocker', description: 'Middle blocker at James Logan, also played at UVA and Lakas.', photo: photoNoah, photoPosition: 'center 45%' },
-  { name: 'Ayaan Shansab', role: 'Founder', school: 'Campolindo HS · Opposite Hitter', description: 'Varsity opposite hitter at Campolindo High School.', photo: photoAyaan, photoPosition: 'center 20%' },
+  { name: 'Viraj Mutti', role: 'Organizer', school: 'Middle Blocker', description: 'Plays middle blocker at James Logan High School. Also competed at Lakas and UVA.', photo: photoViraj, photoPosition: 'center 30%' },
+  { name: 'Farhaan Ansari', role: 'Organizer', school: 'Outside / Opposite', description: 'Outside and opposite hitter at American High School.', photo: photoFarhaan, photoPosition: 'center 15%' },
+  { name: 'Noah Lukose', role: 'Organizer', school: 'Middle Blocker', description: 'Middle blocker at James Logan, also played at UVA and Lakas.', photo: photoNoah, photoPosition: 'center 45%' },
+  { name: 'Ayaan Shansab', role: 'Organizer', school: 'Opposite Hitter', description: 'Varsity opposite hitter at Campolindo High School.', photo: photoAyaan, photoPosition: 'center 20%' },
 ]
 
 const steps = [
-  { num: '01', title: 'Sign Up', icon: '✍️', description: 'Pick your level and register online. Takes 90 seconds. No payment, no commitment — your first session is always free.' },
-  { num: '02', title: 'Train Hard', icon: '💪', description: 'Warm up, skill reps, live scrimmage. Our founders run tight sessions — structured, intentional, and you leave tired.' },
-  { num: '03', title: 'Compete', icon: '🏆', description: 'Real bracket tournaments against teams you\'ve never faced. Pressure, adaptation, growth. See exactly how far you\'ve come.' },
+  { num: '01', title: 'Sign Up', icon: '✍️', description: 'Tell us you\'re coming so we know how many nets to put up. Takes 60 seconds. No payment, no commitment, no obligation to show.' },
+  { num: '02', title: 'Show Up', icon: '🏐', description: 'Come to the grass. Teams get sorted on site, winners rotate in. Come alone and you\'ll be playing within five minutes.' },
+  { num: '03', title: 'Compete', icon: '🏆', description: 'Want it to count? Enter a bracket tournament. Pool play, real seeding, teams from across the Bay Area.' },
 ]
 
-const sessions = [
-  { num: '01', level: 'Advanced Competitive', ages: '13–22', time: '3:30 – 7:00 PM', timeColor: 'text-rose-400', badge: 'bg-rose-500', features: ['Competitive game strategy', 'Tournament prep sets', 'Live full scrimmage'] },
+const openPlayFacts = [
+  { num: '01', title: 'Free, Always', accent: 'text-emerald-400', points: ['No dues, no drop-in fee', 'No commitment to keep coming back', 'Nets and balls are on us'] },
+  { num: '02', title: 'Ages 13+', accent: 'text-cyan-400', points: ['No upper age limit', 'Every skill level plays', 'No tryouts, no cuts'] },
+  { num: '03', title: 'On the Grass', accent: 'text-blue-400', points: ['Lake Elizabeth Park, Fremont', 'Teams get sorted on site', 'Winners rotate in'] },
 ]
 
 const homeFaqs = [
-  { q: 'How much does it cost?', a: 'All sessions are currently free — no commitment needed. Just show up.' },
-  { q: 'What should my child bring?', a: 'Athletic shoes, a water bottle, and a competitive attitude. We provide all the volleyballs.' },
-  { q: 'What happens at the first session?', a: 'Our founders introduce themselves, group athletes by skill level, run focused drills, and make sure everyone feels welcome. Zero pressure.' },
-  { q: 'Who can join?', a: 'Our program is for athletes ages 13–22. All skill levels are welcome — whether you\'re brand new to volleyball or competing at a high level.' },
-  { q: 'Is this for boys and girls?', a: 'Yes — all practices are open to every athlete regardless of gender.' },
-  { q: 'When and where is the next practice?', a: 'June 14, 2026 at Lake Elizabeth Park, Fremont. Advanced session runs 3:30–7:00 PM.' },
+  { q: 'How much does it cost?', a: 'Open play is completely free. No dues, no drop-in fee. Tournaments are ticketed separately — details on each tournament listing.' },
+  { q: 'What should I bring?', a: 'Bare feet or turf shoes, a water bottle, and sunscreen. We bring the nets and the balls.' },
+  { q: 'Do I need a team?', a: 'Nope. Most people show up alone. Teams get made on site and we rotate winners, so you\'ll play with a bunch of different people.' },
+  { q: 'Who can play?', a: 'Anyone 13 or older. There\'s no upper age limit — we have high schoolers and folks well into their forties on the same court.' },
+  { q: 'Do I need to be any good?', a: 'No. All levels play. Grass is slower and more forgiving than sand or indoor, so it\'s a genuinely good place to learn.' },
+  { q: 'When and where is the next open play?', a: 'The next date is still being locked in — check the Open Play page, or sign up and we\'ll let you know as soon as it\'s set.' },
 ]
 
 function HomeFaqItem({ q, a }) {
@@ -92,7 +94,7 @@ function HomeFaqItem({ q, a }) {
   )
 }
 
-function AnimatedStat({ number, display, label, color, numeric, suffix = '', index }) {
+function AnimatedStat({ number, display, label, color, numeric, prefix = '', suffix = '', index }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const [count, setCount] = useState(isTouch || !numeric ? display : 0)
@@ -117,7 +119,7 @@ function AnimatedStat({ number, display, label, color, numeric, suffix = '', ind
       transition={{ duration: 0.5, delay: 0.08 * index, ease }}
     >
       <div className={`text-4xl sm:text-5xl font-black ${color} mb-1.5 tabular-nums leading-none tracking-tight`}>
-        {numeric ? count + suffix : display}
+        {numeric ? prefix + count + suffix : display}
       </div>
       <div className="text-slate-500 text-xs font-bold uppercase tracking-[0.16em]">{label}</div>
     </motion.div>
@@ -255,7 +257,7 @@ export default function Home() {
               </motion.span>
             </span>
             <br />
-            {['Volleyball', 'Academy'].map((word, i) => (
+            {['Grass', 'Volleyball'].map((word, i) => (
               <span key={word} className="inline-block overflow-hidden mr-3 last:mr-0">
                 <motion.span
                   className="inline-block text-gradient"
@@ -274,7 +276,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.95, ease }}
           >
-            Built by four Bay Area high schoolers who play the game. Ages 13–22. All levels. Always free right now.
+            Open play on the grass and real bracket tournaments across the Bay Area. Ages 13+, all levels, no tryouts. Show up and play.
           </motion.p>
 
           <motion.div
@@ -283,13 +285,13 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 1.1, ease }}
           >
             <MagneticButton>
-              <Link to="/practices" className="block px-9 py-3.5 bg-white text-blue-900 font-black rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors tracking-tight">
-                View Practices
+              <Link to="/open-play" className="block px-9 py-3.5 bg-white text-blue-900 font-black rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors tracking-tight">
+                Open Play
               </Link>
             </MagneticButton>
             <MagneticButton>
-              <Link to="/register?practice=Advanced%20Competitive" className="block px-9 py-3.5 border border-white/30 text-white font-black rounded-2xl hover:bg-white/10 transition-colors tracking-tight" style={{ background: 'rgba(255,255,255,0.07)' }}>
-                Register Free
+              <Link to="/tournaments" className="block px-9 py-3.5 border border-white/30 text-white font-black rounded-2xl hover:bg-white/10 transition-colors tracking-tight" style={{ background: 'rgba(255,255,255,0.07)' }}>
+                Tournaments
               </Link>
             </MagneticButton>
           </motion.div>
@@ -302,7 +304,7 @@ export default function Home() {
           >
             <span className="text-lg">🎉</span>
             <p className="text-white font-black text-sm sm:text-base">
-              All sessions are <span className="text-cyan-300 underline decoration-wavy decoration-cyan-400/60">completely free</span> right now
+              Open play is <span className="text-cyan-300 underline decoration-wavy decoration-cyan-400/60">completely free</span> — always
             </p>
           </motion.div>
         </motion.div>
@@ -354,11 +356,11 @@ export default function Home() {
                   What We<br />Stand For.
                 </h2>
                 <p className="text-slate-400 leading-relaxed">
-                  Not a rec league. Not a club tryout. Structured enough to improve, open enough for anyone ages 13 to 22.
+                  Not a club. Not a league. Not a training program. Just good volleyball on grass, open to anyone 13 or older.
                 </p>
                 <motion.div className="mt-10" whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 300 }}>
-                  <Link to="/practices" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5">
-                    See all practices
+                  <Link to="/open-play" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5">
+                    See open play
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
                 </motion.div>
@@ -431,8 +433,8 @@ export default function Home() {
 
             <FadeUp className="mt-10 flex justify-start">
               <motion.div whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 300 }}>
-                <Link to="/practices" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5">
-                  Find your practice
+                <Link to="/open-play" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5">
+                  Get on the grass
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
               </motion.div>
@@ -453,18 +455,15 @@ export default function Home() {
             <FadeUp className="mb-14">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-5 h-px bg-cyan-400" />
-                <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">The Team</span>
+                <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">Who Runs It</span>
               </div>
               <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
                 <h2 className="text-6xl font-black text-white leading-[0.92] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                  Meet the<br />Founders.
+                  Meet the<br />Organizers.
                 </h2>
                 <div className="flex flex-wrap gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-[11px] font-bold uppercase tracking-wider">
-                    ★ 2 Founders: USA VB 16U Nationals
-                  </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 text-[11px] font-bold uppercase tracking-wider">
-                    All Active HS Players
+                    We're on the grass too
                   </span>
                 </div>
               </div>
@@ -481,70 +480,73 @@ export default function Home() {
         </section>
       </CursorGlow>
 
-      {/* ── Sessions (June 14) ── */}
+      {/* ── Open Play ── */}
       <section className="relative bg-black overflow-hidden">
-        {/* Ghost date text */}
+        {/* Ghost text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
-          <span className="text-[22vw] font-black text-white/[0.02] leading-none whitespace-nowrap">JUNE 14</span>
+          <span className="text-[22vw] font-black text-white/[0.02] leading-none whitespace-nowrap">GRASS</span>
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <FadeUp className="mb-14">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-5 h-px bg-cyan-400" />
-              <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">Next Practice</span>
+              <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">Next Open Play</span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
               <div>
                 <h2 className="text-7xl sm:text-8xl font-black text-white leading-[0.88] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                  June 14<span className="text-white/20">,</span>
+                  Date TBD<span className="text-white/20">.</span>
                 </h2>
-                <h2 className="text-5xl sm:text-6xl font-black text-white/30 leading-none tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>2026</h2>
+                <h2 className="text-3xl sm:text-4xl font-black text-white/30 leading-none tracking-tight mt-2" style={{ fontFamily: "'Outfit', sans-serif" }}>Sign up and hear it first.</h2>
               </div>
               <div className="sm:text-right pb-2">
                 <p className="text-slate-300 font-bold text-lg">Lake Elizabeth Park</p>
-                <p className="text-slate-500 text-sm">Fremont, CA · Ages 13–22 · All sessions free</p>
+                <p className="text-slate-500 text-sm">Fremont, CA · Ages 13+ · Always free</p>
               </div>
             </div>
           </FadeUp>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.06]">
-            {sessions.map((s, i) => (
+            {openPlayFacts.map((f, i) => (
               <motion.div
-                key={s.level}
+                key={f.title}
                 className="relative bg-black p-8 sm:p-10 group hover:bg-white/[0.03] transition-colors duration-300 overflow-hidden"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease }}
               >
-                <div className="absolute -right-3 -bottom-6 text-[9rem] font-black text-white/[0.03] leading-none pointer-events-none select-none">{s.num}</div>
+                <div className="absolute -right-3 -bottom-6 text-[9rem] font-black text-white/[0.03] leading-none pointer-events-none select-none">{f.num}</div>
                 <div className="relative">
-                  <p className="text-slate-600 text-xs font-black font-mono mb-6 tracking-wider">{s.num}</p>
-                  <h3 className="text-3xl font-black text-white tracking-tight mb-1">{s.level}</h3>
-                  <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-4">Ages {s.ages}</p>
-                  <p className={`text-2xl font-black mb-8 ${s.timeColor} leading-none`}>{s.time}</p>
-                  <ul className="space-y-2 mb-10">
-                    {s.features.map(f => (
-                      <li key={f} className="text-slate-400 text-sm flex items-center gap-2.5">
+                  <p className="text-slate-600 text-xs font-black font-mono mb-6 tracking-wider">{f.num}</p>
+                  <h3 className={`text-3xl font-black tracking-tight mb-6 ${f.accent}`}>{f.title}</h3>
+                  <ul className="space-y-2.5">
+                    {f.points.map(p => (
+                      <li key={p} className="text-slate-400 text-sm flex items-center gap-2.5">
                         <span className="w-1 h-1 rounded-full bg-cyan-500/50 shrink-0" />
-                        {f}
+                        {p}
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    to={`/register?practice=${encodeURIComponent('Advanced Competitive')}`}
-                    className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 group-hover:border-cyan-400 group-hover:text-cyan-400 transition-colors duration-200 pb-0.5"
-                  >
-                    Register Free
-                    <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          <FadeUp className="mt-10">
+            <motion.div whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+              <Link
+                to="/register?session=Open%20Play"
+                className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5"
+              >
+                Save your spot for the next one
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </motion.div>
+          </FadeUp>
         </div>
       </section>
 
@@ -556,10 +558,10 @@ export default function Home() {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-5 h-px bg-cyan-400" />
-                  <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">Also Running Tournaments</span>
+                  <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">Want It to Count?</span>
                 </div>
-                <h3 className="text-2xl font-black text-white tracking-tight">Tournaments are open to all players 14+</h3>
-                <p className="text-slate-400 text-sm mt-1">No upper age limit — if you're 14 or older, you're in. Next tournament: June 26, 2026 at Fallon's Sports Park, Dublin.</p>
+                <h3 className="text-2xl font-black text-white tracking-tight">Bracket tournaments, open to all players 13+</h3>
+                <p className="text-slate-400 text-sm mt-1">Pool play into a losers bracket, teams from across the Bay Area. Next up: the Tri-City Invitational on August 9, 2026.</p>
               </div>
               <motion.div whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 300 }} className="shrink-0">
                 <Link to="/tournaments" className="inline-flex items-center gap-2 text-white font-black text-sm border-b border-white/20 hover:border-cyan-400 hover:text-cyan-400 transition-colors pb-0.5 whitespace-nowrap">
@@ -610,19 +612,19 @@ export default function Home() {
           <FadeUp>
             <div className="flex items-center justify-center gap-3 mb-8">
               <div className="h-px flex-1 max-w-[80px] bg-white/10" />
-              <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">June 14, 2026</span>
+              <span className="text-cyan-400 text-xs font-bold uppercase tracking-[0.2em]">Fremont · Union City · Dublin</span>
               <div className="h-px flex-1 max-w-[80px] bg-white/10" />
             </div>
             <h2 className="text-6xl sm:text-7xl font-black text-white mb-6 leading-[0.9] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              Spots Fill Up.<br />Register Now.
+              Get on the<br />Grass.
             </h2>
             <p className="text-slate-400 mb-12 text-lg max-w-xl mx-auto leading-relaxed">
-              Lake Elizabeth Park, Fremont. All sessions free. All levels welcome. Bring athletic shoes and show up ready to work.
+              Open play is free and open to anyone 13 or older. Come alone, come with a crew — either way you're playing within five minutes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <MagneticButton>
-                <Link to="/practices" className="block px-10 py-4 bg-white text-black font-black rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors tracking-tight text-base">
-                  Browse Practices
+                <Link to="/open-play" className="block px-10 py-4 bg-white text-black font-black rounded-2xl shadow-xl hover:bg-cyan-50 transition-colors tracking-tight text-base">
+                  See Open Play
                 </Link>
               </MagneticButton>
               <MagneticButton>

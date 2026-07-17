@@ -6,7 +6,7 @@ import { useTheme } from '../context/ThemeContext'
 
 const links = [
   { to: '/', label: 'Home', num: '01' },
-  { to: '/practices', label: 'Practices', num: '02' },
+  { to: '/open-play', label: 'Open Play', num: '02' },
   { to: '/tournaments', label: 'Tournaments', num: '03' },
   { to: '/roster', label: 'Roster', num: '04' },
   { to: '/contact', label: 'Contact', num: '05' },
@@ -50,7 +50,7 @@ export default function Navbar() {
               />
               <div className="hidden sm:block leading-tight">
                 <div className="font-extrabold text-white text-base tracking-tight">Tri-City Volleyball</div>
-                <div className="text-xs font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent uppercase tracking-widest">Academy</div>
+                <div className="text-xs font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent uppercase tracking-widest">Grass · Open Play</div>
               </div>
             </Link>
 
@@ -103,8 +103,8 @@ export default function Navbar() {
                 </AnimatePresence>
               </motion.button>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/register?practice=Advanced%20Competitive" className="ml-1 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md">
-                  Register Now
+                <Link to="/register?session=Open%20Play" className="ml-1 px-5 py-2 btn-gradient text-white rounded-xl text-sm font-bold shadow-md">
+                  Join Open Play
                 </Link>
               </motion.div>
             </div>
@@ -187,11 +187,11 @@ export default function Navbar() {
                 transition={{ delay: 0.42, duration: 0.4, ease }}
               >
                 <Link
-                  to="/register?practice=Advanced%20Competitive"
+                  to="/register?session=Open%20Play"
                   onClick={() => setOpen(false)}
                   className="block w-full py-4 btn-gradient text-white rounded-2xl text-lg font-black text-center shadow-xl"
                 >
-                  Register Now — First Session FREE
+                  Join Open Play — It's Free
                 </Link>
               </motion.div>
 

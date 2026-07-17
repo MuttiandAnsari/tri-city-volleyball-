@@ -6,15 +6,16 @@ import { FadeUp, StaggerList, StaggerItem } from './Animate'
 
 const navLinks = [
   { to: '/', label: 'Home' },
-  { to: '/practices', label: 'Practices' },
+  { to: '/open-play', label: 'Open Play' },
   { to: '/tournaments', label: 'Tournaments' },
+  { to: '/roster', label: 'Roster' },
   { to: '/contact', label: 'Contact' },
 ]
 
 const programs = [
-  { to: '/practices', label: 'Advanced Competitive 13–22' },
-  { to: '/practices', label: 'Summer All-Skills Camp' },
-  { to: '/tournaments', label: 'Tournaments 14+' },
+  { to: '/open-play', label: 'Open Play — Free, Ages 13+' },
+  { to: '/tournaments', label: 'Bracket Tournaments 13+' },
+  { to: '/register?session=Open%20Play', label: 'Save Your Spot' },
 ]
 
 function FooterLink({ to, label }) {
@@ -70,11 +71,11 @@ export default function Footer() {
                 />
                 <div>
                   <div className="font-extrabold text-white text-sm leading-tight">Tri-City Volleyball</div>
-                  <div className="text-[10px] font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent uppercase tracking-widest">Academy</div>
+                  <div className="text-[10px] font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent uppercase tracking-widest">Grass · Open Play</div>
                 </div>
               </Link>
               <p className="text-slate-400 text-sm leading-relaxed mb-5">
-                Building the next generation of Bay Area volleyball talent. Youth-led, community-driven, competition-ready.
+                Open grass volleyball and bracket tournaments across the Bay Area. Player-run, no tryouts, no cuts. Just show up and play.
               </p>
               <div className="flex flex-col gap-2">
                 <a
@@ -138,7 +139,7 @@ export default function Footer() {
               transition={{ duration: 0.5, delay: 0.3, ease }}
             >
               <h3 className="text-xs font-black uppercase tracking-widest text-white mb-5">Stay in the Loop</h3>
-              <p className="text-slate-400 text-sm mb-4 leading-relaxed">Get practice schedules, tournament dates, and updates delivered to your inbox.</p>
+              <p className="text-slate-400 text-sm mb-4 leading-relaxed">Get open play dates, tournament announcements, and court updates delivered to your inbox.</p>
               {subscribed ? (
                 <motion.div
                   className="flex items-center gap-2 text-emerald-400 text-sm font-bold"
@@ -188,7 +189,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-xs">
-            © {new Date().getFullYear()} Tri-City Volleyball Academy · Fremont, Union City & Dublin, CA · Est. 2026
+            © {new Date().getFullYear()} Tri-City Volleyball · Fremont, Union City & Dublin, CA · Est. 2026
           </p>
           <div className="flex items-center gap-1">
             <span className="text-slate-600 text-xs mr-2">Made with</span>

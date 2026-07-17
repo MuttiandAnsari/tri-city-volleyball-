@@ -49,9 +49,9 @@ export default function LocationToast() {
                 <div className="flex items-center gap-2.5">
                   <span className="text-2xl">📍</span>
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-0.5">Practice Location</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-0.5">Our Home Grass</p>
                     <p className="text-white font-black text-sm leading-tight">Lake Elizabeth Park</p>
-                    <p className="text-slate-400 text-xs font-medium">Fremont, CA · June 14</p>
+                    <p className="text-slate-400 text-xs font-medium">Fremont, CA · Open play</p>
                   </div>
                 </div>
                 <button

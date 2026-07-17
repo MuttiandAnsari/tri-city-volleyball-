@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 
 const MAX_SPOTS = 24
+const SESSION_KEY = 'banner-open-play'
 
 export default function AnnouncementBanner() {
   const [visible, setVisible] = useState(() => {
     if (typeof window === 'undefined') return false
-    return !sessionStorage.getItem('banner-practice-june-13')
+    return !sessionStorage.getItem(SESSION_KEY)
   })
   const [isFull, setIsFull] = useState(false)
 
@@ -17,14 +18,14 @@ export default function AnnouncementBanner() {
       const { data } = await supabase
         .from('practice_registrations')
         .select('practice_name')
-        .eq('practice_name', 'Advanced Competitive')
+        .eq('practice_name', 'Open Play')
       if (data && data.length >= MAX_SPOTS) setIsFull(true)
     }
     checkSpots()
   }, [])
 
   function dismiss() {
-    sessionStorage.setItem('banner-practice-june-13', '1')
+    sessionStorage.setItem(SESSION_KEY, '1')
     setVisible(false)
   }
 
@@ -41,15 +42,15 @@ export default function AnnouncementBanner() {
           <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
             <p className="font-semibold text-center flex-1 text-xs sm:text-sm">
               {isFull ? (
-                <>🔒 Advanced Competitive sign-ups are <span className="font-black">FULL</span>. Check back for future sessions.</>
+                <>🔒 Open play is <span className="font-black">FULL</span> for the next session. Check back for the next date.</>
               ) : (
                 <>
-                  🏐 First Practice — June 14 at Lake Elizabeth Park, Fremont.
+                  🏐 Open grass volleyball at Lake Elizabeth Park, Fremont — ages 13+, always free.
                   <Link
-                    to="/register?practice=Advanced%20Competitive"
+                    to="/register?session=Open%20Play"
                     className="ml-2 underline font-black hover:text-cyan-200 transition-colors whitespace-nowrap"
                   >
-                    Register Now →
+                    Save Your Spot →
                   </Link>
                 </>
               )}

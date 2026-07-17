@@ -8,20 +8,18 @@ import TournamentBracket from '../components/TournamentBracket'
 const ease = [0.25, 0.46, 0.45, 0.94]
 
 const upcoming = [
-  { id: 1, name: 'Tri-City Showdown', month: 'JUN', day: '26', year: '2026', fullDate: 'June 26, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['14+ Open'], format: 'Pool play + losers bracket', registration: 'Open', deadline: 'June 24, 2026', teams: 8, description: 'Our flagship summer tournament. Players 14 and up from across the Bay Area compete for bragging rights in a full-day pool play and losers bracket showdown.', gradient: 'from-blue-600 to-cyan-500' },
-  { id: 2, name: 'Tri-City Invitational', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: 'TBD', divisions: ['14+ Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'TBD', teams: 8, description: 'The Tri-City Invitational brings together players 14 and up from across the Bay Area for a day of competitive pool play and bracket action. Location to be announced.', gradient: 'from-indigo-600 to-blue-500' },
-  { id: 3, name: 'Tri-City Showdown III', month: 'SEP', day: '13', year: '2026', fullDate: 'September 13, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['14+ Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'September 11, 2026', teams: 8, description: 'The final showdown of the season. Open to players 14 and up gearing up for their school or club seasons with one last competitive tuneup.', gradient: 'from-blue-700 to-indigo-600' },
+  { id: 2, name: 'Tri-City Invitational', month: 'AUG', day: '09', year: '2026', fullDate: 'August 9, 2026', location: 'TBD', divisions: ['13+ Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'TBD', teams: 8, description: 'The Tri-City Invitational brings together players 13 and up from across the Bay Area for a day of competitive pool play and bracket action. Location to be announced.', gradient: 'from-indigo-600 to-blue-500' },
+  { id: 3, name: 'Tri-City Showdown III', month: 'SEP', day: '13', year: '2026', fullDate: 'September 13, 2026', location: "Fallon's Sports Park, Dublin", divisions: ['13+ Open'], format: 'Pool play + losers bracket', registration: 'Coming Soon', deadline: 'September 11, 2026', teams: 8, description: 'The final showdown of the season. Open to players 13 and up looking for one last competitive day on the grass before fall.', gradient: 'from-blue-700 to-indigo-600' },
 ]
 
 const past = [
-  { name: 'Spring Opener 2026', date: 'April 2026', winner: 'Union City Elite 16U', division: '16U' },
-  { name: 'Inaugural Tournament 2026', date: 'February 2026', winner: 'Tri-City Heat 12U', division: '12U' },
+  { name: 'Tri-City Showdown', date: 'June 26, 2026', winner: 'Result coming soon', division: '13+ Open', pending: true },
 ]
 
 const info = [
-  { icon: '🏐', title: 'Equipment', text: 'Volleyballs provided. Bring non-marking athletic shoes.' },
+  { icon: '🏐', title: 'Equipment', text: 'Nets and volleyballs provided. Bare feet or turf shoes — no cleats.' },
   { icon: '👕', title: 'Uniforms', text: 'No matching jerseys required. Just show up ready to play.' },
-  { icon: '📋', title: 'Rules', text: 'USAV youth rules apply. Division modifications published two weeks before each event.' },
+  { icon: '📋', title: 'Rules', text: 'USAV rules apply, adapted for grass. Any modifications go out two weeks before each event.' },
   { icon: '🏅', title: 'Awards', text: 'Awards TBD — stay tuned for details closer to the event.' },
 ]
 
@@ -147,12 +145,15 @@ function TournamentCard({ t, index }) {
 }
 
 export default function Tournaments() {
+  const nextTournament = upcoming[0]
+  const openTournament = upcoming.find(t => t.registration === 'Open')
+
   return (
     <>
       <PageHero
         label="Events & Competition"
-        title={<>Compete.<br /><span className="text-gradient">Rise Up.</span></>}
-        subtitle="Open to players 14 and up. Test your skills against the best teams in the Bay Area."
+        title={<>Compete.<br /><span className="text-gradient">On the Grass.</span></>}
+        subtitle="Bracket tournaments open to players 13 and up. Pool play, real seeding, teams from across the Bay Area."
         watermark="COMPETE"
       />
 
@@ -174,27 +175,34 @@ export default function Tournaments() {
       </section></CursorGlow>
 
       {/* Live Bracket */}
-      <section className="bg-slate-950 py-16 sm:py-20 border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <SlideIn from="left">
-              <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">Live · Updates in Real Time</span>
-              <h2 className="text-3xl font-black text-white mt-1">Summer Showdown Bracket</h2>
-              <p className="text-slate-500 text-sm mt-1">June 26, 2026 · Fallon's Sports Park, Dublin · Pool Play + Losers Bracket · High School Only</p>
-            </SlideIn>
-            <Link
-              to="/tournament-register"
-              className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black text-sm rounded-xl hover:from-blue-700 hover:to-cyan-600 transition-all"
-            >
-              Register Now
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+      {nextTournament && (
+        <section className="bg-slate-950 py-16 sm:py-20 border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+              <SlideIn from="left">
+                <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">Live · Updates in Real Time</span>
+                <h2 className="text-3xl font-black text-white mt-1">{nextTournament.name} Bracket</h2>
+                <p className="text-slate-500 text-sm mt-1">
+                  {nextTournament.fullDate} · {nextTournament.location} · {nextTournament.format} · Ages 13+
+                </p>
+              </SlideIn>
+              {/* Only surfaced once a tournament actually flips to 'Open' */}
+              {openTournament && (
+                <Link
+                  to="/tournament-register"
+                  className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black text-sm rounded-xl hover:from-blue-700 hover:to-cyan-600 transition-all"
+                >
+                  Register Now
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              )}
+            </div>
+            <TournamentBracket />
           </div>
-          <TournamentBracket />
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Info */}
       <section className="bg-white py-16 sm:py-20">
@@ -251,13 +259,17 @@ export default function Tournaments() {
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="hidden sm:block px-3 py-1 bg-white/10 text-slate-300 text-xs font-black rounded-full">{r.division}</span>
-                  <motion.span
-                    className="text-amber-400 font-black text-sm"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
-                  >
-                    {r.winner}
-                  </motion.span>
+                  {r.pending ? (
+                    <span className="text-slate-500 font-bold text-sm italic">{r.winner}</span>
+                  ) : (
+                    <motion.span
+                      className="text-amber-400 font-black text-sm"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+                    >
+                      {r.winner}
+                    </motion.span>
+                  )}
                 </div>
               </motion.div>
             ))}

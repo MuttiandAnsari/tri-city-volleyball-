@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
-export default function VerticalVideoSection({ src, poster, title = 'Watch Us Play', subtitle = 'See the energy from our latest clinics.' }) {
+export default function VerticalVideoSection({ src, poster, title = 'Watch Us Play', subtitle = 'See the energy from our latest open play sessions.' }) {
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
 

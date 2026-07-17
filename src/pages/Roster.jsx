@@ -25,7 +25,7 @@ export default function Roster() {
         const { data, error } = await supabase
           .from('practice_registrations')
           .select('first_name, last_name, position, created_at')
-          .eq('practice_name', 'Advanced Competitive')
+          .eq('practice_name', 'Open Play')
           .order('created_at', { ascending: true })
         if (error) console.error('Roster fetch error:', error)
         setPlayers(data ?? [])
@@ -41,9 +41,9 @@ export default function Roster() {
   return (
     <>
       <PageHero
-        label="Advanced Competitive"
+        label="Open Play"
         title={<>Who's<br /><span className="text-gradient">Showing Up.</span></>}
-        subtitle={`${players.length} players registered for June 14 at Lake Elizabeth Park`}
+        subtitle={`${players.length} players signed up for open play at Lake Elizabeth Park`}
         watermark="ROSTER"
       />
 
@@ -63,9 +63,9 @@ export default function Roster() {
               {/* Stats strip */}
               <div className="grid grid-cols-3 gap-4 mb-10">
                 {[
-                  { label: 'Registered', value: players.length },
+                  { label: 'Signed Up', value: players.length },
                   { label: 'Spots Left', value: Math.max(0, 24 - players.length) },
-                  { label: 'Session Date', value: 'June 14' },
+                  { label: 'Next Date', value: 'TBD' },
                 ].map(({ label, value }) => (
                   <div key={label} className="bg-white border border-slate-100 rounded-2xl p-4 text-center shadow-sm">
                     <p className="text-2xl sm:text-3xl font-black text-slate-900">{value}</p>

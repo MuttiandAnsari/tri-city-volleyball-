@@ -12,30 +12,10 @@ const FORMSPREE_URL = 'https://formspree.io/f/mojbpbrr'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
-// Age ranges per practice (inclusive)
-const practiceRules = {
-  'Advanced Competitive':    { min: 13, max: 22 },
-  'Summer All-Skills Camp':  { min: 13, max: 22 },
-}
-
-const allPractices = [
-  { name: 'Advanced Competitive',   ages: '13–22' },
-  { name: 'Summer All-Skills Camp', ages: '13–22' },
-]
-
-function getAgeError(practiceName, age) {
-  const rule = practiceRules[practiceName]
-  if (!rule || !age) return null
-  const n = Number(age)
-  if (n >= rule.min && n <= rule.max) return null
-
-  const suggestions = allPractices.filter(c => {
-    const r = practiceRules[c.name]
-    return c.name !== practiceName && r && n >= r.min && n <= r.max
-  })
-
-  return { tooYoung: n < rule.min, suggestions }
-}
+// Must match SESSION.title in OpenPlay.jsx — it is the practice_registrations.practice_name value.
+const SESSION_NAME = 'Open Play'
+const MIN_AGE = 13
+const GUARDIAN_CONTACT_UNDER = 18
 
 const positions = [
   'Not sure yet',
@@ -59,11 +39,10 @@ function Field({ label, hint, children }) {
   )
 }
 
-export default function PracticeRegister() {
+export default function OpenPlayRegister() {
   const [params] = useSearchParams()
-  const validPractices = Object.keys(practiceRules)
-  const rawPractice = params.get('practice') || ''
-  const practiceName = validPractices.includes(rawPractice) ? rawPractice : 'Advanced Competitive'
+  // Only one session exists, so anything unrecognized falls back to it.
+  const sessionName = params.get('session') === SESSION_NAME ? params.get('session') : SESSION_NAME
 
   const [form, setForm] = useState({
     firstName: '',
@@ -72,7 +51,6 @@ export default function PracticeRegister() {
     phone: '',
     parentPhone: '',
     position: '',
-    skills: '',
     questions: '',
   })
   const [submitted, setSubmitted] = useState(false)
@@ -80,9 +58,9 @@ export default function PracticeRegister() {
   const [sendError, setSendError] = useState('')
   const [errors, setErrors] = useState({})
 
-  const isMinor   = form.age !== '' && Number(form.age) <= 15
-  const ageError  = getAgeError(practiceName, form.age)
-  const ageBlocked = ageError !== null
+  const age = form.age === '' ? null : Number(form.age)
+  const needsGuardian = age !== null && age >= MIN_AGE && age < GUARDIAN_CONTACT_UNDER
+  const tooYoung = age !== null && form.age.trim() !== '' && age < MIN_AGE
 
   function set(field, val) {
     setForm(f => ({ ...f, [field]: val }))
@@ -95,7 +73,7 @@ export default function PracticeRegister() {
     if (!form.lastName.trim()) e.lastName = 'Last name is required.'
     if (!form.age.trim()) e.age = 'Age is required.'
     if (!form.phone.trim()) e.phone = 'Phone number is required.'
-    if (isMinor && !form.parentPhone.trim()) e.parentPhone = 'Required for athletes 15 and under.'
+    if (needsGuardian && !form.parentPhone.trim()) e.parentPhone = 'Required for players under 18.'
     if (!form.position) e.position = 'Please select a position.'
     return e
   }
@@ -105,7 +83,7 @@ export default function PracticeRegister() {
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
 
-    if (ageBlocked) return
+    if (tooYoung) return
 
     setSending(true)
     setSendError('')
@@ -113,14 +91,13 @@ export default function PracticeRegister() {
     try {
       // Always insert to Supabase first so spot count is always tracked
       await supabase.from('practice_registrations').insert({
-        practice_name: practiceName,
+        practice_name: sessionName,
         first_name:    form.firstName,
         last_name:     form.lastName,
         age:           Number(form.age),
         phone:         form.phone || null,
         parent_phone:  form.parentPhone || null,
         position:      form.position || null,
-        skills:        form.skills || null,
         questions:     form.questions || null,
       })
 
@@ -129,7 +106,7 @@ export default function PracticeRegister() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          practice:   practiceName,
+          session:    sessionName,
           first_name: form.firstName,
           last_name:  form.lastName,
           age:        form.age,
@@ -140,7 +117,7 @@ export default function PracticeRegister() {
       }).catch(() => {}) // silently ignore Formspree failures
 
       setSubmitted(true)
-      confetti({ particleCount: 140, spread: 80, origin: { y: 0.55 }, colors: ['#3b82f6','#06b6d4','#ffffff','#a5f3fc'] })
+      confetti({ particleCount: 140, spread: 80, origin: { y: 0.55 }, colors: ['#10b981','#06b6d4','#ffffff','#a7f3d0'] })
     } catch {
       setSendError('Submission failed. Please email us directly at volleyballtricity@gmail.com.')
     } finally {
@@ -156,8 +133,8 @@ export default function PracticeRegister() {
     <>
       <PageHero
         label="Sign Up"
-        title={<>Register for a<br /><span className="text-gradient">Practice.</span></>}
-        subtitle={`You're signing up for: ${practiceName}`}
+        title={<>Save Your<br /><span className="text-gradient">Spot.</span></>}
+        subtitle="Open play on the grass — free, ages 13 and up. Takes about 60 seconds."
         watermark="JOIN"
       />
 
@@ -172,20 +149,20 @@ export default function PracticeRegister() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 18 }}
               >
-                <VolleyballSVG size={80} color="#06b6d4" float spin className="mx-auto mb-6" />
+                <VolleyballSVG size={80} color="#10b981" float spin className="mx-auto mb-6" />
                 <h2 className="text-3xl font-black text-slate-900 mb-3">You're on the list!</h2>
                 <p className="text-slate-500 mb-8 max-w-sm mx-auto">
-                  Your registration has been sent. We'll follow up with confirmation details soon.
+                  You're signed up for open play. We'll reach out with the next date and time as soon as it's set.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Link to="/practices" className="block px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black rounded-2xl shadow-lg">
-                      Back to Practices
+                    <Link to="/roster" className="block px-8 py-3 bg-gradient-to-r from-emerald-600 to-cyan-500 text-white font-black rounded-2xl shadow-lg">
+                      See Who's Coming
                     </Link>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Link to="/" className="block px-8 py-3 bg-white border border-slate-200 text-slate-700 font-black rounded-2xl shadow-sm">
-                      Go Home
+                    <Link to="/tournaments" className="block px-8 py-3 bg-white border border-slate-200 text-slate-700 font-black rounded-2xl shadow-sm">
+                      Browse Tournaments
                     </Link>
                   </motion.div>
                 </div>
@@ -194,17 +171,17 @@ export default function PracticeRegister() {
               <motion.form
                 key="form"
                 onSubmit={handleSubmit}
-                className="bg-white rounded-3xl shadow-xl shadow-blue-50 border border-slate-100 p-8 sm:p-10 space-y-6"
+                className="bg-white rounded-3xl shadow-xl shadow-emerald-50 border border-slate-100 p-8 sm:p-10 space-y-6"
                 initial={{ opacity: 0, y: 32 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease }}
               >
-                {/* Practice badge */}
-                <div className="flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-2xl px-4 py-3 mb-2">
-                  <span className="text-2xl">📋</span>
+                {/* Session badge */}
+                <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-100 rounded-2xl px-4 py-3 mb-2">
+                  <span className="text-2xl">🏐</span>
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-blue-400">Registering for</p>
-                    <p className="text-blue-800 font-black text-sm">{practiceName}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-emerald-500">Signing up for</p>
+                    <p className="text-emerald-800 font-black text-sm">{sessionName} · Lake Elizabeth Park, Fremont</p>
                   </div>
                 </div>
 
@@ -251,24 +228,23 @@ export default function PracticeRegister() {
                 </Field>
 
                 {/* Age */}
-                <Field label="Age" hint="used to determine if a parent contact is needed">
-                  <FocusBorder radius={12} color={ageBlocked ? 'green' : 'cyan'}>
+                <Field label="Age" hint="13 and up — no upper limit">
+                  <FocusBorder radius={12} color={tooYoung ? 'green' : 'cyan'}>
                     <input
                       type="number"
-                      min="13"
-                      max="22"
+                      min={MIN_AGE}
                       value={form.age}
                       onChange={e => set('age', e.target.value)}
-                      placeholder="e.g. 12"
-                      className={`${inputBase} ${errors.age ? inputErr : ''} ${ageBlocked ? 'border-amber-400 bg-amber-50' : ''}`}
+                      placeholder="e.g. 24"
+                      className={`${inputBase} ${errors.age ? inputErr : ''} ${tooYoung ? 'border-amber-400 bg-amber-50' : ''}`}
                     />
                   </FocusBorder>
                   {errors.age && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.age}</p>}
                 </Field>
 
-                {/* Age mismatch banner */}
+                {/* Too young banner */}
                 <AnimatePresence>
-                  {ageBlocked && (
+                  {tooYoung && (
                     <motion.div
                       key="age-warn"
                       className="bg-amber-50 border border-amber-200 rounded-2xl p-4"
@@ -281,45 +257,24 @@ export default function PracticeRegister() {
                         <span className="text-xl mt-0.5">⚠️</span>
                         <div>
                           <p className="text-amber-800 font-black text-sm mb-1">
-                            Age {form.age} is {ageError.tooYoung ? 'too young' : 'too old'} for {practiceName}.
+                            Open play is for players {MIN_AGE} and up.
                           </p>
-                          {ageError.suggestions.length > 0 ? (
-                            <>
-                              <p className="text-amber-700 text-xs font-medium mb-2">
-                                Based on your age, you're eligible for:
-                              </p>
-                              <div className="flex flex-wrap gap-2">
-                                {ageError.suggestions.map(c => (
-                                  <Link
-                                    key={c.name}
-                                    to={`/register?practice=${encodeURIComponent(c.name)}`}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-amber-300 text-amber-800 text-xs font-black rounded-xl hover:bg-amber-100 transition-colors"
-                                  >
-                                    {c.name}
-                                    <span className="text-amber-500">Ages {c.ages}</span>
-                                    →
-                                  </Link>
-                                ))}
-                              </div>
-                            </>
-                          ) : (
-                            <p className="text-amber-700 text-xs font-medium">
-                              Unfortunately we don't have a practice for your age group right now. Contact us at{' '}
-                              <a href="mailto:volleyballtricity@gmail.com" className="underline font-bold">
-                                volleyballtricity@gmail.com
-                              </a>{' '}
-                              and we'll see what we can do!
-                            </p>
-                          )}
+                          <p className="text-amber-700 text-xs font-medium">
+                            Age {form.age} is a little young for our sessions right now. Reach out at{' '}
+                            <a href="mailto:volleyballtricity@gmail.com" className="underline font-bold">
+                              volleyballtricity@gmail.com
+                            </a>{' '}
+                            and we'll let you know if that changes.
+                          </p>
                         </div>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-                {/* Parent phone , animated in/out */}
+                {/* Guardian phone — animated in/out */}
                 <AnimatePresence>
-                  {isMinor && (
+                  {needsGuardian && (
                     <motion.div
                       key="parentPhone"
                       initial={{ opacity: 0, height: 0 }}
@@ -329,7 +284,7 @@ export default function PracticeRegister() {
                     >
                       <Field
                         label="Parent / Guardian Phone Number"
-                        hint="required for athletes 13 and under"
+                        hint="required for players under 18"
                       >
                         <FocusBorder radius={12}>
                           <input
@@ -347,7 +302,7 @@ export default function PracticeRegister() {
                 </AnimatePresence>
 
                 {/* Position */}
-                <Field label="What position do you play?">
+                <Field label="What position do you play?" hint="just so we can balance teams">
                   <FocusBorder radius={12}>
                     <select
                       value={form.position}
@@ -363,7 +318,6 @@ export default function PracticeRegister() {
                   {errors.position && <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.position}</p>}
                 </Field>
 
-
                 {/* Any questions */}
                 <Field label="Any questions?" hint="optional">
                   <FocusBorder radius={12}>
@@ -371,16 +325,16 @@ export default function PracticeRegister() {
                       rows={3}
                       value={form.questions}
                       onChange={e => set('questions', e.target.value)}
-                      placeholder="e.g. Can I bring a friend? Do I need prior experience?"
+                      placeholder="e.g. Can I bring a friend? I've never played on grass — is that okay?"
                       className={`${inputBase} resize-none`}
                     />
                   </FocusBorder>
                 </Field>
 
-                {/* First session free reminder */}
+                {/* Free reminder */}
                 <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-100 rounded-2xl px-4 py-3">
                   <span className="text-xl">🎉</span>
-                  <p className="text-emerald-700 text-sm font-bold">Your first session is completely free. No payment needed today.</p>
+                  <p className="text-emerald-700 text-sm font-bold">Open play is always free. No payment, ever.</p>
                 </div>
 
                 {sendError && (
@@ -389,12 +343,12 @@ export default function PracticeRegister() {
 
                 <motion.button
                   type="submit"
-                  disabled={sending || ageBlocked}
-                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black text-base rounded-2xl shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-                  whileHover={sending || ageBlocked ? {} : { scale: 1.02, y: -2 }}
-                  whileTap={sending || ageBlocked ? {} : { scale: 0.97 }}
+                  disabled={sending || tooYoung}
+                  className="w-full py-4 bg-gradient-to-r from-emerald-600 to-cyan-500 text-white font-black text-base rounded-2xl shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                  whileHover={sending || tooYoung ? {} : { scale: 1.02, y: -2 }}
+                  whileTap={sending || tooYoung ? {} : { scale: 0.97 }}
                 >
-                  {sending ? 'Sending…' : 'Submit Registration →'}
+                  {sending ? 'Sending…' : 'Save My Spot →'}
                 </motion.button>
               </motion.form>
             )}

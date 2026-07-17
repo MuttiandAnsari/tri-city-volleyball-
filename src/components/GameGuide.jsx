@@ -162,7 +162,7 @@ function RotationDiagram() {
   )
 }
 
-export default function ParentGuide() {
+export default function GameGuide() {
   const [active, setActive] = useState('scoring')
   const section = SECTIONS.find(s => s.id === active)
 

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import { SlideIn, FadeUp } from '../components/Animate'
 import VolleyballSVG from '../components/VolleyballSVG'
-import ParentGuide from '../components/ParentGuide'
+import GameGuide from '../components/GameGuide'
 
 const ease = [0.25, 0.46, 0.45, 0.94]
 
@@ -98,14 +98,14 @@ const contactItems = [
 ]
 
 const faqs = [
-  { q: 'How much does it cost?', a: 'All sessions are currently free — no commitment needed. Just show up.' },
-  { q: 'Do I need prior experience?', a: 'No experience needed. Our session welcomes all skill levels ages 13–22. We\'ll meet you where you are and build from there.' },
-  { q: 'What should I bring?', a: 'Athletic shoes, a water bottle, and knee pads if you have them (not required). We provide the volleyballs.' },
-  { q: 'What happens at the first session?', a: 'Founders introduce themselves, group athletes by skill level, run focused drills, and make sure everyone feels welcome. Zero pressure.' },
-  { q: 'Who can join?', a: 'Athletes ages 13–22 of any skill level. No tryouts, no cuts — just register and show up.' },
-  { q: 'Is this for boys and girls?', a: 'Yes — practices are open to all athletes regardless of gender.' },
-  { q: 'Are there tryouts?', a: 'No tryouts. Open enrollment. Just register and show up.' },
-  { q: 'Where exactly are the practices held?', a: 'Practices are held at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Park (Dublin, CA).' },
+  { q: 'How much does it cost?', a: 'Open play is completely free — no dues, no drop-in fee. Tournaments are ticketed separately; details go on each tournament listing.' },
+  { q: 'Do I need prior experience?', a: 'None at all. Grass is slower and more forgiving than sand or indoor, so it\'s a genuinely good place to learn the game.' },
+  { q: 'What should I bring?', a: 'Bare feet or turf shoes, a water bottle, and sunscreen. We bring the nets and the balls. No cleats.' },
+  { q: 'Do I need a team?', a: 'Nope. Most people turn up alone. Teams get sorted on site and winners rotate in, so you\'ll play with a lot of different people.' },
+  { q: 'Who can play?', a: 'Anyone 13 or older, any skill level. There\'s no upper age limit — high schoolers and forty-somethings share the same court.' },
+  { q: 'Is this for men and women?', a: 'Yes — open play and tournaments are open to everyone regardless of gender.' },
+  { q: 'Are there tryouts?', a: 'No tryouts, no cuts, no roster. Sign up so we know how many nets to bring, then show up.' },
+  { q: 'Where exactly do you play?', a: 'Grass at Lake Elizabeth Park (Fremont), Willow Park (Union City), and Fallon\'s Sports Park (Dublin, CA).' },
 ]
 
 const inputClass = "w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
@@ -158,7 +158,7 @@ function SidebarTabs() {
   return (
     <div>
       <div className="flex gap-2 mb-5">
-        {[{ id: 'faq', label: 'FAQ' }, { id: 'guide', label: "Parent Guide" }].map(t => (
+        {[{ id: 'faq', label: 'FAQ' }, { id: 'guide', label: 'New to Volleyball?' }].map(t => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
@@ -175,7 +175,7 @@ function SidebarTabs() {
           </motion.div>
         ) : (
           <motion.div key="guide" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>
-            <ParentGuide />
+            <GameGuide />
           </motion.div>
         )}
       </AnimatePresence>
@@ -219,7 +219,7 @@ export default function Contact() {
       <PageHero
         label="Get in Touch"
         title={<>Let's Talk<br /><span className="text-gradient">Volleyball.</span></>}
-        subtitle="Questions about practices, tournaments, or registration? We typically respond within 24 hours."
+        subtitle="Questions about open play, tournaments, or signing up? We typically respond within 24 hours."
         watermark="HELLO"
       />
 
@@ -365,13 +365,14 @@ export default function Contact() {
                         </motion.div>
                       ))}
                       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18, duration: 0.4 }}>
-                        <label className={labelClass}>Athlete's Age</label>
-                        <select name="grade" value={form.grade} onChange={handleChange} className={inputClass + ' cursor-pointer'}>
-                          <option value="" className="bg-slate-900">Select age...</option>
-                          {['13','14','15','16','17','18','19','20','21','22'].map((a) => (
-                            <option key={a} value={a} className="bg-slate-900">Age {a}</option>
-                          ))}
-                        </select>
+                        <label className={labelClass}>Your Age</label>
+                        <input
+                          type="number" name="grade" value={form.grade} onChange={handleChange}
+                          min="13" placeholder="13 and up"
+                          className={inputClass}
+                          onFocus={() => setFocused('grade')}
+                          onBlur={() => setFocused(null)}
+                        />
                       </motion.div>
                     </div>
 
@@ -379,7 +380,7 @@ export default function Contact() {
                       <label className={labelClass}>Subject <span className="text-rose-500">*</span></label>
                       <select name="subject" value={form.subject} onChange={handleChange} required className={inputClass + ' cursor-pointer'}>
                         <option value="" className="bg-slate-900">Select a topic...</option>
-                        <option value="practice-registration" className="bg-slate-900">Practice Registration</option>
+                        <option value="open-play" className="bg-slate-900">Open Play</option>
                         <option value="tournament-registration" className="bg-slate-900">Tournament Registration</option>
                         <option value="general-question" className="bg-slate-900">General Question</option>
                         <option value="partnership" className="bg-slate-900">Partnership / Sponsorship</option>
@@ -392,7 +393,7 @@ export default function Contact() {
                       <textarea
                         name="message" value={form.message} onChange={handleChange}
                         required rows={5}
-                        placeholder="Tell us about your athlete, which practice or tournament you're interested in, or any questions you have..."
+                        placeholder="Tell us what you're after — open play, a tournament, or anything else you're wondering about..."
                         className={inputClass + ' resize-none'}
                         onFocus={() => setFocused('message')}
                         onBlur={() => setFocused(null)}

@@ -115,9 +115,9 @@ export default function Reviews() {
         >
           <span className="inline-block px-4 py-1 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-400 text-xs font-bold uppercase tracking-widest mb-4">Reviews</span>
           <h2 className="text-5xl font-black text-white mb-4 text-glow-cyan" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            What Athletes Say
+            What Players Say
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">Hear from the players and parents who've been part of Tri-City.</p>
+          <p className="text-slate-400 max-w-xl mx-auto">Hear from people who've been out on the grass with us.</p>
         </motion.div>
 
         {/* Review grid — min-height reserves space so async load doesn't cause layout shift */}
@@ -202,8 +202,9 @@ export default function Reviews() {
                       className="w-full bg-slate-800 border border-white/10 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
                     >
                       <option value="">Select (optional)</option>
-                      <option value="Athlete">Athlete</option>
-                      <option value="Parent">Parent</option>
+                      <option value="Open play regular">Open play regular</option>
+                      <option value="Tournament player">Tournament player</option>
+                      <option value="First-timer">First-timer</option>
                     </select>
                   </div>
                 </div>
@@ -215,7 +216,7 @@ export default function Reviews() {
                     rows={4}
                     value={form.comment}
                     onChange={e => { setForm(f => ({ ...f, comment: e.target.value })); setErrors(er => ({ ...er, comment: '' })) }}
-                    placeholder="Tell us about your experience at Tri-City Volleyball Academy…"
+                    placeholder="Tell us about your experience at Tri-City Volleyball…"
                     className="w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all resize-none"
                   />
                   {errors.comment && <p className="text-rose-400 text-xs mt-1">{errors.comment}</p>}

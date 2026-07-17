@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 
-const TARGET = new Date('2026-06-14T12:00:00')
-
-function getTimeLeft() {
-  const diff = TARGET - Date.now()
+function getTimeLeft(target) {
+  if (!target) return null
+  const diff = target - Date.now()
   if (diff <= 0) return null
   return {
     days:    Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -39,13 +38,17 @@ function Digit({ value, label, index }) {
   )
 }
 
-export default function Countdown() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft())
+// Renders nothing once the target passes, so a stale date degrades to empty rather than wrong.
+export default function Countdown({ date, label = 'Starts In', sublabel }) {
+  const target = useMemo(() => (date ? new Date(date) : null), [date])
+  const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(target))
 
   useEffect(() => {
-    const id = setInterval(() => setTimeLeft(getTimeLeft()), 1000)
+    setTimeLeft(getTimeLeft(target))
+    if (!target) return
+    const id = setInterval(() => setTimeLeft(getTimeLeft(target)), 1000)
     return () => clearInterval(id)
-  }, [])
+  }, [target])
 
   if (!timeLeft) return null
 
@@ -57,16 +60,18 @@ export default function Countdown() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          First Practice Starts In
+          {label}
         </motion.p>
-        <motion.h3
-          className="text-white font-black text-xl mb-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-        >
-          June 14, 2026 · Lake Elizabeth, Fremont
-        </motion.h3>
+        {sublabel && (
+          <motion.h3
+            className="text-white font-black text-xl mb-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+          >
+            {sublabel}
+          </motion.h3>
+        )}
         <div className="flex items-end justify-center gap-3 sm:gap-5">
           <Digit value={timeLeft.days}    label="Days"    index={0} />
           <span className="text-slate-500 font-black text-3xl mb-8 leading-none">:</span>

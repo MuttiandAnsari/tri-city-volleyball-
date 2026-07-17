@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 import { useEffect } from 'react'
 
@@ -17,13 +17,31 @@ function ScrollReset() {
   return null
 }
 import Home from './pages/Home'
-import Practices from './pages/Practices'
+import OpenPlay from './pages/OpenPlay'
 import Tournaments from './pages/Tournaments'
 import Contact from './pages/Contact'
-import PracticeRegister from './pages/PracticeRegister'
+import OpenPlayRegister from './pages/OpenPlayRegister'
 import TournamentRegister from './pages/TournamentRegister'
 import TournamentAdmin from './pages/TournamentAdmin'
 import Roster from './pages/Roster'
+
+// Single source of truth — the mobile and desktop branches below both render this,
+// so a new route can never land in one and not the other.
+function SiteRoutes({ location }) {
+  return (
+    <Routes location={location}>
+      <Route path="/" element={<Home />} />
+      <Route path="/open-play" element={<OpenPlay />} />
+      <Route path="/tournaments" element={<Tournaments />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/register" element={<OpenPlayRegister />} />
+      <Route path="/tournament-register" element={<TournamentRegister />} />
+      <Route path="/roster" element={<Roster />} />
+      {/* Pre-rebrand URL */}
+      <Route path="/practices" element={<Navigate to="/open-play" replace />} />
+    </Routes>
+  )
+}
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -34,15 +52,7 @@ function AnimatedRoutes() {
     <ScrollReset />
     {/* On mobile: no page transition — transform on the page wrapper kills native scroll speed */}
     {isTouch ? (
-      <Routes location={location}>
-        <Route path="/" element={<Home />} />
-        <Route path="/practices" element={<Practices />} />
-        <Route path="/tournaments" element={<Tournaments />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/register" element={<PracticeRegister />} />
-        <Route path="/tournament-register" element={<TournamentRegister />} />
-        <Route path="/roster" element={<Roster />} />
-      </Routes>
+      <SiteRoutes location={location} />
     ) : (
       <AnimatePresence mode="wait">
         <motion.div
@@ -53,15 +63,7 @@ function AnimatedRoutes() {
           transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{ width: '100%' }}
         >
-          <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/practices" element={<Practices />} />
-            <Route path="/tournaments" element={<Tournaments />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/register" element={<PracticeRegister />} />
-            <Route path="/tournament-register" element={<TournamentRegister />} />
-            <Route path="/roster" element={<Roster />} />
-          </Routes>
+          <SiteRoutes location={location} />
         </motion.div>
       </AnimatePresence>
     )}
